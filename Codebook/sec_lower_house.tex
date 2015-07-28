@@ -1,0 +1,42 @@
+\section{Lower House}\label{sec_lower_house}
+This table provides basic information on lower houses, including start date of legislature, the total number of seats and the effective number of parties in parliament (ENPP).
+Rows are compositions of lower houses, identified by \texttt{\footnotesize lh\_id}. 
+
+A new Lower House is included when the seat composition is changed through legislative elections or through mergers or splits in factions during the legislature. When enlistment is due to the latter event, no lower house 
+election identifier (\texttt{\footnotesize lhelc\_id}) is recorded. Else, each lower house corresponds to a lower house election.
+
+\subparagraph{Lower house start date}
+PCDB codes the date of the first meeting in the first legislative session of a new lower house as its start date (variable \texttt{\footnotesize lh\_sdate}). Information on the sources is provided in variable \texttt{\footnotesize lh\_src}. If no information on this event is available, the default is equal to the corresponding election date. 
+
+\subparagraph{Total number of seats in lower house} 
+The figures on the total number of seats in the respective lower house are recorded in accordance with official electoral statistics (variable \texttt{\footnotesize lh\_sts\_ttl}). These figures do not necessarily equal the sum of all seats distributed between different parties of a legislature (as recorded in the lower house seat reuslts data,  Table \ref{tab_lower_house_seat_results}).
+
+\subparagraph{Effective Number of Parties in Parliament}
+The effective number of parties in parliament (ENPP) is a measure of party system fractionalization that takes into acount the relative size of parties present in a country's lower house. 
+The PCDB records the variable \texttt{\footnotesize lh\_enpp}, according to Laakso and Taagepera's 
+%\citep{Laakso&Taagepera1979} 
+original formular:
+\begin{equation}\label{ENPP_equ}
+ENPP(k) = 1/\sum\limits_{j=1}^{J}s_{j,k}^{2}
+\end{equation}
+, where $k$ denotes a country's lower house at a given point in time, $J$ are parties in a given lower house $k$, and $s$ is party $j$'s seat share in the $k$\ts{th} lower house. 
+
+The categories `Others with seats' (otherw) and `Independents' (INDs), that lump small parties or single representatives in the parliement into single categories (cf. Section \ref{sec_party}), enter into the calculation as if it were single parties. 
+This might result in an underestimate of fractionalization. A method of adjustment is described in in Section \ref{sec_view_lower_house}.
+
+%The table contains the following variables:
+
+
+\begin{center}
+[table Variables in Lower House Table on next page]
+\end{center}
+\newpage
+
+\begin{center}
+\begin{longtable}{L{4cm} L{6cm} L{3cm}}
+\caption{Variables in Lower House Table\label{tab_lower_house}}
+\input{tab_longtable_header}
+\input{tab_lower_house}
+\end{longtable}
+\end{center}
+%

@@ -1,0 +1,12 @@
+\subsection{CC President candidates' electoral collage votes}\label{cc_pres_elec_collage_vts}
+Consistency check \texttt{\footnotesize cc\_pres\_elec\_collage\_vts} is based on table Presidential Election Vote Results and provides information at the level of presidential election candidates. 
+
+It enlists all candidates presidential election vote results for which electoral collage votes are recorded (variable \texttt{\footnotesize prselc\_vts\_clg} is \emph{not} \texttt{\footnotesize NULL}) but PCDB records indicate that no electoral collage should have been involved in the election of the president (variable \texttt{\footnotesize prselc\_clg} is \texttt{\footnotesize FALSE}). Thus one of both records is wrong.
+
+
+CC \texttt{\footnotesize cc\_pres\_elec\_collage\_vts} is programmed as follow: 
+
+\lstinputlisting[%caption={Code to create consistency check that enlists presidential election which are recorded as lacking an electoral college vote procedure but for which   such votes are recorded.},%
+language=SQL]%
+{../SQL-codes/cc_pres_elec_collage_vts.sql}
+

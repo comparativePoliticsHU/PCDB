@@ -1,0 +1,12 @@
+\subsection{CC Lower House election parties' seat records missing}\label{cc_missing_lhelc_pty_sts_records}
+Consistency check \texttt{\footnotesize cc\_missing\_lhelc\_pty\_sts\_records} is based on tables Party and Lower House Seat Results, and provides information at the level of individual parties nested in lower house elections. 
+
+It enlists all parties individual seat results for any LH election in which for at least one party (excl. category `Other without seat') no total seat result is recorded (i.e., \texttt{\footnotesize Null}-values).			
+
+CC \texttt{\footnotesize cc\_missing\_lhelc\_pty\_sts\_records} is programmed as follow: 
+
+\lstinputlisting[%caption={Code to create consistency check that identifies missing records for parties' seat results in lower house elections.},%
+language=SQL]%
+{../SQL-codes/cc_missing_lhelc_pty_sts_records.sql}
+
+{\em \bf Note}: Missing seat records at the party level of lower house elections are consequential for several aggregate figures, including cabinet parties seat share in the lower house of table Configurations (see CC \texttt{\footnotesize cc\_no\_cab\_lh\_sts\_shr}, subsection \ref{no_cab_lh_sts_shr}), as well as and indicators, including Type A and B Volatility in seats \ldots

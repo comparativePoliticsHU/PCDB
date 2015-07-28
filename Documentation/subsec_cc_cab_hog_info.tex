@@ -1,0 +1,15 @@
+\subsection{CC Cabinet Head of Government}\label{cc_cabinet_hog_info}
+Consistency check \texttt{\footnotesize cc\_cabinet\_hog\_info} is based on the Cabinet Portfolios table and provides information at the level of cabinet configurations.
+
+It enlists all cabinet configurations for which more than one party is recorded as producing the Head of Government (HOG) (variable \texttt{\footnotesize pty\_cab\_hog}).
+
+The view is programmed as follows:
+
+\lstinputlisting[%caption={Code to create consistency check that enlists all cabinets for which more/less than one head of government is recorded.},%
+language=SQL]%
+{../SQL-codes/cc_cabinet_hog_info.sql}
+
+It groups rows in cabinet portfolios (i.e., parties) by \texttt{\footnotesize cab\_id}, the identifier of cabinet configurations (equivalent to unique combinations of country and cabinet start date), and counts parties within a cabinet  which are recorded to produce the HOG. 
+If this count is \emph{not} equal to one, this indicates an inconsistency in the data, because logically only one party can produce the HOG.
+Accordingly, no cabinet configuration should be enlisted in this CC.
+

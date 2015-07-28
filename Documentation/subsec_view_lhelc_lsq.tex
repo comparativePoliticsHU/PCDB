@@ -1,0 +1,29 @@
+\subsection{Lower House Election Disproportionality, Gallagher's LSq}\label{view_lhelc_lsq}
+View \texttt{\footnotesize view\_lhelc\_lsq} is based on table Lower House Election and provides data at the level of lower house elections.
+
+It computes the Gallagher's \citeyearpar{Gallagher1991} Least-square index (LSq), which measures the dispoportionality in the distribution seats in a lower house election: 
+\begin{equation}\label{LSq_equation}
+LSq_{Gallagher}=\sqrt{\frac{1}{2}\sum\limits_{j=1}^{J} (v_{j}-s_{j})^{2}}
+\end{equation}, where $j$ denotes parties, $v$ vote and $s$ seat shares gained in an election to the lower house. 
+
+The LSq weighs the deviations by their own value, creating a responsive index, ranging from 0 to 100. The lower the index value the lower the disproportionality and vice versa. 
+
+
+View \texttt{\footnotesize view\_lhelc\_lsq} is programmed as follows:
+
+\lstinputlisting[%caption={Code to compute Gallagher's LSq index of disproportionality in lower houses.},%
+language=SQL]%
+{../SQL-codes/view_lhelc_lsq.sql}
+
+{\bf Note}: Variable \texttt{\footnotesize lhelc\_lsq\_computed } is cannot be computed for lower house elections 
+in which (a) for at least one party with seat(s) neither proportional nor plurality vote results are recorded (cf. \ref{cc_missing_lhelc_pty_vts_records}), or (b) neither proportional nor plurality seats are recorded, even though party is not identified as 'Other without seat', i.e. \texttt{\footnotesize pty\_id} is not \#\#999 (cf. \ref{cc_missing_lhelc_pty_sts_records}).
+Consistency check \texttt{\footnotesize cc\_missing\_lhelc\_pty\_sts\_records} (\ref{cc_missing_lhelc_pty_sts_records}) enlists all party-election configurations to which one or boths applies.
+
+
+The PCDB also includes the variable \texttt{\footnotesize lhelc\_lsq\_noothers\_computed}, which excludes the vote and seat shares listed for the category `Others with seats' from computing the LSq.\footnote{Essentially, this is achieved by extending the \texttt{\smallfont WHERE}-condition, requiering not only that \texttt{\smallfont SEATS.pty\_abr NOT LIKE '\%Other'} but also that \texttt{\smallfont SEATS.pty\_abr NOT LIKE '\%Others'}.}
+
+View \texttt{\footnotesize view\_lhelc\_lsq\_noothers} is programmed as follows:
+
+\lstinputlisting[%caption={Code to compute Gallagher's LSq index of disproportionality in lower houses, excluding party-group Others.},%
+language=SQL]%
+{../SQL-codes/view_lhelc_lsq_noothers.sql}

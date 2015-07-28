@@ -1,0 +1,130 @@
+\documentclass[%
+parskip=half-,%
+fontsize=12pt,%
+DIV=13,%
+oneside,%
+english,%
+abstract=off,%
+toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
+\usepackage{fontspec}%	font specification, fuegt umlaute hinzu
+\usepackage{libertine}%	font
+
+
+\setcounter{tocdepth}{1}%
+\setcounter{secnumdepth}{1}%
+\usepackage[backref=section]{hyperref}
+\usepackage{footnotebackref}
+\deffootnote[1em]{1em}{2em}{\textsuperscript{\thefootnotemark\ }}
+
+
+\usepackage[svgnames*]{xcolor}% extended color 
+\hypersetup{colorlinks=false}
+\hypersetup{linkcolor=black}
+\hypersetup{citecolor=teal}
+\hypersetup{urlcolor=blue}
+\hypersetup{linkbordercolor=orange}
+\hypersetup{citebordercolor=orange}
+\hypersetup{urlbordercolor=teal}
+\hypersetup{linktoc=all}
+
+\hypersetup{pdftitle = {Political Configurations Database Codebook}}
+\hypersetup{pdfauthor = {Hauke Licht}}
+
+\usepackage{natbib}
+\usepackage{cite}
+\bibliographystyle{apsr}%apsr
+
+\usepackage[headsepline,footsepline%,plainfootsepline
+]{scrpage2}%	Kopf und Fusszeilen 
+\pagestyle{scrheadings}%	seitenstil 
+
+\usepackage{scrdate}% for using \the\year in page headings
+\usepackage{datetime}% for using \monthname in page headings
+
+\lohead{PCDB Codebook}%	left of head
+\automark[section]{chapter}% defines structure (KOMA-Script manual, page 240ff.)
+\renewcommand*{\sectionmarkformat}{}% adjusts section headmark foramt so that only section-title, but no section number is displayed
+\cohead{\headmark}% places (Section-)mark in center of page-head
+\rohead{\monthname\ \the\year}
+
+\lofoot{Humboldt-University of Berlin}
+\cofoot{}
+
+\renewcommand*{\pnumfont}{\footfont}%let pagemark have same font&style like footfont
+\rofoot{\pagemark}
+\setheadsepline{.4pt}
+%\setfootsepline{.4pt}
+
+\usepackage{varioref}%	reference objects identified with \label{} by \ref{} und \pageref{}
+
+\usepackage{ragged2e}%	erlaubt Flatteratz mit Trennung
+\usepackage{array}%	 	erlaubt es neue Spaltentypen zu definieren
+
+\newcolumntype{L}[1]% 	P: Kuerzel; 1: Anzahl der Parameter
+{ >{\hspace{0pt}\RaggedRight} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
+\newcolumntype{R}[1]% 	P: Kuerzel; 1: Anzahl der Parameter
+{ >{\hspace{0pt}\RaggedLeft} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
+
+\newcolumntype{C}[1]% 	P: Kuerzel; 1: Anzahl der Parameter
+{ >{\hspace{0pt}\RaggedLeft\RaggedRight} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
+
+\usepackage{tabularx}% 	extended tabular
+\usepackage{subcaption}
+\usepackage{longtable}
+
+%\DeclareCaptionLabelFormat{Uppercaselabel}{\MakeUppercase{#1 #2}}%Uppercase caption label (e.g. TABLE 1)
+%\captionsetup[table]{labelformat=Uppercaselabel, labelsep=newline}%no collon but newline as sepaeartor of label and title 
+
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage{rotating}
+
+\newcommand{\ts}{\textsuperscript}% allows to write 2\ts{nd} etc.
+\newcommand\vsmallfont{\fontsize{6}{7.2}\selectfont}
+\newcommand\smallfont{\fontsize{8.5}{9.7}\selectfont}
+
+\usepackage{url}
+\urlstyle{same}
+
+\usepackage{layout}
+\newcommand*{\SubTitleFont}{% Font Size of Subtile 
+      \usekomafont{title}%{\encodingdefault}{\rmdefault}{b}{n}%
+      \fontsize{40}{30}%
+      \selectfont}
+
+
+\title{\huge Political Configurations Database}
+\subtitle{\SubTitleFont\textbf{Codebook}}
+\author{
+	%Tarik Abou-Chadi, Ph.D.\thanks{Humboldt University of Berlin}%
+	\and%
+	%Matthias Orlowski, Ph.D.\thanks{Humboldt University of Berlin}%	
+	\and%	
+	%Hauke Licht\thanks{Humboldt University of Berlin}%
+	%\and
+	%{\ss}% {\ss} produzeirt sz
+	%\thanks{Freie Universität Berlin%Free University Berlin
+	%}%
+	%\and
+	%Third Author%
+	%\thanks{Institution}%
+}
+\publishers{
+	Chair of Comparative Politics\\ Humboldt University of Berlin
+	%Ellen M. Immergut, Professor Ph.D.\thanks{Humboldt University of Berlin}
+	%\and%
+	%Tarik Abou-Chadi, Ph.D.\thanks{Humboldt University of Berlin}%
+	%\and%
+	%Matthias Orlowski, Ph.D.\thanks{Humboldt University of Berlin}%
+}
+%\subject	{DFG-Project}
+\date{\monthname\ \the\year}
+
+\begin{document}
+
+\input{PCDB_codebook_structure}
+
+
+
+
+\end{document}

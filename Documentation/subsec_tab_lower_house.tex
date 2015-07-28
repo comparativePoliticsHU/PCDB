@@ -1,0 +1,18 @@
+\subsection{Lower House}\label{subsec_tab_lower_house}
+Table \texttt{\footnotesize lower\_house} provides information on lower houses.
+Rows are compositions of lower houses, identified by \texttt{\footnotesize lh\_id}. 
+
+A new lower house configuration is included when the seat composition is changed through legislative elections or through mergers or splits in factions during the legislature. When enlistment is due to the latter event, no lower house 
+election identifier (\texttt{\footnotesize lhelc\_id}) is recorded. Else, each lower house corresponds to a lower house election.
+
+\subparagraph{Lower house start date}
+PCDB codes the date of the first meeting in the first legislative session of a new lower house as its start date (variable \texttt{\footnotesize lh\_sdate}). Information on the sources is provided in variable \texttt{\footnotesize lh\_src}. If no information on this event is available, the default is equal to the corresponding election date. 
+
+\subparagraph{Total number of seats in lower house} 
+The figures on the total number of seats in the respective lower house are recorded in accordance with official electoral statistics (variable \texttt{\footnotesize lh\_sts\_ttl}). These figures do not necessarily equal the sum of all seats distributed between different parties of a legislature (as recorded in the lower house seat reuslts data,  see subsection \ref{sub_tab_lh_seat_results}).
+
+Table \texttt{\footnotesize lower\_house} is defined as follows:
+
+\lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
+language=postgreSQL]%
+{../SQL-codes/tab_cabinet.sql}

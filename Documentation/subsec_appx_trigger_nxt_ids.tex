@@ -1,0 +1,37 @@
+\subsection{Description of Triggers to Identify Next Instituion-Configrations}\label{appendix_trigger_nxt_ids}
+\subparagraph{Identify Next Cabinet within Country}\label{trg_cab_nxt_id}
+Trigger \texttt{\footnotesize trg\_cab\_nxt\_id} is implemented on table Cabinet and inserts data into cells of column \texttt{\footnotesize cab\_nxt\_id}. 
+
+Specifically, function \texttt{\footnotesize trg\_cab\_nxt\_id()} selects the identifier of the next recorded cabinet configuration, as identified by the next bigger date of all cabinets recorded for a country.
+It is programmed as follows:
+
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts next cabinet identifier.},%
+language=SQL]%
+{../SQL-codes/trg_cab_nxt_id.sql}
+
+Trigger \texttt{\footnotesize trg\_cab\_nxt\_id} is executed for each row before inserting or updating  data of table Cabinet.
+
+\subparagraph{Identify Next Lower House within Country}\label{trg_lh_nxt_id}
+Trigger \texttt{\footnotesize trg\_lh\_nxt\_id} is implemented on table Lower House and inserts data into cells of column \texttt{\footnotesize lh\_nxt\_id}. 
+
+Specifically, function \texttt{\footnotesize trg\_lh\_nxt\_id()} selects the identifier of the next recorded lower house, as identified by the next bigger date of all lower houses recorded for a country.
+It is programmed as follows:
+
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts next lower house identifier.},%
+language=SQL]%
+{../SQL-codes/trg_lh_nxt_id.sql}
+
+Trigger \texttt{\footnotesize trg\_lh\_nxt\_id} is executed for each row before inserting or updating  data of table Lower House. 
+
+\subparagraph{Identify Next Lower House Election within Country}\label{trg_lhelc_nxt_id}
+Trigger \texttt{\footnotesize trg\_lhelc\_nxt\_id} is implemented on table Lower House Election and inserts data into cells of column \texttt{\footnotesize lhelc\_nxt\_id}. 
+
+Specifically, function \texttt{\footnotesize trg\_lhelc\_nxt\_id()} selects the identifier of the next recorded lower house election, as identified by the next bigger date of all recorded lower houses election dates for a country.
+It is programmed as follows:
+
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts next lower house election identifier.},%
+language=SQL]%
+{../SQL-codes/trg_lhelc_nxt_id.sql}
+
+Trigger \texttt{\footnotesize trg\_lhelc\_nxt\_id} is executed for each row before inserting or updating  data of table Lower House Election. 
+

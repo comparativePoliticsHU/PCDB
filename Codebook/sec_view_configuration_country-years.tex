@@ -1,0 +1,25 @@
+\section{Configuration Country-Years}\label{sec_view_configuration_country-years}
+
+This table provides information on countries' political configurations in a country-year format, which is basically identical with that of the correpsonding configurations in Table \ref{tab_view_configuration}. See Section \ref{sec_view_configuration} for comments and explanations on computation of variables.
+
+Note that the configurations that are reported for country-years are no aggregates (e.g., averaging across all configurations in a given country-year, as it is often done when summarizing economic data),
+but Table Configuration Country-Years reports \emph{representative configurations}, having the highest temporal weight in a given country-year. 
+
+\subparagraph{Choosing representative configurations}\label{choosing_rep_configs}
+A configuration's temporal weight in a country-year is computed by dividing its duration in the given year\footnote{Not to be confused with variable \texttt{\smallfont config\_duration}, which reports a configuration's total duration from the day it started to its end.} by the total recorded days of that year (365 days, except from leap years, and years of a country's first and last recorded configurations).
+The configurations with the highest weight in a given country-year is selected as representative for this year.\footnote{There occure no configurations between 1945 and 2014 where the weight of two or more configurations in a year equals each other. In fact, for having equal weight there would have to occur five configurations during one year with exactly equal duration of 73 days.}
+\begin{table}[h!]
+\centering\footnotesize
+\caption*{Example 2: Duration and temporal weight of configurations in Australia, 1946 to 1949.}
+\input{tab_example_configuration_weights}
+\end{table}
+
+Example 2 illustrates the procedure for choosing representative configurations of country-years.
+The first line lists the very first recorded Australian configuration, starting on September 28, 1946 and durating total 34 days. 
+The second recorded configuraton started on the first November of the same year but prevailed until the next year, ending on June 30, 1947. Thus, the second configuration durated 61 days in 1946 and 181 days in 1947, having clearly the highest temporal weight in 1946.
+
+The third configuration durated total 184 days in 1947 and lasted until December 9, 1949. Accordingly, it has slightly the highest temporal weight in 1947 and is therefore chosen as representative configuration for year 1947.\footnote{Obviously, choosing representative configurations based on such a slight difference in relative duration is not unproblematic.}
+
+In 1948 only one configuration is recorded, This is because the fourth configuration, starting on first July, 1947, lasted until 1949 and is obviously representative for the whole year of 1948. 
+
+The third configuration that started in 1947 and outlasted 1948 durated total 343 days in 1949. Apparently, it was temporally extremely dominant also in the year of its end, as the other to configurations recorded with a start date in 1949 only amounted to weights equal to 0.0247 and 0.0356, respectively.

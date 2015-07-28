@@ -1,0 +1,18 @@
+\subsection{CC Lower House start date}
+Consistency check \texttt{\footnotesize cc\_lh\_sdate} is based on tables Lower House and Lower House Election and provides information at the level of lower house (LH) configurations.
+
+It compares a LH's start date (\texttt{\footnotesize lh\_sdate}) and the date of the LH election it emanates from (\texttt{\footnotesize lhelc\_date}). Variable \texttt{\footnotesize date\_dif} measures the difference between both dates in days; variable \texttt{\footnotesize prob\_corr\_ddif} is zero when the recorded date of lower house formation, i.e., its start date, and the election date are equal. 
+Logically, this is not expecte to be the case, as a LH's start date should be later than the date of its election.
+
+CC \texttt{\footnotesize cc\_lh\_sdate} is programmed as follows
+
+\lstinputlisting[%caption={Code to create consistency check on lower house start dates.},%
+language=SQL]%
+{../SQL-codes/cc_lh_sdate.sql}
+
+
+
+The explicit, and actually empirically reasonable assumption is the first meeting in the first session of a newly elected LH (coded as start date) is regularly not on the same day as the election but on a later date in the countries that are covered in the PCDB. 
+Because in the coding process the date of the election a LH emanates from has been used as default LH start date, if the difference is equal to zero, this strongly indicates that no proper start date has been recorded. Case-specific research is still required for these LH configurations.
+
+\emph{\textbf{Note}}: Information on the sources of LH start dates is provided in variable \texttt{\footnotesize lh\_src} of the Lower House table and variable \texttt{\footnotesize valid\_lh\_sdate}, in turn, is an individually coded dummy that indicates whether individual case research has been properly conducted an the source of information appears reliable.

@@ -1,0 +1,18 @@
+\chapter{Tables}\label{chap_tables}
+
+The tables in the PCDB record the primary data on countries' political institutions, parties, elections, and electoral systems.
+
+Each table provides data on exclusively one institution and/or type of event.\footnote{This is thought to avoid redundancy.} 
+\emph{Prefixes of variable names} in the tables are often abbrevations of types of institutions or instutional events (e.g, \texttt{\footnotesize cab} for variables containing information on cabinets, \texttt{\footnotesize lhelc} for variables containing information on lower house elections, etc.). 
+
+\emph{Rows} in tables are unique data points with regard to the configuration of interest (e.g., historically distinct lower house configurations). Criteria for what constitutes a unique data point is provided in the introductions to the respective sections. 
+
+\emph{Columns} represent the variables contained in a table. 
+The first column of a table is usually an identifier, indicated by the suffix \texttt{\footnotesize \_id}, which is principally a sequencial counter that is unique within countries.
+
+\subparagraph{Technical note}
+Note that tables usually store the primary information and data contained in the database, whereas views report aggregate data, such as totals or computed indices.
+However, much of the primary data provided in official statistics is already aggregated (e.g., total votes or vote turnout at the national level). 
+These figures are recorded in the tables according to primary sources.
+Computation of indices is regularly proceeded with primary data at the lowest conceptional level. Detailed information on computed variables in views is provided in Chapter \ref{Chapter_Views}.
+ 

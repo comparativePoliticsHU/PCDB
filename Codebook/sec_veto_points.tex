@@ -1,0 +1,33 @@
+\section{Veto Points}\label{sec_veto_points}
+This table contains information on the potential veto points in a country’s political system, including the type of institution and the time period of its existence as a veto point. Rows are the different institutions in a country.
+
+\subparagraph{Veto Potential}
+Variable \texttt{\footnotesize vto\_pwr} records the veto potential for each institution type in a country. It is  ordinal and bound between $1$ and $0$. 
+\begin{itemize}\itemsep-4pt \parsep0pt
+\item[-] An institution's veto power is coded $0$ if it is generally not entitled to a veto right; 
+\item[-] coded $1$ if it enjoys unconditional veto potential; 
+\item[-] or may assume values in between $0.5$ and $1$, indicating conditionality of veto potential with regard to the required seats share of cabinet parties in lower or upper house, respectively, given a certain constitutional threshold.
+\end{itemize}
+
+Note that information on institutions' veto potential is essential to identify open institutional veto points in a given political configuration (see Section \ref{sec_view_configuration}), for they depend on both constitutional entitlement of veto and the specific date (i.e., duration) of the present political configuartion, and---given some conditionality---on the size of political majorities or party allignment of the president.
+
+\subparagraph{Veto institution start and end date}
+Variables \texttt{\footnotesize vto\_inst\_sdate} and \texttt{\footnotesize vto\_inst\_edate} report the start and end dates of the veto power status of respective institutions.
+
+Though constitutional reforms are rare and in the vast majority of cases there is recorded only one veto power status per type of veto instution within countries, not every institution's veto power has remained unchanged throughout the  PCDB's period of coverage. 
+The Belgian Senaat (the upper house), for instance, lost its conditional, 50-percent counter-majoritarian threshold veto potential in 1995. 
+The Veto Points table therefore records two rows for the Belgian upper house, one with start date 1\ts{st} January, 1900, (the default start date) and May 20, 1995, as end date, and one row with start date May 21, 1995, and the default end date December 31, 2099, because no other change of veto power took place until the end of 2014.\footnote{The reform of the upper house in 2014 has not yet been registered, \url{http://de.wikipedia.org/wiki/Senat\_(Belgien)\#Senatsreform_2014}.}
+
+\subparagraph{Sources}
+Information on countries' political stystems and, particularly, potential institutional veto points has been obtained from \citet*{Ismayr2003}, \citet*{Ismayr2004}, and \citet*{Immergut_et_al2006}, and was complemented by individual-case research.
+
+%The table contains the following variables: 
+
+\begin{center}
+\begin{longtable}{L{4cm} L{6cm} L{3cm}}
+\caption{Variables in Veto Points Table\label{tab_veto_points}}
+\input{tab_longtable_header}
+\input{tab_veto_points}
+\end{longtable}
+\end{center}
+

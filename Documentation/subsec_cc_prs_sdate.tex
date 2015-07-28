@@ -1,0 +1,14 @@
+\subsection{CC President start date}
+Consistency check \texttt{\footnotesize cc\_prs\_sdate} is based on the table Presidential Election and provides information at the level of presidents.
+
+It compares the start date of presidency (\texttt{\footnotesize prs\_sdate}) and the date of the corresponding presidential election (\texttt{\footnotesize prselc\_date}). Variable \texttt{\footnotesize date\_dif} measures the difference between both dates in days; variable \texttt{\footnotesize prob\_corr\_ddif} is zero when the recorded date of cabinet formation, i.e., its start date, and the election date are equal. 
+
+CC \texttt{\footnotesize cc\_prs\_sdate} is programmed as follows:
+
+\lstinputlisting[%caption={Code to create consistency check on presidency start dates.},%
+language=SQL]%
+{../SQL-codes/cc_prs_sdate.sql}
+
+The explicit, and actually empirically reasonable assumption is that a new presidency regularly starts only some days after elections in the countries that are covered in the PCDB. Because in the coding process the date of the election of president has been used as default presidency start date, if the difference is equal to zero, this strongly indicates that no proper start date has been recorded. Case-specific research is still required for these presidencies.
+
+\textbf{Note}: Information on the sources of presidency start dates is stored in variable \texttt{\footnotesize prs\_src} of the Presidential Election table and variable \texttt{\footnotesize valid\_prs\_sdate}, in turn, is an individually coded dummy that indicates whether individual case research has been properly conducted an the source of information appears reliable.

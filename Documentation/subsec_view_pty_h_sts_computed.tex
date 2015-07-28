@@ -1,0 +1,16 @@
+\subsection{Pary's Total Seats in the Lower House}\label{view_pty_lh_sts_computed}
+View \texttt{\footnotesize view\_pty\_lh\_sts\_computed} is based on tables Lower House Seat Results and provides data at the level of parties in lower house elections.
+
+It computes the total number of seats a party holds in a given lower house as sum of seats gained through proportional and plurality vote.
+
+View \texttt{\footnotesize view\_pty\_lh\_sts\_computed} is programmed as follows:
+\begin{quote}
+\setstretch{.750}
+\texttt{\footnotesize
+SELECT lhsres\_id, lhelc\_id, pty\_id, pty\_lh\_sts, \\
+(COALESCE(pty\_lh\_sts\_pr,0)+COALESCE(pty\_lh\_sts\_pl,0))  \\
+AS pty\_lh\_sts\_computed \\
+FROM config\_data.lh\_seat\_results \\
+ORDER BY lhelc\_id, pty\_id;
+}\end{quote}
+

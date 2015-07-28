@@ -1,0 +1,51 @@
+\subsection{Configuration Events}\label{subsec_view_configuration_events}
+View \texttt{\footnotesize view\_configuration\_events} is based on tables Cabinet, Lower House, Upper, House, and Presidential Elections, and provides the primary information on political configurations, namely country identifiers, a configurations start date, and the identifiers of respective corresponding institutions.
+
+Accordingly, every new row corresponds to a historically unique political configuration among a country's government, lower house, upper house and the position of the Head of State, and a configuration is uniquely identified by combinations of \texttt{\footnotesize ctr\_id}, \texttt{\footnotesize cab\_id}, \texttt{\footnotesize lh\_id}, \texttt{\footnotesize uh\_id} (if applies), and \texttt{\footnotesize prs\_id} (if applies).
+
+Yet, because configuration start dates are identical with the start date of the institution the most recent change  occured, political configurations are also uniquely identified by combinations of \texttt{\footnotesize ctr\_id} and \texttt{\footnotesize sdate}).
+
+View \texttt{\footnotesize view\_configuration\_events} thus sequences changes in the political-institutional configurations of a country by date.
+A new political configuration is recorded when one of the following changes occurs at one point in time during the respective period of coverage of a given country:
+\begin{itemize}\itemsep-4pt \parsep0pt
+\item[-]{A change in cabinet composition (rows in table Cabinet, identified by \texttt{\footnotesize cab\_id} or unique combinations of \texttt{\footnotesize cab\_sdate} and \texttt{\footnotesize ctr\_id}).}
+\item[-]{A change in lower house composition (rows in rable Lower House, identified by \texttt{\footnotesize lh\_id} or unique combinations of \texttt{\footnotesize lh\_sdate} and \texttt{\footnotesize ctr\_id}).}
+\item[-]{If exists in the respective country, a change in upper house composition (rows in table Upper House, identified by \texttt{\footnotesize uh\_id} or unique combination of \texttt{\footnotesize uh\_sdate} and \texttt{\footnotesize ctr\_id}).}
+\item[-]{If exists in the respective country, a change in presidency (rows in table Presidential Election, identified by \texttt{\footnotesize prselc\_id} or unique combination of \texttt{\footnotesize prs\_sdate} and \texttt{\footnotesize ctr\_id}).}
+\end{itemize}
+
+Hence, changes in political configurations are either due to a change in the partisan composition of some institution, i.e., a change in the (veto-)power relations \emph{within} the institution, and consquently reflect changes in the (veto-)power relations \emph{between} the institutions.\footnote{Cases where \ldots constitute exceptions.}
+Ot a new configuration is recorded due to party splits or merges, newly elected upper 
+or lower houses, or new presidencies, that not necessarly affect the respective instituional veto potential vis\`a-vis the government
+
+View \texttt{\footnotesize view\_configuration\_events} is programmed as follows:
+
+\lstinputlisting[%caption={Code to compile configuration events.},
+language=SQL]%
+{../SQL-codes/view_configuration_events.sql}
+
+{\bf Note}: Rows are reported for all temporally corresponding combinations of institutional-political configurations. Thus, no institution correspond to the very first institutional configuration that is recorded in the PCDB, resulting in rows with many non-trivial missings in countries' first configurations. Example 1 illustrates this for the Australian case.
+
+\begin{table}[h!]
+\centering\footnotesize
+\caption*{Example 1: First Australian configurations with incomplete correspondence of institutions.}
+\begin{tabular}{r r r r r r}
+\tabularnewline\toprule
+\multicolumn{1}{r}{\texttt{\smallfont ctr\_id}}	&
+\multicolumn{1}{r}{\texttt{\smallfont sdate}}	&	
+\multicolumn{1}{r}{\texttt{\smallfont prselc\_id}}	&
+\multicolumn{1}{r}{\texttt{\smallfont uh\_id}}	&
+\multicolumn{1}{r}{\texttt{\smallfont lh\_id}}	&	
+\multicolumn{1}{r}{\texttt{\smallfont cab\_id}}	\\\midrule 
+1	& 1946-09-28	&	& 1001	& 1001	& 		\\
+1	& 1946-11-01	& 	& 		& 		& 1001 	\\
+1	& 1947-07-01	&	& 1002	&		&		\\\bottomrule
+\end{tabular}
+\end{table}
+
+Apparently, no the first recorded Australian cabinet startef on November 1st, 1946; thus, no corresponding cabinet can be assigned to the first recorded lower house and upper house configuration (first row). This makes it impossible to determine veto constellations for the very first row, resulting in missing information.
+
+From the conceptional point of view, these incomplete configurations generally provide no information on the institutional-political setting of legislation. However, to provide an overview on countries' political history these \emph{incomplete configurations} are reported. It is up to the user to anticipate potential merging problems.
+
+
+View \texttt{\footnotesize view\_configuration\_events} is used to create an identical \emph{materialized} view (see section \ref{sec_mview_configuration_events}), which is, in turn, used to trigger-in configuration end dates (see subsection \ref{trg_mv_config_ev_edate}) and corresponding institution identifier (see subsection \ref{trg_mv_config_ev_corresponding_ids}).

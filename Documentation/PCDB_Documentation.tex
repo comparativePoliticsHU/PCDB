@@ -1,0 +1,336 @@
+\documentclass[%
+parskip=half-,%
+fontsize=12pt,%
+DIV=13,%
+oneside,%
+english,%
+abstract=off,%
+toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
+\usepackage{fontspec}%	font specification, fuegt umlaute hinzu
+\usepackage{libertine}%	font
+
+\usepackage[svgnames*]{xcolor}%extended color, cmyk ist die Spezifizierung
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0,1,0}
+\definecolor{lightsalmon}{rgb}{0.255,0.160,0.122}
+\definecolor{lightcoral}{rgb}{0.240,0.128,0.128}
+\definecolor{purple}{rgb}{1,0,1}
+\definecolor{light-gray}{gray}{0.80}
+\definecolor{lightcyan}{rgb}{0.224,0.255,0.255}
+
+\setcounter{tocdepth}{4}%
+\setcounter{secnumdepth}{4}%
+\usepackage[backref=section]{hyperref}
+
+\hypersetup{colorlinks=false}
+\hypersetup{linkcolor=black}
+\hypersetup{citecolor=teal}
+\hypersetup{urlcolor=blue}
+\hypersetup{linkbordercolor=orange}
+\hypersetup{citebordercolor=orange}
+\hypersetup{urlbordercolor=teal}
+\hypersetup{linktoc=all}
+
+\usepackage{footnotebackref}
+
+
+%\hypersetup{hyperfootnotes=false}
+
+\deffootnote[1em]{1em}{2em}{\textsuperscript{\thefootnotemark\ }}
+
+\usepackage{natbib}
+\usepackage{cite}
+\bibliographystyle{apsr}%apsr
+
+\usepackage[headsepline,footsepline%,plainfootsepline
+]{scrpage2}%	Kopf und Fusszeilen 
+\pagestyle{scrheadings}%	seitenstil 
+
+\usepackage{scrdate}% for using \the\year in page headings
+\usepackage{datetime}% for using \monthname in page headings
+
+\lohead{PCDB}%	left of head
+\automark[section]{chapter}% defines structure (KOMA-Script manual, page 240ff.)
+\renewcommand*{\sectionmarkformat}{}% adjusts section headmark foramt so that only section-title, but no section number is displayed
+\cohead{\headmark}% places (Section-)mark in center of page-head
+\rohead{\monthname\ \the\year}
+
+%\usepackage{calc}
+%\ifoot{\rule{0pt}{\ht\strutbox+\dp\strutbox}Footer}
+\lofoot{Humboldt-University of Berlin}
+\cofoot{}
+
+\renewcommand*{\pnumfont}{\footfont}%let pagemark have same font&style like footfont
+\rofoot{\pagemark}
+\setheadsepline{.4pt}
+%\setfootsepline{.4pt}
+
+\usepackage{marginnote}%	erlaubt einfuegen von Randbemerkungen
+\usepackage{varioref}%	erlaubt das Referenzieren von Abbildungen und Tabellen mit 							\ref{} und \pageref{}
+
+
+
+\usepackage{ragged2e}%	erlaubt Flatteratz mit Trennung
+\usepackage{array}%	 	erlaubt es neue Spaltentypen zu definieren
+
+\newcolumntype{L}[1]% 	P: Kuerzel; 1: Anzahl der Parameter
+{ >{\hspace{0pt}\RaggedRight} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
+\newcolumntype{R}[1]% 	P: Kuerzel; 1: Anzahl der Parameter
+{ >{\hspace{0pt}\RaggedLeft} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
+
+\newcolumntype{C}[1]% 	P: Kuerzel; 1: Anzahl der Parameter
+{ >{\hspace{0pt}\RaggedLeft\RaggedRight} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
+
+\usepackage{tabularx}% 	extended tabular
+\usepackage{subcaption}
+\usepackage{threeparttable}
+\usepackage{longtable}
+
+\DeclareCaptionLabelFormat{Uppercaselabel}{\MakeUppercase{#1 #2}}%Uppercase caption label (e.g. TABLE 1)
+%\captionsetup[table]{labelformat=Uppercaselabel, labelsep=newline}%no collon but newline as sepaeartor of label and title 
+
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage{rotating}
+
+\newcommand{\ts}{\textsuperscript}% allows to write 2\ts{nd} etc.
+\newcommand\vsmallfont{\fontsize{6}{7.2}\selectfont}
+\newcommand\smallfont{\fontsize{8.5}{9.7}\selectfont}
+\newcommand\txtfont{\fontsize{11.5}{13.7}\selectfont}
+
+\usepackage{setspace} % allows to set stretch in environemnents (e.g., \setstretch{.650})
+
+\usepackage{url}
+\urlstyle{same}
+
+\usepackage{layout}
+\newcommand*{\SubTitleFont}{%
+      \usekomafont{title}%{\encodingdefault}{\rmdefault}{b}{n}%
+      \fontsize{40}{30}%
+      \selectfont}
+
+
+\hypersetup{pdftitle = {Access to the Political Configurations Database}}
+\hypersetup{pdfauthor = {Hauke Licht}}
+
+\title{\huge Political Configurations Database}
+\subtitle{\SubTitleFont\textbf{Access and Programming}}
+\author{
+	%Tarik Abou-Chadi, Ph.D.\thanks{Humboldt-University of Berlin}%
+	\and%
+	%Matthias Orlowski, Ph.D.\thanks{Humboldt-University of Berlin}%	
+	\and%	
+	%Hauke Licht\thanks{Humboldt-University of Berlin}%
+	%\and
+	%{\ss}% {\ss} produzeirt sz
+	%\thanks{Freie Universität Berlin%Free University Berlin
+	%}%
+	%\and
+	%Third Author%
+	%\thanks{Institution}%
+}
+\publishers{
+	Chair of Comparative Politics\\ Humboldt University of Berlin
+	%Ellen M. Immergut, Professor Ph.D.\thanks{Humboldt University of Berlin}
+	%\and%
+	%Tarik Abou-Chadi, Ph.D.\thanks{Humboldt University of Berlin}%
+	%\and%
+	%Matthias Orlowski, Ph.D.\thanks{Humboldt University of Berlin}%
+}
+%\subject	{DFG-Project}
+\date{\monthname\ \the\year}
+
+
+\begin{document}
+\maketitle
+\newpage
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\chapter{Introduction}
+
+The data compiled in the Political Configuration Database (PCDB) is programmed and organized using \texttt{\txtfont PostgreSQL}, an open source object-relational database system.\footnote{\url{http://www.postgresql.org/}} 
+Using \emph{Structured Query Language} (SQL) is tought to gurantee for the integrity, reliability, and correctness of the data contained in the PCDB.
+
+In fact, \emph{integrety} of the data in the PCDB is imposed by 
+\begin{itemize}
+\item[]\textbf{compiling primary data} (e.g., vote turnouts, seat results, election and configuration start dates), and \item[]\textbf{computing secondary data}, such as indicators (e.g., Effective Number of Parties in Parliament, Type A and B volatilities in seats and vote, etc.) and aggregates (e.g., total votes and seats at the level of the legislature, open veto points in a given configuration, etc.) from the primary data,
+\end{itemize}
+thought there are also figures on aggregates recorded in the PCDB---mostly obtained from official election statistics---to allow for comparison between recorded and computed aggregate figures.
+
+In addition, programming the computation of secondary data using \texttt{\txtfont PostgreSQL} ensures the \emph{reliability} and actuallity of the data contained in the PCDB, in that, for instance, recording new election figures (or updates, see Section \ref{Section_Update}) requires no further action but indicies, aggregates, and changes in political configurations will be generated automatically.
+
+Lastly, \emph{correctness} of the data is improved by providing automatically generated consistency (see Section \ref{Section_ConsistencyChecks}) checks that users may query instantely, using the corresponding views. 
+
+These are few but nevertheless important features of \texttt{\txtfont PostgreSQL} and the corresponding data administration and managment platform \texttt{\txtfont pgAdmin3}, thought to improve the quality of data in the PCDB.
+
+\chapter{Query for data in the PCDB}\label{Chapter_Query_the_PCDB}
+
+
+\section{Access to the PCDB}
+Here, I will explain how to use \texttt{\footnotesize pgAdmin3} and how to access (log-in) the PCDB, including some screenshots (?).
+I have not yet specified different roles with distinct reading and writing roles.
+
+\newpage
+\section{Query for data from Tables and Views}
+Here, I will explain how to query data from the main tables and public views, e.g., Configuration Events, 
+
+\newpage
+\chapter{Programming the PCDB}
+
+\section{Tables in the PCDB}
+Im not sure whether it makes sense to include a description of the Tables and Public Views that are listed in the Codebook.
+If I provide a guide for querying data from the PCDB via \texttt{\footnotesize pgAdmin3}, however, it makes sense to includes these tables, as most users will specifically be interested in the information 
+the public views compile.
+
+\newpage
+\section{Views in the config\_data Schema}\label{Views_in_config_data_schema}
+The views contained in the \texttt{\footnotesize config\_data} schema of the PCDB compute aggreages and indices from primary data (see section \ref{Tables}).
+
+In the following subsections the views that exist in the \texttt{\footnotesize config\_data} schema will be dicussed with regard to the tables and views they are based on, the level at which information is provided, how they are programmed, and sources of potential missings (i.e., \texttt{\footnotesize NULL}-values).
+
+\input{Views_in_config_data_schema/view_cab_lh_sts_shr}
+\input{Views_in_config_data_schema/view_cab_uh_sts_shr}
+\input{Views_in_config_data_schema/view_cab_sts_ttl}
+\input{Views_in_config_data_schema/view_pty_cab_sts}
+
+\input{Views_in_config_data_schema/view_configuration_events}
+\input{Views_in_config_data_schema/view_configuration_year_duplicates}
+\input{Views_in_config_data_schema/view_configuration_duration_in_year}
+\input{Views_in_config_data_schema/view_config_weight_in_year}
+
+\input{Views_in_config_data_schema/view_configuration_cohabitation}
+
+\input{Views_in_config_data_schema/view_configuration_vto_pts}
+\input{Views_in_config_data_schema/view_configuration_vto_lh}
+\input{Views_in_config_data_schema/view_configuration_vto_uh}
+\input{Views_in_config_data_schema/view_configuration_vto_prs}
+\input{Views_in_config_data_schema/view_configuration_vto_jud}
+\input{Views_in_config_data_schema/view_configuration_vto_elec}
+\input{Views_in_config_data_schema/view_configuration_vto_terr}
+
+
+\input{Views_in_config_data_schema/view_lh_sts_ttl_computed}
+\input{Views_in_config_data_schema/view_lh_enpp_minfrag}
+\input{Views_in_config_data_schema/view_lh_enpp_maxfrag}
+\input{Views_in_config_data_schema/view_lh_m}
+\input{Views_in_config_data_schema/view_lhelc_w_underestimated_ENPP}
+\input{Views_in_config_data_schema/view_Others_and_INDs}
+
+\input{Views_in_config_data_schema/view_lhelc_eff_thrshld}
+\input{Views_in_config_data_schema/view_lhelc_lsq}
+
+\input{Views_in_config_data_schema/view_lhelc_vola_sts}
+\input{Views_in_config_data_schema/view_lhelc_volb_sts}
+
+\input{Views_in_config_data_schema/view_lhelc_vola_vts}
+\input{Views_in_config_data_schema/view_lhelc_volb_vts}
+
+\input{Views_in_config_data_schema/view_lhelc_reg_vts_computed}
+
+\input{Views_in_config_data_schema/view_pty_lh_sts_computed}
+\input{Views_in_config_data_schema/view_pty_lhelc_sts_shr}
+\input{Views_in_config_data_schema/view_pty_uh_sts_shr}
+
+\newpage
+\section{Triggers}\label{section_triggers}
+
+Triggers are functions executed on tables to insert, update, or delete data from specific columns or cells. Each function is `triggered' by one or more specific events.
+
+
+\input{Triggers/trg_prv_ids}
+\input{Triggers/trg_nxt_ids}
+
+
+\input{Triggers/trg_mv_configuration_ev_edate}
+
+\input{Triggers/trg_mv_config_ev_corresponding_ids}
+
+\input{Triggers/trg_mv_config_ev_it,ut,dt}
+
+\newpage
+\section{Consistency Checks}\label{Section_ConsistencyChecks}
+
+Consistency checks (CCs) are provided as views in the \texttt{\footnotesize config\_data} schema of the database.
+CCs are generally powerful to trace  
+\begin{itemize}
+\item[i)]inconsistencies in recorded figures, i.e., primary data;
+\item[ii)]inconsistencies between recorded and computed aggregate data;
+or 
+\item[iii)] missing data.
+\end{itemize}
+
+In the following subsections the existing CCs will be dicussed with regard to the tables and views they are based on, the level at which information is provided, the potential inconsistencies they reveal, how they are programmed, and their proper usage.
+
+\input{Consistency_Checks/cc_cab_sdate}
+%\newpage
+\input{Consistency_Checks/cc_lh_sdate}
+%\newpage
+\input{Consistency_Checks/cc_prs_sdate}
+%\newpage
+\input{Consistency_Checks/cc_uh_sdate}
+%\newpage
+\input{Consistency_Checks/cc_specification_date_differences}
+%\newpage
+
+\input{Consistency_Checks/cc_missing_lhelc_seat_records}
+%\newpage
+\input{Consistency_Checks/cc_pty_lh_sts}
+%\newpage
+\input{Consistency_Checks/cc_lh_and_lhelc_sts_ttl}
+%\newpage
+\input{Consistency_Checks/cc_lhelc_sts_ttl}
+%\newpage
+\input{Consistency_Checks/cc_lhelc_vola_sts}
+%\newpage
+\input{Consistency_Checks/cc_lhelc_volb_sts}
+%\newpage
+
+\input{Consistency_Checks/cc_missing_lhelc_vts_and_sts_records}
+%\newpage
+\input{Consistency_Checks/cc_missing_lhelc_vts_records}
+%\newpage
+
+\input{Consistency_Checks/cc_lhelc_vola_vts}
+%\newpage
+\input{Consistency_Checks/cc_lhelc_volb_vts}
+%\newpage
+\input{Consistency_Checks/cc_lhelc_vote_results}
+%\newpage
+
+\input{Consistency_Checks/cc_cab_hog_info}
+%\newpage
+\input{Consistency_Checks/cc_hos_and_cab_cohabitation}
+%\newpage
+
+
+\input{Consistency_Checks/cc_missing_uh_sts_records}
+%\newpage
+\input{Consistency_Checks/cc_no_cab_lh_sts_shr}
+%\newpage
+\input{Consistency_Checks/cc_no_cab_uh_sts_shr}
+%\newpage
+\input{Consistency_Checks/cc_no_lhelc_id_4_lh}
+%\newpage
+\input{Consistency_Checks/cc_no_lsq}
+%\newpage
+\input{Consistency_Checks/cc_no_lsq_noothersw}
+%\newpage
+\input{Consistency_Checks/cc_pres_elec_collage_vts}
+%\newpage
+
+\section{Keeping the PCDB up to date}
+I may also provide a guide how to insert, update, and delete data from the tables contained in the PCDB.
+I have not yet developed any tool to insert data, e.g., from exel tables. Inserting a mass of data is thus far proceded manually, using SQL, and often painstacking.
+
+\newpage 
+\chapter{Appendix}
+\section{Details on Trigger functions}
+\input{Triggers/appendix_trigger_prv_ids}
+\input{Triggers/appendix_trigger_nxt_ids}
+\input{Triggers/appendix_trigger_mv_config_ev_corresponding_ids}
+\input{Triggers/appendix_trigger_mv_config_refresh}
+
+\end{document}

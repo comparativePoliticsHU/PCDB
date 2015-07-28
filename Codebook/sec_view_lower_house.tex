@@ -1,0 +1,43 @@
+\section{Lower House}\label{sec_view_lower_house}
+This table provides extended information on lower houses, including computed figures based on the disagregated data in lower house vote and seat results (cf. Table \ref{tab_lower_house_vote_results} and  \ref{tab_lower_house_seat_results}). 
+Rows are compositions of lower houses, identified by \texttt{\footnotesize lh\_id}. 
+
+A new Lower House is included when the seat composition is changed through legislative elections or through mergers or splits in factions during the legislature. When enlistment is due to the latter event, no lower house 
+election identifier (\texttt{\footnotesize lhelc\_id}) is recorded. Else, each lower house corresponds to a lower house election.
+
+
+\subparagraph{Lower house start date}
+PCDB codes the date of the first meeting in the first legislative session of a new lower house as its start date. If no information on these events was available, the default is equal to the corresponding election date. Variable \texttt{\footnotesize lh\_valid\_sdate} indicates whether the start date has been double-checked and a valid weblink or reference is provided in the source inforamtion.
+
+\subparagraph{Total number of seats in lower house} The figures reported in variabl \texttt{\footnotesize lh\_ttl\_sts} are recorded in accordance with official electoral statistics. 
+Variable \texttt{\footnotesize lh\_ttl\_sts\_computed}, in contrast, is computed from lower house seat results information, summing seats for all parties listed in a corresponding lower house.
+Both figure do not necessarily converge, but are useful to check for consistency between official statistics and the PCDB records and to identify potential data issues.
+
+\subparagraph{Effective Number of Parties in Parliament}
+The effective number of parties in parliament (ENPP) is a measure of party system fractionalization that takes into acount the relative size of parties present in a country's lower house. In addition to the recorded figure (Formular \ref{ENPP_equ}), the PCDB provides two ENPP indices that are computed based on the recorded lower house seat and vote results data (cf. Table \ref{tab_lower_house_vote_results} and  \ref{tab_lower_house_seat_results}).
+
+The first, \texttt{\footnotesize lh\_enpp\_minfrag}, is computed based on the formula originally proposed by \citet{Laakso&Taagepera1979}
+\begin{equation}\label{ENPP_equ_minfrag}
+ENPP_{minfrag}(k) = 1/\sum\limits_{j=1}^{J}s_{j,k}^{2}
+\end{equation}
+, where $k$ denotes a country's lower house at a given point in time, $J$ are parties in a given lower house $k$, and $s$ is party $j$'s seat share in the $k$th lower house. 
+
+The categories `Others with seats' (otherw) and `Independents' (INDs), that lump small parties or single representatives in the parliement into single categories (cf. Section \ref{sec_party}), enter into the calculation as if it were single parties. 
+As it has already been mentioned, this might lead to an underestimate of fragmentation, hence the suffix \texttt{\footnotesize \_minfrag}.
+
+The second inidice, \texttt{\footnotesize lh\_enpp\_maxfrag}, adjusts for this tendency of underestmating fractionalization of lower houses. It employs what \citet[pp.\,600-602]{Gallagher&Mitchell2005} refer to as `Taagepera's least component approach': The seat share of the groups otherw and INDs are split into $m$ fractions each, resulting in $m$ seat shares of size $s_{m}$. 
+The fromula to compute \texttt{\footnotesize lh\_enpp\_maxfrag} is
+\begin{equation}\label{ENPP_equ_maxfrag}
+ENPP_{maxfrag}(k) = 1/\sum\limits_{j=1}^{J}m\left(\frac{s_{j,k}}{m}\right)^{2}
+\end{equation} 
+, where $m$ is computed by dividing the number of seats of otherw or that of INDs by the number of seats of the smallest `real'\footnote{`Real' in the sense that the respective party is identified by a counter different from \#\#997 or \#\#998, cf. Section \ref{sec_party}.} party in the respective lower house, and upround to the next bigger integer value to guarantee that the seat share of otherw and/or of INDs are smaller than that of the smallest `real' party (as it is implied by assuming maximum fragmentation).\footnote{When the number of seat hold by otherw and/or INDs exceeds the number of seats hold by the smallest `real' party in the respective lower house, this procedure results in a $m$-time partition of $s_{j,k}$. Accordingly, adjustment only matters when $m > 1$, and $ENPP_{maxfrag} ≠ ENPP_{minfrag}$ only if $m > 1$ for either otherw or INDs, or both.}
+
+Note that the computation of the minimum and maximum fractionalization ENPPs is proceeded with the computed, not the recorded total number of lower house seats in the PCDB.
+
+\begin{center}
+\begin{longtable}{L{4cm} L{6cm} L{3cm}}
+\caption{Variables in Lower House View\label{tab_view_lower_house}}
+\input{tab_longtable_header}
+\input{tab_view_lower_house}
+\end{longtable}
+\end{center}

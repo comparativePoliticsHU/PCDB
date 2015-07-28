@@ -1,0 +1,61 @@
+\subsection{Description of Triggers to Identify Previous Instituion-Configrations}\label{appendix_trigger_prv_ids}
+\subparagraph{Identify Previous Cabinet within Country}\label{trg_cab_prv_id}
+Trigger \texttt{\footnotesize trg\_cab\_prv\_id} is implemented on table Cabinet and inserts data into cells of column \texttt{\footnotesize cab\_prv\_id}. 
+
+Specifically, function \texttt{\footnotesize trg\_cab\_nxt\_id()} selects the identifier of the previous cabinet configuration, as identified by the next lower date of all cabinets recorded for a country.
+It is programmed as follows:
+
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts previous cabinet identifier.},%
+language=SQL]%
+{../SQL-codes/trg_cab_prv_id.sql}
+
+Trigger \texttt{\footnotesize trg\_cab\_prv\_id} is executed for each row before inserting or updating of data in table Cabinet is performed. 
+
+\subparagraph{Identify Previous Lower House within Country}\label{trg_lh_prv_id}
+Trigger \texttt{\footnotesize trg\_lh\_prv\_id} is implemented on table Lower House and inserts data into cells of column \texttt{\footnotesize lh\_prv\_id}. 
+
+Specifically, function \texttt{\footnotesize trg\_lh\_prv\_id()} selects the identifier of the next recorded lower house, as identified by the next bigger date of all lower houses recorded for a country.
+It is programmed as follows:
+
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts previous lower house identifier.},%
+language=SQL]%
+{../SQL-codes/trg_lh_prv_id.sql}
+
+Trigger \texttt{\footnotesize trg\_lh\_prv\_id} is executed for each row before inserting or updating of data in table Lower House is performed. 
+
+
+\subparagraph{Identify Previous Lower House Election within Country}\label{trg_lhelc_prv_id}
+Trigger \texttt{\footnotesize trg\_lhelc\_prv\_id} is implemented on table Lower House Election and inserts data into cells of column \texttt{\footnotesize lhelc\_nxt\_id}. 
+
+Specifically, function \texttt{\footnotesize trg\_lhelc\_prv\_id()} selects the identifier of the previous lower house election, as identified by the next smaller date of all recorded lower houses election dates for a country.
+It is programmed as follows:
+
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts previous lower house election identifier.},%
+language=SQL]%
+{../SQL-codes/trg_lhelc_prv_id.sql}
+
+Trigger \texttt{\footnotesize trg\_lhelc\_prv\_id} is executed for each row before inserting or updating of data in table Lower House Election is performed.  
+
+\subparagraph{Identify Previous Upper House within Country}\label{trg_uh_prv_id}
+Trigger \texttt{\footnotesize trg\_uh\_prv\_id} is implemented on table Upper House and inserts data into cells of column \texttt{\footnotesize uh\_prv\_id}. 
+
+Specifically, function \texttt{\footnotesize trg\_uh\_prv\_id()}  selects the identifier of the next recorded upper house configuration, as identified by the next bigger date of all upper houses recorded for a country.
+It is programmed as follows:
+
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts previous upper house identifier.},%
+language=SQL]%
+{../SQL-codes/trg_uh_prv_id.sql}
+
+Trigger \texttt{\footnotesize trg\_uh\_prv\_id} is executed for each row before inserting or updating of data in table Upper House is performed.
+
+\subparagraph{Identify Previous Presidential Election within Country}\label{trg_prselc_prv_id}
+Trigger \texttt{\footnotesize trg\_prselc\_prv\_id} is implemented on table Presidential Election and inserts data into cells of column \texttt{\footnotesize prselc\_prv\_id}. 
+
+Specifically, function \texttt{\footnotesize trg\_prselc\_prv\_id()} selects the identifier of the previous presidential election, as identified by the next lower date of all presidential elections recorded for a country.
+It is programmed as follows:
+
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts idetnifier of previous presidential election.},%
+language=SQL]%
+{../SQL-codes/trg_prselc_prv_id.sql}
+
+Trigger \texttt{\footnotesize trg\_prselc\_prv\_id} is executed for each row before inserting or updating of data in table Presidential Election is performed. 

@@ -1,0 +1,12 @@
+\subsection{CC Lower House and corresponding election}\label{cc_no_lhelc_id_4_lh}
+Consistency check \texttt{\footnotesize cc\_no\_lhelc\_id\_4\_lh} is based on table Lower House and provides information at the level of lower houses (LH). 
+
+It enlists all LHs for which no corresponding LH election identifier is recorded (i.e., \texttt{\footnotesize Null}-value displayed).
+
+CC \texttt{\footnotesize cc\_no\_cab\_lh\_sts\_shr} is programmed as follow: 
+
+\lstinputlisting[%caption={Code to create consistency check that identifies lower houses for which no corresponding lower house election identifier is recorded.},%
+language=SQL]%
+{../SQL-codes/cc_no_lhelc_id_4_lh.sql}
+
+{\em{\bf Note}}: \texttt{\footnotesize Null}-values cause missing in computation of \texttt{\footnotesize cab\_lh\_sts\_shr} (see CC \texttt{\footnotesize cc\_no\_cab\_lh\_sts\_shr}, subsection \ref{no_cab_lh_sts_shr}).

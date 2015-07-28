@@ -1,0 +1,65 @@
+\section{Lower House Election}\label{sec_view_lh_election}
+This view is identical to Table \ref{tab_lh_election}, except that it reports the computed, not the recorded values of some key aggregate indices.
+Rows are lower house elections, identified by \texttt{\footnotesize lhelc\_id}.
+
+\subparagraph{Effective thresholds}
+The PCDB provides information on the effective thresholds (EffT) at the different tiers of a given political systems in the election of the lower house.
+
+Variable \texttt{\footnotesize lhelc\_eff\_thrshld\_lijphart1994} computes the threshold according to the definition provided by \citet{Lijphart1994}: 
+\begin{equation}\label{EffT_Lijphart_equation}
+EffT_{Lijphart}=\frac{0.5}{m+1}+\frac{0.5}{2m} 
+\end{equation}, where $m$ is the district magnitude.
+
+Variable \texttt{\footnotesize lhelc\_eff\_thrshld\_taagepera2002}, in contrast, computes the threshold according to the definition provided by \citet[p.\,309]{Taagepera2002}: 
+\begin{equation}\label{EffT_Taagepera_equation}
+EffT_{Taagepera}=\frac{0.75}{n^{2}+(S/n^{2})}
+\end{equation}, where $S$ is the size of the lower house (i.e., the total number of seats), and $n$ is the number of seat winning parties.
+
+In the PCDB it is assumed that $n \approx \sqrt[4]{m*S}$. This yields
+\begin{equation}\label{EffT_PCDB_equation}
+EffT_{PCDB}=\frac{0.75}{(m+1)*\sqrt{S/m}}
+\end{equation} to compute variable \texttt{\footnotesize lhelc\_eff\_thrshld\_pcdb}.
+, which is in fact identical with Taagepera's formular, if $n = \sqrt[4]{m*S}$.
+
+\subparagraph{Disproportionality} Variable \texttt{\footnotesize lhelc\_lsq} provides information on the dispoportionality between the distribution of votes and seats in lower house elections, as defined by Gallagher's  \citeyearpar{Gallagher1991} Least-square index (LSq)
+\begin{equation}\label{LSq_equation}
+LSq_{Gallagher}=\sqrt{\frac{1}{2}\sum\limits_{j=1}^{J} (v_{j}-s_{j})^{2}}
+\end{equation}, where $j$ denotes parties, $v$ vote and $s$ seat shares gained in an election to the lower house. 
+
+The LSq weighs the deviations by their own value, creating a responsive index, ranging from 0 to 100. The lower the index value the lower the disproportionality and vice versa. 
+
+The PCDB also includes the variable \texttt{\footnotesize lhelc\_lsq\_noothers}, which excludes the vote and seat shares listed for the category `Others with seats' from computing the LSq.
+
+\subsection{Type A and B volatility}
+Four Variables in the Lower House Election view figure volatility in seats and votes between subsequent lower house elections of a given country according to \citet*{Powell&Tucker2013}. 
+
+\subparagraph{Type A Volatility}
+Generally, type A volatility measures volatility from party entry and exit to the political system and is quantified by the change that occurs in the distribution of shares between parties due to parties newly entering and retiering from the electoral arena (i.e., the domestic party system or the lower house) \citep{Powell&Tucker2013}. 
+
+This formalizes in
+\begin{equation}
+Type\,A\,Volatility\,(k) = \frac{ | \sum\limits_{n=1}^{New} p_{n,k} + \sum\limits_{o=1}^{Old} p_{o,k} | }{2}
+\end{equation}
+, where $o$ refers to retiering parties that contested only the election $k-1$ and $n$ to new-entering
+parties that contested only election $k$, and generally $p$ are seat or vote shares (i.e., the number of seats/votes gained by party $j$, divided by the total sum of seats/votes distributed between all parties $J$ that entered the lower house/rallied in the present election $k$).
+
+\subparagraph{Type B Volatility}
+Type B volatility, instead, quantifies the change that occurs over time in the distribution of shares within parties, i.e., change due to the share of votes or seats a party gains or loses, comparing the results in the current election to that of the previous. Accordingly, type B volatility considers only so-called stable parties (i.e., parties that are no new-comers to or that retiered from the electoral arena).
+
+The formular to compute  \texttt{\footnotesize lhelc\_volb\_*} is
+
+\begin{equation}
+Type\,B\,Volatility\,(k) = \frac{ | \sum\limits_{j=1}^{Stable} p_{j,(k-1)} - p_{j,k}| }{2}
+\end{equation}
+
+, where $p$ are seat or vote shares that party $j$ gained in the current election/lower house $k$ or in the previous election/lower house $k-1$.
+
+
+\begin{center}%ing
+\begin{longtable}{l L{6cm} l}%\hline
+\caption{Variables in Lower House Election View\label{tab_view_lh_election}}
+\input{tab_longtable_header}
+\input{tab_view_lh_election}
+\end{longtable}
+\end{center}%ing
+

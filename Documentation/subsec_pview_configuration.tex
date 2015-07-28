@@ -1,0 +1,36 @@
+\subsection{Configuration}\label{subsec_pview_configuration}
+Public view \texttt{\footnotesize configuration} sequences changes in countries' political-institutional configurations by institutional start dates. 
+The basic logic of poltiical configurations that applies in the PCDB is explained in subsection \ref{subsec_view_configuration_events}.
+
+Accordingly, every new row corresponds to a historically unique political configuration among a country's government, lower house, upper house and the position of the Head of State, and a configuration is uniquely identified by combinations of \texttt{\footnotesize ctr\_id}, \texttt{\footnotesize cab\_id}, \texttt{\footnotesize lh\_id}, \texttt{\footnotesize uh\_id} (if applies), and \texttt{\footnotesize prs\_id} (if applies).
+
+Though the information provided with public view Configuration is based on the view Configuration Events and its materialization, Configuration adds the relevant information on veto constellations that correspond to temporal sequences.
+That is, public view Configuration generally draws on materialized view Configuration Events (described in subsection \ref{sec_mview_configuration_events}) and a variety 
+of views that determine whether a variety of political isntitutions constitute open veto points vis-\`a-vis the government. 
+
+\subparagraph{Configuration start dates, end dates, duration}
+A configuration's start date corresponds to the start date of the institution the most recent change occured. End dates, in turn, equal the day before the start date of the next configuration in the given country.
+Obviously, variable \texttt{\footnotesize config\_duration} simply counts the days from the first to the last day of a configuration.
+End dates are implemented by trigger on materialized view Configuration Events
+
+\subparagraph{Cabinet's seat share in the lower and the upper house}
+Variable \texttt{\footnotesize cab\_lh\_sts\_shr} quantifies the share of seats of the party/parties in the cabinet on the total seats in the corresponding lower house.
+Variable \texttt{\footnotesize cab\_uh\_sts\_shr} quantifies the share of seats of the party/parties in the cabinet on the total seats in the corresponding upper house.
+Information is joined-in from the respectives views in the \texttt{\footnotesize  config\_data} scheme (see subsection \ref{view_cab_lh_sts_shr} and \ref{view_cab_uh_sts_shr}).
+ 
+\subparagraph{Veto points}
+Whether an existing institution constitutes a potential veto point vis-\`a-vis the government is determined by legal (i.e., constitutional) entitlement of veto power. Veto power is either non-existent, conditional, or unconditional. Information on a country's institutions veto powers is recorded in the Veto Points table in the \texttt{\footnotesize config\_data} scheme, specifically variable \texttt{\footnotesize vto\_pwr}.
+
+Whether a potential veto institution constitute an \emph{open veto point} vis-\`a-vis the government is only contingent if its veto power is conditional. Regularly, constitutional law specifies a threshold that determines how large a counter-governmental faction needs to be to blockade government's legisaltive initiatives. 
+The size of non-government factions in combination with the legal veto threshold thus determine whether an institution constitutes an open veto point vis-\`a-vis the government.
+
+Technically, public view Configuration performs a join of materialized view Configuration Events and the respective Veto views (see subsection \ref{view_configuration_vto_pts} to \ref{view_configuration_vto_terr}), using the respective institution identifiers and configuration start dates.
+
+The code to compile public view \texttt{\footnotesize configuration} reads as follows:
+
+\lstinputlisting[%caption={Code to determine if the president constitutes an open veto point in a configuration.},
+language=SQL]%
+{../SQL-codes/pview_configuration.sql}
+
+
+{\bf Note}: Rows are reported for all temporally corresponding combinations of institutional-political configurations. Thus, no institution corresponds to the very first institutional configuration that is recorded in the PCDB, resulting in rows with many non-trivial missings in countries' first configurations. Refer to the note on subsection \ref{subsec_view_configuration_events} for an example of this problematique

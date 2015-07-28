@@ -1,0 +1,27 @@
+\section{Electoral Alliances}\label{sec_electoral_alliances}
+This table provides information on electoral alliances, attempting to identify the parties forming an electoral alliance. Parties listed in Table \ref{tab_party} that are recorded as electoral alliances are listed in Table \ref{tab_electoral_alliances} with their respective \texttt{\footnotesize pty\_id}.
+
+Variable \texttt{\footnotesize pty\_eal\_nbr} is a counter that enumerates parties that constitute an electoral alliance.\footnote{The counter is also recorded in Table \ref{tab_party} and equals one for all `conventional' parties.}
+Accordingly, there occur as many rows for each electoral alliance in Table \ref{tab_electoral_alliances} as variable \texttt{\footnotesize pty\_eal} counts. 
+
+Variable \texttt{\footnotesize pty\_eal\_id}, in turn, records the party identifiers of the parties that form an electoral alliance. Combinations of \texttt{\footnotesize pty\_id} (electoral alliance) and \texttt{\footnotesize pty\_eal\_nbr} (enumerator of party in electoral alliance) are therefore unique within countries.
+
+\begin{table}[h!]
+\centering\footnotesize
+\caption*{Example 1: Composition of selected electoral alliances in Portugal.}
+\input{tab_example_electoral_alliances}
+\end{table}
+
+Example 1 displays a selection from the recorded electoral alliances in Portugal, thought to illustrate the coding scheme and organization of data. 
+Electoral alliance AP is formed by three parties, of which none is recorded in PCDB Party data (Table \ref{tab_party}) and thus \#\#999s are assigned. One party that forms electoral alliance PSP.US is identified as PSP; however it could not be validated how many parties form the alliance, and therefore the enumeraor is coded 99.
+PDPC is knowingly formed by four parties of which only one (CDC) is recorded in the PCDB Party data.
+
+Thought \texttt{\footnotesize pty\_eal\_id} often references \#\#999, it allows to link additional information on parties provided in Table \ref{tab_party} to the electoral-alliance information. 
+
+\begin{center}
+\begin{longtable}{L{4cm} L{6cm} L{3cm}}
+\caption{Variables in Electoral Alliances Table\label{tab_electoral_alliances}}
+\input{tab_longtable_header}
+\input{tab_electoral_alliances}
+\end{longtable}
+\end{center}

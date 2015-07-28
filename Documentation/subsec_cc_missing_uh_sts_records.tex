@@ -1,0 +1,12 @@
+\subsection{CC Upper House seat records missing}\label{cc_missing_uh_pty_sts_records}
+Consistency check \texttt{\footnotesize cc\_missing\_uh\_pty\_sts\_records} is based on tables Party and Upper House Seat Results, and provides information at the level of individual parties nested in upper houses (UH). 
+
+It enlists all parties individual seat results for any UH in which for at least one party (excl. category `Other without seat') no seat result is recorded (i.e., \texttt{\footnotesize Null}-values).			
+
+CC \texttt{\footnotesize cc\_missing\_uh\_pty\_sts\_records} is programmed as follow: 
+
+\lstinputlisting[%caption={Code to create consistency check that enlists upper houses for which some seat results are not recorded.},%
+language=SQL]%
+{../SQL-codes/cc_missing_uh_pty_sts_records.sql}
+
+{\em \bf Note}: Missing seat records at the party level of UHs are consequential for several aggregate figures and indicators, including cabinet parties seat share in the upper house of table Configurations (see CC \texttt{\footnotesize cc\_no\_cab\_uh\_sts\_shr}, subsection \ref{cc_no_cab_uh_sts_shr}).

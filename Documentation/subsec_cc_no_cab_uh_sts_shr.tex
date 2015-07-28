@@ -1,0 +1,13 @@
+\subsection{CC Cabinet's Upper House seat share}\label{cc_no_cab_uh_sts_shr}
+Consistency check \texttt{\footnotesize cc\_no\_cab\_uh\_sts\_shr} is based on views Cabinet's Upper House Seat Share and Configuration Events, and provides information at the level of political configurations. 
+
+It enlists all political configurations for which cabinet parties total seat share in the corresponding upper house (UH) cannot be computed (i.e., \texttt{\footnotesize Null}-value displayed).
+\texttt{\footnotesize Null}-values possibly stem from missing UH election seat result records (see CC \texttt{\footnotesize cc\_missing\_uh\_pty\_sts\_records}, subsection \ref{missing_uh_sts_records}), or configurations in which the given cabinet party identifiers do not match party identifiers in the corresponding UH.
+
+CC \texttt{\footnotesize cc\_no\_cab\_uh\_sts\_shr} is programmed as follow: 
+
+\lstinputlisting[%caption={Code to create consistency check that identifies configurations for which the cabinet's seat share in the upper houses cannot be computed.},%
+language=SQL]%
+{../SQL-codes/cc_no_cab_uh_sts_shr.sql}
+
+{\em {\bf Note}}: For Germany (country identifier = 6) generally no seat share of cabinet parties in the UH can be computed. Consider manual computation!

@@ -1,0 +1,12 @@
+\subsection{Presidential Election}\label{subsec_tab_presidential_election}
+Table \texttt{\footnotesize presidential\_election} contains contains information on the election date, the winner and the electoral system that was applied in an election. 
+Rows are presidential elections, identified by variable \texttt{\footnotesize prselc\_id} as well as unique combinations of \texttt{\footnotesize ctr\_id} and \texttt{\footnotesize prselc\_date}.\footnote{Note that the direct elections of the Prime Minister in Israel between 1996 and 2001 are included in this table as well.}
+
+In addition variable \texttt{\footnotesize prs\_n}, \texttt{\footnotesize pty\_id} and \texttt{\footnotesize prs\_sdate}, respectively, report the name, the party affiliation and the date of investiture of the candidtate that won the election. 
+
+Table \texttt{\footnotesize presidential\_election} is defined as follows: 
+
+\lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
+language=postgreSQL]%
+{../SQL-codes/tab_presidential_election.sql}
+

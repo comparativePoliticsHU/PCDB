@@ -1,0 +1,13 @@
+\subsection{CC Country time-series}\label{subsec_cc_ctry_time_series}
+Consistency check \texttt{\footnotesize cc\_ctry\_time\_series} is based on view Configuration Year Duplicates (\ref{view_configuration_year_duplicates}) and provides information at the level of countries. 
+
+It compares the sum of rows listed for a country in the Configurations Country-Year view    (\ref{subsec_pview_configuration_ctr_yr}) 
+to the difference in years between the earliest and the last recorded year for that country. If the numbers equal, an indicator, labeled \texttt{\footnotesize mismatch}, assumes a value equal to zero.
+Apparently, ones in variable \texttt{\footnotesize mismatch} indicate that the procedure to compile country years results in a failure for that year. Into depth analysis is requiered in this case.
+
+CC \texttt{\footnotesize cc\_ctry\_time\_series} is programmed as follows
+
+\lstinputlisting[%caption={Code to create summary of institutions' start and election date differences.},%
+language=SQL]%
+{../SQL-codes/cc_ctry_time_series.sql}
+

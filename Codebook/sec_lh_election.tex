@@ -1,0 +1,41 @@
+\section{Lower House Election}\label{sec_lh_election}
+This table provides information on lower house elections. Rows are lower house elections, identified by \texttt{\footnotesize lhelc\_id}. It is noteworthy that each lower house election corresponds to a lower house configuration (cf. Section \ref{sec_lower_house}).\footnote{While the opposite, that each lower house configuration corresponds to a lower house election, is not true.}
+
+\subparagraph{Elections, pluarality versus proportional voting, and seat allocation}
+Lower house election dates (\texttt{\footnotesize lhelc\_date}), and figures on registered voters (\texttt{\footnotesize lhelc\_reg\_vts*}), the number valid votes (\texttt{\footnotesize lhelc\_vts\_*}), and the number of seats elected (\texttt{\footnotesize lhelc\_sts\_*}) are recorded in accordance with official statistics, if available. 
+Else, \citet{Nohlen2001, Nohlen2005, Nohlen2010} is the primary source, complemented by individual-case research. Information on data sources is provided in variable \texttt{\footnotesize lhelc\_src}.
+
+\subparagraph{Electoral system}
+Key information on the electoral system to elect the lower house is provided for each tier disaggregatedly namely
+\begin{itemize}\itemsep-4pt \parsep0pt
+\item[-]{the electoral formular\footnote{%
+The PCDB distinguishes between the following electural formular: Two Round System (2RS), Alternative Vote (AV), DHondt, Droop, Droop with Largest-Remainders (LR-Droop), Hare, modified Hare, Hare with Largest-Remainders (LR-Hare), Highest Average Remaining, Imperiali, Multi-Member District (MMD), mSainteLague, Reinforced Imperiali, SainteLague, Single Member Plurality (SMP), Single Non-Transferable Vote (SNTV), and Single Transferable Vote (STV).%
+} (\texttt{\footnotesize lhelc\_fml\_t*}),}
+\item[-]{the number of constituencies (\texttt{\footnotesize lhelc\_ncst\_t*}),}
+\item[-]{the number of seats allocated(\texttt{\footnotesize lhelc\_sts\_t*}),}
+\item[-]{the average district magnitude (\texttt{\footnotesize lhelc\_mag\_t*}),}
+\item[-]{the national threshold (\texttt{\footnotesize lhelc\_ntrsh\_t*}), and}
+\item[-]{the district threshold (\texttt{\footnotesize lhelc\_dtrsh\_t*}).}
+\end{itemize}
+In addition, 
+%\subparagraph{Mean and median average district magnitude}
+variables \texttt{\footnotesize lhelc\_dstr\_mag} and \texttt{\footnotesize lhelc\_dstr\_mag\_med} aggregate the average district magnitudes across the different tiers of the electoral system, reporting the mean and the median, respectively.
+
+Comments and information on the sources of data on the electoral system are provided in \texttt{\footnotesize lhelc\_esys\_cmt} and \texttt{\footnotesize lhelc\_esys\_src}, respectively.
+
+\subparagraph{Sources} Information is obtained  from \citet{Nohlen2001, Nohlen2005, Nohlen2010}, and complemented by individual-case research.
+
+%The table contains the following variables:
+%\newpage
+%\begin{center}
+%[table Variables in Lower House Election Table on next page]
+%\end{center}
+%\newpage
+
+\begin{center}%ing
+\begin{longtable}{L{4cm} L{6cm} L{3cm}}%\hline
+\caption{Variables in Lower House Election Table}\label{tab_lh_election}
+\input{tab_longtable_header}
+\input{tab_lh_election}
+\end{longtable}
+\end{center}%ing

@@ -1,0 +1,12 @@
+\subsection{CC Institution start and election dates summary statistics}\label{cc_specification_date_differencese}
+Consistency check \texttt{\footnotesize cc\_specification\_date\_differences} is based on CCs Cabinet Start Date, Lower House Start Date, Presidency Start Date, and Upper House Start Date, and provides
+mean and median date difference, the number of differences unequal zero, and the total number of respective recorded configurations (\texttt{\footnotesize N}).
+
+The difference between total and non-zero numbers of date differences hints to the number of principally suspect records (the higher, the more configurations where start dates are coded as equal to election date).
+
+CC \texttt{\footnotesize cc\_specification\_date\_differences} is programmed as follows
+
+\lstinputlisting[%caption={Code to create summary of institutions' start and election date differences.},%
+language=SQL]%
+{../SQL-codes/cc_specification_date_differences.sql}
+

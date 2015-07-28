@@ -1,0 +1,23 @@
+\section{Party}\label{sec_party}
+This table provides basic information on parties, permitting to link them to other party-level databases or tables in the PCDB. 
+Rows are the different parties. 
+
+\subparagraph{Party identifier}
+The PCDB uses simple running counters to identify parties in a country's political system and history (variable \texttt{\footnotesize pty\_id}).
+That is, in contrast to the coding schemes applied in the Manifesto Project \citep{ManifestoData2013} or the ParlGov data \citep{ParlGov2012}, identifiers do not encode allignment with party-families or ideological leaning on a left-right scale.
+
+Special suffix are assigned to
+independent candidates (\#\#997), 
+other parties with seats (\#\#998), and 
+other parties without seats in the legislature (\#\#999).
+  
+
+%The table contains the following variables:
+
+\begin{center}
+\begin{longtable}{L{4cm} L{6cm} L{3cm}}
+\caption{Variables in Party Table\label{tab_party}}
+\input{tab_longtable_header}
+\input{tab_party}
+\end{longtable}
+\end{center}

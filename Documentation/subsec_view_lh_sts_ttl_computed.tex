@@ -1,0 +1,13 @@
+\subsection{Lower House Total Seats}\label{view_lh_sts_ttl_computed}
+View \texttt{\footnotesize view\_lh\_sts\_ttl\_computed} is based on tables  Lower House and Lower House Seat Results, and provides data at the level of lower houses.
+
+
+It computes the total number of seats in a lower house as the sum of seats distributed in a corresponding lower house election.
+
+View \texttt{\footnotesize view\_lh\_sts\_ttl\_computed} is programmed as follows:
+
+\lstinputlisting[%caption={Code to compute the total number of seats in the lower house.},%
+language=SQL]%
+{../SQL-codes/view_lh_sts_ttl_computed.sql}
+
+{\bf Note}: The computed figure might deviate from the recorded total of lower house seats (cf. \ref{cc_lh_and_lhelc_sts_ttl}).

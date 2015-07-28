@@ -1,0 +1,17 @@
+\subsection{CC Head of State and cabinet in cohabitation}\label{cc_hos_and_cab_cohabitation}
+Consistency check \texttt{\footnotesize cc\_hos\_and\_cab\_cohabitation} is based on tables Cabinet Portfolios and Presidential Election and on view Configuration Events, and provides information at the level of political configurations (rows uniquely identified by combinations of \texttt{\footnotesize ctr\_id} and \texttt{\footnotesize sdate}).
+
+It enlists all configurations of cabinet and the Head of State (HOS) and provides information on respective party affiliations. 
+If the HOS is affiliated to another party than the respective party/parties that form the cabinet, variable\texttt{\footnotesize in\_cohabitation} equals one, indicating cohabitation.
+
+CC \texttt{\footnotesize cc\_hos\_and\_cab\_cohabitation} is programmed as follows:
+
+\lstinputlisting[%caption={Code to create consistency check that enables to trace  sources of missings when determining configurations in cohabitation.},%
+language=SQL]%
+{../SQL-codes/cc_hos_and_cab_cohabitation.sql}
+
+This CC enables to
+\begin{itemize}
+\item[i)]compute variable \texttt{\footnotesize vto\_prs}, which indicates whether the president (i.e., HOS) constitutes an open veto point vis-\`a-vis the government at the level of political configurations (see. subsection \ref{view_configuration_prs_vto}), and 
+\item[ii)]investigate what causes \texttt{\footnotesize NULL}-values in variable \texttt{\footnotesize vto\_prs} of view Configurations, as it allows to check whether \texttt{\footnotesize NULL}-values in variable \texttt{\footnotesize in\_cohabitation} are due to an lack of information on party affilation of cabinet parties or of the HOS.
+\end{itemize}

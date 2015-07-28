@@ -1,0 +1,30 @@
+\section{Cabinet}\label{sec_cabinet}
+This table contains information on cabinets.
+Rows are the different cabinet configurations, identified by variable \texttt{\footnotesize cab\_id}. 
+A new cabinet is enlisted if one of the following events took place:
+\begin{itemize}\label{cabinet_change_criteria}\itemsep-4pt \parsep0pt
+\item[a)] Coalition composition changes at the party-level.
+\item[b)] Head of government changes.
+\item[c)] Government formation after general legislative elections (not in presidential systems).
+\end{itemize}
+
+\subparagraph{Cabinet start date} Variable \texttt{\footnotesize cab\_sdate} refers to the date on which the cabinet, as proposed by the Head of Government, recieves a vote of confidence in the legislature. The variable \texttt{\footnotesize cab\_src} regularly contains links to the websites or online repositories which are used as references. If available, data was compiled directly from information reported on government websites or other official sources.
+
+\subparagraph{Total number of cabinet portfolios} In the present version of the database (!) the number of cabinet portolios is an integer counter equal to the number of parties in cabinet, as listed in table \ref{tab_cabinet_portfolios}. 
+
+\subparagraph{Sources} Information is obtained from \citet*{Woldendrop_et_al2000} and the Political Data Yearbook \citeyearpar{EJPR_PDY}, and was complemented by individual-case research.
+
+%The table contains the following variables:
+
+\begin{center}
+[table Variables in Cabinet Table on next page]
+\end{center}
+
+\newpage
+\begin{center}
+\begin{longtable}{L{4cm} L{6cm} L{3cm}}
+\caption{Variables in Cabinet Table\label{tab_cabinet}}
+\input{tab_longtable_header}
+\input{tab_cabinet}
+\end{longtable}
+\end{center}

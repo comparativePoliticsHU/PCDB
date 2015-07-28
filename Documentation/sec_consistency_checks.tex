@@ -1,0 +1,47 @@
+\section{Consistency Checks}\label{sec_consistency_checks}
+
+Consistency checks (CCs) are provided as views in the \texttt{\footnotesize config\_data} schema of the database.
+CCs are generally powerful to trace  
+\begin{itemize}
+\item[i)]inconsistencies in recorded figures, i.e., primary data;
+\item[ii)]inconsistencies between recorded and computed aggregate data;
+or 
+\item[iii)] missing data.
+\end{itemize}
+
+In the following subsections the existing CCs will be dicussed with regard to the tables and views they are based on, the level at which information is provided, the potential inconsistencies they reveal, how they are programmed, and their proper usage.
+
+		\input{subsec_cc_cab_sdate}
+		\input{subsec_cc_lh_sdate}
+		\input{subsec_cc_prs_sdate}
+		\input{subsec_cc_uh_sdate}
+		\input{subsec_cc_specification_date_differences}
+		
+		\input{subsec_cc_ctry_time_series}
+
+		\input{subsec_cc_missing_lhelc_seat_records}
+		\input{subsec_cc_pty_lh_sts}
+		\input{subsec_cc_lh_and_lhelc_sts_ttl}
+		\input{subsec_cc_lhelc_sts_ttl}
+		\input{subsec_cc_lhelc_vola_sts}
+		\input{subsec_cc_lhelc_volb_sts}
+
+		\input{subsec_cc_missing_lhelc_vts_and_sts_records}
+		\input{subsec_cc_missing_lhelc_vts_records}
+		
+		\input{subsec_cc_lhelc_vola_vts}
+		\input{subsec_cc_lhelc_volb_vts}
+		\input{subsec_cc_lhelc_vote_results}
+
+		\input{subsec_cc_cab_hog_info}
+		\input{subsec_cc_hos_and_cab_cohabitation}
+
+		\input{subsec_cc_missing_uh_sts_records}
+		\input{subsec_cc_no_cab_lh_sts_shr}
+		\input{subsec_cc_no_cab_uh_sts_shr}
+		
+		\input{subsec_cc_no_lhelc_id_4_lh}
+		\input{subsec_cc_no_lsq}
+		\input{subsec_cc_no_lsq_noothersw}
+		
+		\input{subsec_cc_pres_elec_collage_vts}

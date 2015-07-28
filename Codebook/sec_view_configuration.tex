@@ -1,0 +1,46 @@
+\section{Configuration}\label{sec_view_configuration}
+This view sequences changes in countries' political-institutional configurations by institutional start dates.
+A new political configuration is recorded when one of the following changes occurs at one point in time during the respective period of coverage:
+\begin{itemize}\itemsep-4pt \parsep0pt
+\item[-]{A change in cabinet composition (rows in Table \ref{tab_cabinet}, identified by \texttt{\footnotesize cab\_id} and unique combination of \texttt{\footnotesize cab\_sdate} and \texttt{\footnotesize ctr\_id}).}
+\item[-]{A change in lower house composition (rows in Table \ref{tab_lower_house}, identified by  \texttt{\footnotesize lh\_id} and unique combination of \texttt{\footnotesize lh\_sdate} and \texttt{\footnotesize ctr\_id}).}
+\item[-]{If exists in the respective country, a change in upper house composition (rows in Table \ref{tab_upper_house}, identified by \texttt{\footnotesize uh\_id} and unique combination of \texttt{\footnotesize uh\_sdate} and \texttt{\footnotesize ctr\_id}).}
+\item[-]{If exists in the respective country, a change in presidency (rows in Table \ref{tab_presidential_election}, identified by \texttt{\footnotesize prselc\_id} and unique combination of \texttt{\footnotesize prs\_sdate} and \texttt{\footnotesize ctr\_id}).}
+\end{itemize}
+
+Accordingly, every new row corresponds to a historically unique political configuration among a country's government, lower house, upper house and the position of the Head of State, and a configuration is uniquely identified by combinations of \texttt{\footnotesize ctr\_id}, \texttt{\footnotesize cab\_id}, \texttt{\footnotesize lh\_id}, \texttt{\footnotesize uh\_id} (if applies), and \texttt{\footnotesize prs\_id} (if applies).
+
+Changes in political configurations are generally due to a change in the partisan composition of some institution, i.e., a change in the (veto-)power relations \emph{within} the institution, and consquently reflect changes in the (veto-)power relations \emph{between} the institutions.\footnote{Cases where \ldots constitute exceptions.}
+
+Note that rows are reported for all temporally corresponding combinations of institutional-political configurations. Thus, no institution correspond to the very first institutional configuration that is recorded in the PCDB, resulting in rows with many non-trivial missings in countries' first configurations. From the conceptional point of view, these incomplete configurations provide no information on the institutional-political setting of legislation. However, to provide an overview on countries' political history these \emph{incomplete configurations} are reported. It is up to the user to anticipate potential merging problems.
+
+
+
+\subparagraph{Configuration start dates, end dates and duration}
+A configuration's start date corresponds to the start date of the institution the most recent change occured. End dates, in turn, equal the day before the start date of the next configuration in the given country.
+Obviously, variable \texttt{\footnotesize config\_duration} simply counts the days from the first to the last day of a configuration.
+
+\subparagraph{Cabinet's seat share in the lower and the upper house}
+Variable \texttt{\footnotesize cab\_lh\_sts\_shr} quantifies the share of seats of the party/parties in the cabinet on the total seats in the corresponding lower house.
+Variable \texttt{\footnotesize cab\_uh\_sts\_shr} quantifies the share of seats of the party/parties in the cabinet on the total seats in the corresponding upper house.
+ 
+
+\subsection{Veto points}
+Whether an existing institution constitutes a potential veto point vis-\`a-vis the government is determined by legal (i.e., constitutional) entitlement of veto power. Veto power is either non-existent, conditional, or unconditional. Information on a country's institutions veto powers is recorded in Table \ref{tab_veto_points}, specifically variable \texttt{\footnotesize vto\_pwr}.
+
+Whether a potential veto institution constitute an \emph{open veto point} vis-\`a-vis the government is only contingent if its veto power is conditional. Regularly, constitutional law specifies a threshold that determines how large a counter-governmental faction needs to be to blockade government's legisaltive initiatives. 
+The size of non-government factions in combination with the legal veto threshold thus determine whether an institution constitutes an open veto point vis-\`a-vis the government.
+
+\subparagraph{Lower and Upper House} Whether the lower or the upper house constitute open veto points vis-\`a-vis the government in a given configuration is recorded in variables \texttt{\footnotesize vto\_lh} and \texttt{\footnotesize vto\_uh}. They combine information on the lower or upper house's veto power (cf. Tabe \ref{tab_veto_points}) with data on the size of cabinet parties seat share in the lower house (variable \texttt{\footnotesize cab\_lh\_sts\_shr}) or the upper house (variable \texttt{\footnotesize cab\_uh\_sts\_shr}), respectively. 
+
+Regularly, the lower house constitutes an open veto point if cabinet parties seat share surpasses the 50\%-threshold to pass simple legislation (i.e., minority government).\footnote{Obviously, it is necessary to check whether there are special (or super-)majorities required for legislation. This holds also true for the upper house, particularly because upper houses veto power often varies over policy fields (e.g., in federal states, where some legislation requieres only 50\%-consent in the lower house for becoming effective).} The president constitutes an open veto point if he is allign to a party different from those constituting the cabinet (e.g., when he or she was an independent candidate).
+
+%\subparagraph{Sum of veto points} Variable \texttt{\footnotesize vto\_sum} commulates the open veto points in a given configuration
+
+\begin{center}
+\begin{longtable}{L{4cm} L{6cm} L{3cm}}
+\caption{Variables in Configuration View\label{tab_view_configuration}}
+\input{tab_longtable_header}
+\input{tab_view_configuration}
+\end{longtable}
+\end{center}

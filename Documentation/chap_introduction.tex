@@ -1,0 +1,18 @@
+\chapter{Introduction}\label{chap_introduction}
+
+The data compiled in the Political Configuration Database (PCDB) is programmed and organized using \texttt{\txtfont PostgreSQL}, an open source object-relational database system.\footnote{\url{http://www.postgresql.org/}} 
+Using \emph{Structured Query Language} (SQL) is tought to gurantee for the integrity, reliability, and correctness of the data contained in the PCDB.
+
+In fact, \emph{integrety} of the data in the PCDB is imposed by 
+\begin{itemize}
+\item[]\textbf{compiling primary data} (e.g., vote turnouts, seat results, election and configuration start dates), and \item[]\textbf{computing secondary data}, such as indicators (e.g., Effective Number of Parties in Parliament, Type A and B volatilities in seats and vote, etc.) and aggregates (e.g., total votes and seats at the level of the legislature, open veto points in a given configuration, etc.) from the primary data,
+\end{itemize}
+though there are also figures on aggregates recorded in the PCDB---mostly obtained from official election statistics---to allow for comparison between recorded and computed aggregate figures.
+
+In addition, programming the computation of secondary data using \texttt{\txtfont PostgreSQL} ensures the \emph{reliability} and actuallity of the data contained in the PCDB, in that, for instance, recording new election figures (or updates, see Section \ref{sec_update}) requires no further action but indicies, aggregates, and changes in political configurations will be generated automatically.
+
+Lastly, \emph{correctness} of the data is improved by providing automatically generated consistency (see Section \ref{sect_consistency_checks}) checks that users may query instantely, using the corresponding views. 
+
+These are few but nevertheless important features of \texttt{\txtfont PostgreSQL} and the corresponding data administration and managment platform \texttt{\txtfont pgAdmin3}, thought to improve the quality of data in the PCDB.
+
+For comments and question the reader may contact to \href{mailto:hauke.licht.1@hu-berlin.de}{Hauke Licht} or \href{mailto:matthias.orlowski@hu-berlin.de}{Matthias Orlowski}, the administrator of the PCDB.

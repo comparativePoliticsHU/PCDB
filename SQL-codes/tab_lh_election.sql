@@ -1,0 +1,58 @@
+﻿CREATE TABLE config_data.lh_election (
+		lhelc_id		NUMERIC(5)	PRIMARY KEY,
+		lhelc_prv_id		NUMERIC(5),
+		ctr_id			SMALLINT
+			REFERENCES config_data.country(ctr_id)
+			ON UPDATE CASCADE,
+		lhelc_date		DATE 		NOT NULL, 
+		lhelc_early		BOOLEAN,	
+		lhelc_reg_vts		NUMERIC,	
+		lhelc_reg_vts_pr	NUMERIC,	
+		lhelc_reg_vts_pl	NUMERIC,	
+		lhelc_vts_pr		NUMERIC		DEFAULT NULL, 
+		lhelc_vts_pl		NUMERIC		DEFAULT NULL, 
+		lhelc_sts_pr		NUMERIC		DEFAULT NULL, 
+		lhelc_sts_pl		NUMERIC		DEFAULT NULL, 
+		lhelc_sts_ttl		NUMERIC		DEFAULT NULL, 
+		
+		lhelc_fml_t1		elec_formula,	
+		lhelc_ncst_t1		NUMERIC		DEFAULT NULL, 
+		lhelc_sts_t1		NUMERIC		DEFAULT NULL, 
+		lhelc_dstr_mag		NUMERIC		DEFAULT NULL, 
+		lhelc_dstr_mag_med 	NUMERIC		DEFAULT NULL, 
+		lhelc_mag_t1		NUMERIC		DEFAULT NULL, 
+		lhelc_ntrsh_t1		NUMERIC		DEFAULT NULL, 
+		lhelc_dtrsh_t1		NUMERIC		DEFAULT NULL, 
+		
+		lhelc_fml_t2		elec_formula,	
+		lhelc_ncst_t2		NUMERIC		DEFAULT NULL, 
+		lhelc_sts_t2		NUMERIC		DEFAULT NULL, 
+		lhelc_mag_t2		NUMERIC		DEFAULT NULL, 
+		lhelc_ntrsh_t2		NUMERIC		DEFAULT NULL, 
+		lhelc_dtrsh_t2		NUMERIC		DEFAULT NULL, 
+		
+		lhelc_fml_t3		elec_formula, 
+		lhelc_ncst_t3		NUMERIC		DEFAULT NULL, 
+		lhelc_sts_t3		NUMERIC		DEFAULT NULL,
+		lhelc_mag_t3		NUMERIC		DEFAULT NULL, 
+		lhelc_ntrsh_t3		NUMERIC		DEFAULT NULL, 
+		lhelc_dtrsh_t3		NUMERIC		DEFAULT NULL, 
+		
+		lhelc_fml_t4		elec_formula,	
+		lhelc_ncst_t4		NUMERIC		DEFAULT NULL, 
+		lhelc_sts_t4		NUMERIC		DEFAULT NULL, 
+		lhelc_mag_t4		NUMERIC		DEFAULT NULL, 
+		lhelc_ntrsh_t4		NUMERIC		DEFAULT NULL, 
+		lhelc_dtrsh_t4		NUMERIC		DEFAULT NULL, 
+		
+		lhelc_bon_sts		NUMERIC		DEFAULT NULL, 
+		lhelc_esys_cmt		TEXT,	 
+		lhelc_cmt		TEXT,	
+		lhelc_esys_src		TEXT,	 
+		lhelc_lsq		DOUBLE PRECISION,
+		lhelc_vola_sts		DOUBLE PRECISION,
+		lhelc_volb_sts		DOUBLE PRECISION,
+		lhelc_vola_vts		DOUBLE PRECISION,
+		lhelc_volb_vts		DOUBLE PRECISION,
+		lhelc_src		TEXT	-
+);

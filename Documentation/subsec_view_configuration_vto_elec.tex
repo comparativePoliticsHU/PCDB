@@ -1,0 +1,16 @@
+\subsection{Electorate's Veto}\label{view_configuration_vto_elec}
+View \texttt{\footnotesize view\_configuraion\_vto\_elec} is based on table Veto Points and materialized view Configuration Events, and provides information at the level of political configurations.
+
+It computes whether the electorate constitutes an open veto point vis-\`a-vis the government in a given configuration.
+
+For veto power of the electorate is dependent constitutional provision,
+joining poltitical configurations with veto inforamtion is proceeded by date and country. 
+Computation of the electorate's veto power in a given configuration is therefore up-to-date according to the inforamtion recorded in the Veto Points table.
+
+View \texttt{\footnotesize view\_configuraion\_vto\_elec} is programmed as follows:
+
+\lstinputlisting[%caption={Code to determine if the electorate constitutes an open  veto point in a configuration.},%
+language=SQL]%
+{../SQL-codes/view_configuration_vto_elct.sql}
+
+

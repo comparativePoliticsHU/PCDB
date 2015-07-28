@@ -1,0 +1,10 @@
+\subsection{CC LSq missing}\label{cc_no_lsq}
+Consistency check \texttt{\footnotesize cc\_no\_lsq} is based on tables Party, Lower House Seat Results, and Lower House Vote Results, and provides information at the level of lower houses (LH) elections. 
+
+It enlists all LH elctions for which no LSq (Gallagers Least-Squar index) can be computeted because of \texttt{\footnotesize  Null}-values in one or more party's vote results, seat results, or both (excl. category `Others without seat').
+
+CC \texttt{\footnotesize cc\_no\_lsq} is programmed as follow: 
+
+\lstinputlisting[%caption={Code to create consistency check that identifies lower house elections for which no LSq can be computed.},%
+language=SQL]%
+{../SQL-codes/cc_no_lsq.sql}

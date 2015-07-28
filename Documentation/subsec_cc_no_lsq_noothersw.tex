@@ -1,0 +1,10 @@
+\subsection{CC `Othersw'-excluding LSq missing}\label{cc_no_lsq_noothersw}
+Consistency check \texttt{\footnotesize cc\_no\_lsq\_noothersw} is based on tables Party, Lower House Seat Results, and Lower House Vote Results, and provides information at the level of lower houses (LH) elections. 
+
+It enlists all LH elctions for which no LSq (Gallagers Least-Squar index) can be computeted because of \texttt{\footnotesize  Null}-values in one or more party's vote results, seat results, or both (excl. categories `Others without seat' and `Others with seat').
+
+CC \texttt{\footnotesize cc\_no\_lsq\_noothersw} is programmed as follow: 
+
+\lstinputlisting[%caption={Code to create consistency check that identifies lower house elections for which no LSq that excludes the category Others with seats' can be computed.},%
+language=SQL]%
+{../SQL-codes/cc_no_lsq_noothersw.sql}
