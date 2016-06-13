@@ -1,0 +1,10 @@
+\subsection{CC Lower House election total distributed seats}\label{subsec_cc_lh_sts_ttl_distrib}
+Consistency check \texttt{\footnotesize cc\_lh\_sts\_ttl\_distrib} is based on tables Lower House Election and Lower House Seat Results and provides information at the level of lower houses.
+
+It enlists all lower houses for which the recorded number of total seats (as listed in the Lower House Election table) deviates from the computed total seats. Lower houses  enlisted potentially represent lower houses in which not all available seats were distributed. Deviations can, however, also results from missing data on parties' seat results. Double-checking is recommended.
+
+CC \texttt{\footnotesize cc\_lh\_sts\_ttl\_distrib} is programmed as follows:
+
+\lstinputlisting[%caption={Code to create consistency check that compares total seats in corresponding lower houses and lower house elections.},%
+language=SQL]%
+{../SQL-codes/cc_lh_sts_ttl_distrib.sql}

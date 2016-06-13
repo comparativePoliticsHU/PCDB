@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.1.22)  28 JUL 2015 14:55
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.1.22)  28 JUL 2015 18:19
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2263,12 +2263,21 @@ LaTeX Warning: Reference `tab_party' on page 20 undefined on input line 20.
 LaTeX Warning: Reference `view_configuration_events' on page 21 undefined on in
 put line 2.
 
-(../SQL-codes/view_cab_lh_sts_shr.sql) [21]) (./subsec_view_cab_uh_sts_shr.tex
+
+LaTeX Warning: Reference `view_pty_lhelc_sts_shr' on page 21 undefined on input
+ line 2.
+
+(../SQL-codes/view_cab_lh_sts_shr.sql) [21]
+
+LaTeX Warning: Reference `cc_missing_lhelc_pty_sts_records' on page 22 undefine
+d on input line 19.
+
+) (./subsec_view_cab_uh_sts_shr.tex
 
 LaTeX Warning: Reference `view_configuration_events' on page 22 undefined on in
 put line 2.
 
-(../SQL-codes/view_cab_uh_sts_shr.sql) [22]) (./subsec_view_cab_sts_ttl.tex
+(../SQL-codes/view_cab_uh_sts_shr.sql)) (./subsec_view_cab_sts_ttl.tex [22]
 (../SQL-codes/view_cab_sts_ttl.sql)) (./subsec_view_pty_cab_sts.tex
 (../SQL-codes/view_pty_cab_sts.sql)
 
@@ -2313,12 +2322,11 @@ Overfull \hbox (3.79053pt too wide) in paragraph at lines 27--28
 ted for all temporally corresponding combinations of institutional-political
  []
 
-[25]
 
-LaTeX Warning: Reference `trg_mv_config_ev_corresponding_ids' on page 26 undefi
+LaTeX Warning: Reference `trg_mv_config_ev_corresponding_ids' on page 25 undefi
 ned on input line 51.
 
-) (./subsec_view_configuration_year_duplicates.tex
+) (./subsec_view_configuration_year_duplicates.tex [25]
 (../SQL-codes/view_configuration_year_duplicates.sql [26])
 Overfull \hbox (131.48425pt too wide) in paragraph at lines 63--10
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -2362,8 +2370,8 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              by `\normalfont \bfseries ' on input line 13.
 
 ) (./subsec_view_configuration_vto_pts.tex
-(../SQL-codes/view_configuration_vto_pts.sql [29]))
-(./subsec_view_configuration_vto_lh.tex
+(../SQL-codes/view_configuration_vto_pts.sql))
+(./subsec_view_configuration_vto_lh.tex [29]
 (../SQL-codes/view_configuration_vto_lh.sql)
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
@@ -2379,8 +2387,8 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 17.
 
-[30]) (./subsec_view_configuration_vto_uh.tex
-(../SQL-codes/view_configuration_vto_uh.sql) [31]
+) (./subsec_view_configuration_vto_uh.tex [30]
+(../SQL-codes/view_configuration_vto_uh.sql)
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -2395,15 +2403,15 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 16.
 
-) (./subsec_view_configuration_vto_prs.tex
-(../SQL-codes/view_configuration_vto_prs.sql [32]))
-(./subsec_view_configuration_vto_jud.tex
+) (./subsec_view_configuration_vto_prs.tex [31]
+(../SQL-codes/view_configuration_vto_prs.sql))
+(./subsec_view_configuration_vto_jud.tex [32]
 (../SQL-codes/view_configuration_vto_jud.sql))
-(./subsec_view_configuration_vto_elec.tex [33]
-(../SQL-codes/view_configuration_vto_elct.sql))
+(./subsec_view_configuration_vto_elec.tex
+(../SQL-codes/view_configuration_vto_elct.sql [33]))
 (./subsec_view_configuration_vto_terr.tex
 (../SQL-codes/view_configuration_vto_terr.sql))
-(./subsec_view_lh_sts_ttl_computed.tex [34]
+(./subsec_view_lh_sts_ttl_computed.tex
 (../SQL-codes/view_lh_sts_ttl_computed.sql)
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
@@ -2419,7 +2427,11 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 13.
 
-) (./subsec_view_lh_enpp_minfrag.tex [35]
+
+LaTeX Warning: Reference `cc_lh_and_lhelc_sts_ttl' on page 34 undefined on inpu
+t line 13.
+
+) (./subsec_view_lh_enpp_minfrag.tex [34]
 (../SQL-codes/view_lh_enpp_minfrag.sql)
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
@@ -2435,8 +2447,8 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 24.
 
-) (./subsec_view_lh_enpp_maxfrag.tex [36]
-(../SQL-codes/view_lh_enpp_maxfrag.sql)
+) (./subsec_view_lh_enpp_maxfrag.tex [35]
+(../SQL-codes/view_lh_enpp_maxfrag.sql [36])
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -2451,12 +2463,12 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 22.
 
-) (./subsec_view_lh_m.tex [37]
+) (./subsec_view_lh_m.tex
 
-LaTeX Warning: Reference `view_lhelc_w_underestimated_ENPP' on page 38 undefine
+LaTeX Warning: Reference `view_lhelc_w_underestimated_ENPP' on page 37 undefine
 d on input line 13.
 
-(../SQL-codes/view_lh_m.sql)
+(../SQL-codes/view_lh_m.sql [37])
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -2471,10 +2483,15 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 22.
 
-[38]) (./subsec_view_Others_and_INDs.tex (../SQL-codes/view_Others_and_INDs.sql
-)) (./subsec_view_lhelc_eff_thrshld.tex [39]
+) (./subsec_view_Others_and_INDs.tex (../SQL-codes/view_Others_and_INDs.sql))
+(./subsec_view_lhelc_eff_thrshld.tex [38]
 (../SQL-codes/view_lhelc_eff_thrshlds.sql)) (./subsec_view_lhelc_lsq.tex
-(../SQL-codes/view_lhelc_lsq.sql [40] [41])
+(../SQL-codes/view_lhelc_lsq.sql [39]
+Overfull \hbox (39.68332pt too wide) in paragraph at lines 7--8
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[40])
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -2489,8 +2506,20 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 18.
 
-(../SQL-codes/view_lhelc_lsq_noothers.sql [42]))
-(./subsec_view_lhelc_vola_sts.tex [43] (../SQL-codes/view_lhelc_vola_sts.sql
+
+LaTeX Warning: Reference `cc_missing_lhelc_pty_sts_records' on page 41 undefine
+d on input line 19.
+
+
+LaTeX Warning: Reference `cc_missing_lhelc_pty_sts_records' on page 41 undefine
+d on input line 20.
+
+(../SQL-codes/view_lhelc_lsq_noothers.sql [41]
+Overfull \hbox (3.98296pt too wide) in paragraph at lines 10--11
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[42])) (./subsec_view_lh_vola_sts.tex [43] (../SQL-codes/view_lh_vola_sts.sql
 [44] [45])
 Overfull \hbox (30.1482pt too wide) in paragraph at lines 24--25
 \EU1/LinLibertine(0)/m/n/12 parts embraced by paranthesis and labeled \EU1/LinL
@@ -2512,7 +2541,7 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 32.
 
-) (./subsec_view_lhelc_volb_sts.tex [46] (../SQL-codes/view_lhelc_volb_sts.sql
+) (./subsec_view_lh_volb_sts.tex [46] (../SQL-codes/view_lh_volb_sts.sql
 [47])
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
@@ -2554,8 +2583,8 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 31.
 
-[51]) (./subsec_view_lhelc_volb_vts.tex (../SQL-codes/view_lhelc_volb_vts.sql
-[52] [53])
+) (./subsec_view_lhelc_volb_vts.tex [51] (../SQL-codes/view_lhelc_volb_vts.sql
+[52]) [53]
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -2570,11 +2599,15 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 21.
 
+
+LaTeX Warning: Reference `cc_missing_lhelc_pty_sts_records' on page 54 undefine
+d on input line 22.
+
 ) (./subsec_view_lhelc_reg_vts_computed.tex
 (../SQL-codes/view_lhelc_reg_vts_computed.sql))
 (./subsec_view_pty_lh_sts_computed.tex
-(../SQL-codes/view_pty_lh_sts_computed.sql [54]))
-(./subsec_view_pty_lhelc_sts_shr.tex (../SQL-codes/view_pty_lhelc_sts_shr.sql)
+(../SQL-codes/view_pty_lh_sts_computed.sql)) (./subsec_view_pty_lh_sts_shr.tex
+[54] (../SQL-codes/view_pty_lh_sts_shr.sql)
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -2589,8 +2622,7 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 13.
 
-) (./subsec_view_pty_uh_sts_shr.tex (../SQL-codes/view_pty_uh_sts_shr.sql
-[55])
+) (./subsec_view_pty_uh_sts_shr.tex (../SQL-codes/view_pty_uh_sts_shr.sql)
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -2605,7 +2637,7 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 13.
 
-)) [56] (./sec_mview_configuration_events.tex
+)) [55] [56] (./sec_mview_configuration_events.tex
 Overfull \hbox (64.90651pt too wide) in paragraph at lines 11--12
 []\EU1/LinLibertine(0)/m/n/12 Materialized view \EU1/LinLibertine(4)/m/n/10 mv_
 configuration_events \EU1/LinLibertine(0)/m/n/12 is created by calling function
@@ -2933,14 +2965,8 @@ Overfull \hbox (24.38316pt too wide) in paragraph at lines 6--7
 ][][] 
  []
 
-)) (./subsec_cc_missing_lhelc_seat_records.tex
-Overfull \hbox (3.34653pt too wide) in paragraph at lines 2--3
-\EU1/LinLibertine(0)/m/n/12 Consistency check \EU1/LinLibertine(4)/m/n/10 cc_mi
-ssing_lhelc_pty_sts_records \EU1/LinLibertine(0)/m/n/12 is based on tables Part
-y and Lower
- []
-
-(../SQL-codes/cc_missing_lhelc_pty_sts_records.sql [78])
+)) (./subsec_cc_missing_lh_pty_sts_records.tex
+(../SQL-codes/cc_missing_lh_pty_sts_records.sql [78])
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -2960,26 +2986,46 @@ LaTeX Warning: Reference `no_cab_lh_sts_shr' on page 79 undefined on input line
  12.
 
 ) (./subsec_cc_pty_lh_sts.tex (../SQL-codes/cc_pty_lh_sts.sql))
-(./subsec_cc_lh_and_lhelc_sts_ttl.tex (../SQL-codes/cc_lh_and_lhelc_sts_ttl.sql
-[79])) (./subsec_cc_lhelc_sts_ttl.tex (../SQL-codes/cc_lhelc_sts_ttl.sql))
-(./subsec_cc_lhelc_vola_sts.tex (../SQL-codes/cc_lhelc_vola_sts.sql)
-Overfull \hbox (14.18306pt too wide) in paragraph at lines 13--10
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+(./subsec_cc_lh_sts_ttl.tex (../SQL-codes/cc_lh_sts_ttl.sql [79]))
+(./subsec_cc_lh_sts_ttl_distrib.tex (../SQL-codes/cc_lh_sts_ttl_distrib.sql))
+(./subsec_cc_lh_vola_sts.tex (../SQL-codes/cc_lh_vola_sts.sql [80])
 
-) (./subsec_cc_lhelc_volb_sts.tex [80] (../SQL-codes/cc_lhelc_volb_sts.sql)
-Overfull \hbox (3.98296pt too wide) in paragraph at lines 13--10
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+Class scrreprt Warning: Usage of deprecated font command `\bf'!
+(scrreprt)              You should note, that in 1994 font command `\bf' has
+(scrreprt)              been defined for compatiblitiy to Script 2.0 only.
+(scrreprt)              Now, after two decades of LaTeX2e and NFSS2, you
+(scrreprt)              shouldn't use such commands any longer and within
+(scrreprt)              KOMA-Script usage of `\bf' is definitely deprecated.
+(scrreprt)              See `fntguide.pdf' for more information about
+(scrreprt)              recommended font commands.
+(scrreprt)              Note also, that KOMA-Script will remove the definition
+(scrreprt)              of `\bf' anytime until release of about version 3.20.
+(scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
+(scrreprt)              by `\normalfont \bfseries ' on input line 12.
 
-) (./subsec_cc_missing_lhelc_vts_and_sts_records.tex
+) (./subsec_cc_lh_volb_sts.tex (../SQL-codes/cc_lh_volb_sts.sql)
+
+Class scrreprt Warning: Usage of deprecated font command `\bf'!
+(scrreprt)              You should note, that in 1994 font command `\bf' has
+(scrreprt)              been defined for compatiblitiy to Script 2.0 only.
+(scrreprt)              Now, after two decades of LaTeX2e and NFSS2, you
+(scrreprt)              shouldn't use such commands any longer and within
+(scrreprt)              KOMA-Script usage of `\bf' is definitely deprecated.
+(scrreprt)              See `fntguide.pdf' for more information about
+(scrreprt)              recommended font commands.
+(scrreprt)              Note also, that KOMA-Script will remove the definition
+(scrreprt)              of `\bf' anytime until release of about version 3.20.
+(scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
+(scrreprt)              by `\normalfont \bfseries ' on input line 12.
+
+[81]) (./subsec_cc_missing_lhelc_vts_and_sts_records.tex
 Overfull \hbox (3.42252pt too wide) in paragraph at lines 2--3
 \EU1/LinLibertine(0)/m/n/12 Consistency check \EU1/LinLibertine(4)/m/n/10 cc_mi
 ssing_lhelc_pty_vts_and_sts_records \EU1/LinLibertine(0)/m/n/12 is based on tab
 les Party,
  []
 
-(../SQL-codes/cc_missing_lhelc_pty_vts_and_sts_records.sql [81])
+(../SQL-codes/cc_missing_lhelc_pty_vts_and_sts_records.sql)
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -3001,7 +3047,7 @@ ssing_lhelc_pty_vts_records \EU1/LinLibertine(0)/m/n/12 is based on tables Part
 y and Lower
  []
 
-(../SQL-codes/cc_missing_lhelc_pty_vts_records.sql)
+[82] (../SQL-codes/cc_missing_lhelc_pty_vts_records.sql)
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -3016,26 +3062,26 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 12.
 
-) (./subsec_cc_lhelc_vola_vts.tex [82] (../SQL-codes/cc_lhelc_vola_vts.sql)
+) (./subsec_cc_lhelc_vola_vts.tex (../SQL-codes/cc_lhelc_vola_vts.sql)
 Overfull \hbox (3.98296pt too wide) in paragraph at lines 13--10
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) (./subsec_cc_lhelc_volb_vts.tex (../SQL-codes/cc_lhelc_volb_vts.sql)
+) (./subsec_cc_lhelc_volb_vts.tex [83] (../SQL-codes/cc_lhelc_volb_vts.sql)
 Overfull \hbox (3.98296pt too wide) in paragraph at lines 13--10
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) (./subsec_cc_lhelc_vote_results.tex (../SQL-codes/cc_lhelc_vote_results.sql
-[83])) (./subsec_cc_cab_hog_info.tex (../SQL-codes/cc_cabinet_hog_info.sql))
-(./subsec_cc_hos_and_cab_cohabitation.tex [84]
-(../SQL-codes/cc_hos_and_cab_cohabitation.sql)
+) (./subsec_cc_lhelc_vote_results.tex (../SQL-codes/cc_lhelc_vote_results.sql))
+(./subsec_cc_cab_hog_info.tex [84] (../SQL-codes/cc_cabinet_hog_info.sql))
+(./subsec_cc_hos_and_cab_cohabitation.tex
+(../SQL-codes/cc_hos_and_cab_cohabitation.sql [85])
 
-LaTeX Warning: Reference `view_configuration_prs_vto' on page 85 undefined on i
+LaTeX Warning: Reference `view_configuration_prs_vto' on page 86 undefined on i
 nput line 15.
 
 ) (./subsec_cc_missing_uh_sts_records.tex
-(../SQL-codes/cc_missing_uh_pty_sts_records.sql [85])
+(../SQL-codes/cc_missing_uh_pty_sts_records.sql)
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -3050,14 +3096,14 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              But for now, KOMA-Script will replace deprecated `\bf'
 (scrreprt)              by `\normalfont \bfseries ' on input line 12.
 
-) (./subsec_cc_no_cab_lh_sts_shr.tex
+) (./subsec_cc_no_cab_lh_sts_shr.tex [86]
 
-LaTeX Warning: Reference `missing_lhelc_sts_records' on page 86 undefined on in
+LaTeX Warning: Reference `missing_lhelc_sts_records' on page 87 undefined on in
 put line 5.
 
 (../SQL-codes/cc_no_cab_lh_sts_shr.sql)) (./subsec_cc_no_cab_uh_sts_shr.tex
 
-LaTeX Warning: Reference `missing_uh_sts_records' on page 86 undefined on input
+LaTeX Warning: Reference `missing_uh_sts_records' on page 87 undefined on input
  line 5.
 
 
@@ -3067,7 +3113,7 @@ see CC \EU1/LinLibertine(4)/m/n/10 cc_missing_uh_pty_sts_records\EU1/LinLiberti
 ne(0)/m/n/12 ,
  []
 
-[86] (../SQL-codes/cc_no_cab_uh_sts_shr.sql)
+(../SQL-codes/cc_no_cab_uh_sts_shr.sql [87])
 
 Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              You should note, that in 1994 font command `\bf' has
@@ -3098,7 +3144,7 @@ Class scrreprt Warning: Usage of deprecated font command `\bf'!
 (scrreprt)              by `\normalfont \bfseries ' on input line 12.
 
 
-LaTeX Warning: Reference `no_cab_lh_sts_shr' on page 87 undefined on input line
+LaTeX Warning: Reference `no_cab_lh_sts_shr' on page 88 undefined on input line
  12.
 
 ) (./subsec_cc_no_lsq.tex
@@ -3110,10 +3156,10 @@ see CC \EU1/LinLibertine(4)/m/n/10 cc_no_cab_lh_sts_shr\EU1/LinLibertine(0)/m/n
 /12 ,
  []
 
-[87] (../SQL-codes/cc_no_lsq.sql)) (./subsec_cc_no_lsq_noothersw.tex
-(../SQL-codes/cc_no_lsq_noothersw.sql [88]))
+(../SQL-codes/cc_no_lsq.sql [88])) (./subsec_cc_no_lsq_noothersw.tex
+(../SQL-codes/cc_no_lsq_noothersw.sql [89]))
 (./subsec_cc_pres_elec_collage_vts.tex
-(../SQL-codes/cc_pres_elec_collage_vts.sql))) [89]
+(../SQL-codes/cc_pres_elec_collage_vts.sql))) [90]
 (./sec_keeping_the_PCDB_updated.tex
 Overfull \hbox (17.64252pt too wide) in paragraph at lines 19--21
 []\EU1/LinLibertine(0)/m/n/12 With respect to the MWE, (a) \EU1/LinLibertine(4)
@@ -3122,21 +3168,21 @@ e additionally \EU1/LinLibertine(4)/m/n/10 cab_sdate
  []
 
 
-LaTeX Warning: Reference `' on page 90 undefined on input line 22.
+LaTeX Warning: Reference `' on page 91 undefined on input line 22.
 
 
-LaTeX Warning: Reference `' on page 90 undefined on input line 22.
+LaTeX Warning: Reference `' on page 91 undefined on input line 22.
 
-[90]
+[91]
 Overfull \hbox (60.08353pt too wide) in paragraph at lines 43--44
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-LaTeX Warning: Reference `trg_nxt_ids' on page 91 undefined on input line 53.
+LaTeX Warning: Reference `trg_nxt_ids' on page 92 undefined on input line 53.
 
-) [91] (./PCDB_documentation_header.bbl (./PCDB_documentation_header.brf)
+) [92] (./PCDB_documentation_header.bbl (./PCDB_documentation_header.brf)
 \tf@brf=\write5
 \openout5 = `PCDB_documentation_header.brf'.
 
@@ -3149,9 +3195,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--9
 ][][][][][][][] [] [][][][][][] [] [][][] [] [][][][][][][] []
  []
 
-[92
+[93
 
-]) [93] (./chap_appendix.tex
+]) [94] (./chap_appendix.tex
 Chapter 5.
 (./sec_appx_trigger_function_details.tex (./subsec_appx_trigger_prv_ids.tex
 (../SQL-codes/trg_cab_prv_id.sql)
@@ -3161,7 +3207,7 @@ Overfull \hbox (0.89851pt too wide) in paragraph at lines 15--16
 d \EU1/LinLibertine(0)/m/n/12 is implemented
  []
 
-(../SQL-codes/trg_lh_prv_id.sql [94
+(../SQL-codes/trg_lh_prv_id.sql [95
 
 ])
 Overfull \hbox (17.64655pt too wide) in paragraph at lines 28--29
@@ -3177,7 +3223,7 @@ Overfull \hbox (0.25052pt too wide) in paragraph at lines 40--41
 d \EU1/LinLibertine(0)/m/n/12 is implemented
  []
 
-(../SQL-codes/trg_uh_prv_id.sql [95])
+(../SQL-codes/trg_uh_prv_id.sql [96])
 Overfull \hbox (17.61855pt too wide) in paragraph at lines 52--53
 \EU1/LinLibertine(0)/m/n/12 is implemented on table Presidential Election and i
 nserts data into cells of column \EU1/LinLibertine(4)/m/n/10 prselc_prv_id\EU1/
@@ -3185,44 +3231,44 @@ LinLibertine(0)/m/n/12 .
  []
 
 (../SQL-codes/trg_prselc_prv_id.sql)) (./subsec_appx_trigger_nxt_ids.tex
-(../SQL-codes/trg_cab_nxt_id.sql [96]) (../SQL-codes/trg_lh_nxt_id.sql)
+(../SQL-codes/trg_cab_nxt_id.sql [97]) (../SQL-codes/trg_lh_nxt_id.sql)
 (../SQL-codes/trg_lhelc_nxt_id.sql
 Overfull \hbox (9.08301pt too wide) in paragraph at lines 1--2
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[97])) (./subsec_appx_trigger_mv_config_ev_corresponding_ids.tex
-(../SQL-codes/trg_mv_config_ev_prv_ids.sql [98] [99]))
-(./subsec_appx_trigger_mv_config_refresh.tex [100]
-(../SQL-codes/trg_mv_config_ev_refresh_row().sql [101] [102] [103]))) [104]
+[98])) (./subsec_appx_trigger_mv_config_ev_corresponding_ids.tex
+(../SQL-codes/trg_mv_config_ev_prv_ids.sql [99] [100]))
+(./subsec_appx_trigger_mv_config_refresh.tex [101]
+(../SQL-codes/trg_mv_config_ev_refresh_row().sql [102] [103] [104]))) [105]
 (./sec_appx_table_overview.tex (../Codebook/tab_longtable_header.tex)
-(../Codebook/tab_country.tex) [105] (../Codebook/tab_longtable_header.tex)
-(../Codebook/tab_cabinet.tex) [106] (../Codebook/tab_longtable_header.tex)
-(../Codebook/tab_cabinet_portfolios.tex) [107]
+(../Codebook/tab_country.tex) [106] (../Codebook/tab_longtable_header.tex)
+(../Codebook/tab_cabinet.tex) [107] (../Codebook/tab_longtable_header.tex)
+(../Codebook/tab_cabinet_portfolios.tex) [108]
 (../Codebook/tab_longtable_header.tex) (../Codebook/tab_lower_house.tex)
-[108] (../Codebook/tab_longtable_header.tex) (../Codebook/tab_lh_election.tex
-[109]) [110] [111] [112] (../Codebook/tab_longtable_header.tex)
-(../Codebook/tab_lower_house_vote_results.tex) [113]
+[109] (../Codebook/tab_longtable_header.tex) (../Codebook/tab_lh_election.tex
+[110]) [111] [112] [113] (../Codebook/tab_longtable_header.tex)
+(../Codebook/tab_lower_house_vote_results.tex) [114]
 (../Codebook/tab_longtable_header.tex)
-(../Codebook/tab_lower_house_seat_results.tex) [114]
+(../Codebook/tab_lower_house_seat_results.tex) [115]
 (../Codebook/tab_longtable_header.tex) (../Codebook/tab_upper_house.tex)
-[115] (../Codebook/tab_longtable_header.tex) (../Codebook/tab_uh_election.tex)
-[116] (../Codebook/tab_longtable_header.tex)
+[116] (../Codebook/tab_longtable_header.tex) (../Codebook/tab_uh_election.tex)
+[117] (../Codebook/tab_longtable_header.tex)
 (../Codebook/tab_upper_house_seat_results.tex)
 (../Codebook/tab_longtable_header.tex)
-(../Codebook/tab_presidential_election.tex) [117] [118]
+(../Codebook/tab_presidential_election.tex) [118] [119]
 (../Codebook/tab_longtable_header.tex)
-(../Codebook/tab_presidential_election_vote_results.tex) [119]
+(../Codebook/tab_presidential_election_vote_results.tex) [120]
 (../Codebook/tab_longtable_header.tex) (../Codebook/tab_veto_points.tex)
-[120] (../Codebook/tab_longtable_header.tex) (../Codebook/tab_party.tex
+[121] (../Codebook/tab_longtable_header.tex) (../Codebook/tab_party.tex
 Underfull \hbox (badness 1005) in paragraph at lines 6--6
 []| \EU1/LinLibertine(0)/m/n/12 Party identifier in Parlgov 
  []
 
-) [121] (../Codebook/tab_longtable_header.tex)
+) [122] (../Codebook/tab_longtable_header.tex)
 (../Codebook/tab_electoral_alliances.tex))))
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 202.
- [122]
+ [123]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 202.
 
 (./PCDB_documentation_header.aux)
@@ -3242,12 +3288,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 202.
  ) 
 Here is how much of TeX's memory you used:
- 39754 strings out of 493734
- 779862 string characters out of 6146348
- 787341 words of memory out of 5000000
- 42043 multiletter control sequences out of 15000+600000
+ 39766 strings out of 493734
+ 779721 string characters out of 6146348
+ 791265 words of memory out of 5000000
+ 42055 multiletter control sequences out of 15000+600000
  11519 words of font info for 84 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  65i,17n,106p,10404b,2014s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on PCDB_documentation_header.pdf (122 pages).
+Output written on PCDB_documentation_header.pdf (123 pages).

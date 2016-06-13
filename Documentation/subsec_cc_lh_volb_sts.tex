@@ -1,0 +1,13 @@
+\subsection{CC Lower House Seat B Volatility}\label{cc_lh_volb_sts}
+Consistency check \texttt{\footnotesize cc\_lh\_volb\_sts} is based on table Lower House Election and view Lower House Seat B Volatility, and provides information at the level of lower house elections.
+
+It enlists all lower house elections for which the computed and recorded figures of Seat B Volatility deviate after the 7\ts{th}  decimal place.
+
+CC \texttt{\footnotesize cc\_lh\_volb\_sts} is programmed as follows:
+
+\lstinputlisting[%caption={Code to create consistency check that compares computed to recorded type B volatility in lower house seats.},%
+language=SQL]%
+{../SQL-codes/cc_lh_volb_sts.sql}
+
+{\bf Note}: because seats destributions vary with lower houses (not only with elections, as, e.g., party splits alter the lower house configuration often substantially), the computed figure varies with lower houses, while the recorded figure varies with elections. However, in lower houses that derive directly from an election (a corrsponding election identifier is recorded) should have the same volatility value.
+

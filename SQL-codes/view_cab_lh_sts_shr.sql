@@ -14,17 +14,8 @@ FROM
 						FROM config_data.mv_configuration_events
 					) AS CONFIGURATION_EVENTS
 				LEFT OUTER JOIN
-					(SELECT *
-						FROM
-							(SELECT lh_id, lhelc_id 
-								FROM config_data.lower_house
-							) LOWER_HOUSE
-						FULL OUTER JOIN
-							(SELECT lhelc_id, pty_id, pty_lhelc_sts_shr 
-								FROM config_data.view_pty_lhelc_sts_shr
-							) PTY_LH_STS_SHR
-						USING(lhelc_id)
-						WHERE lh_id IS NOT NULL
+					(SELECT lh_id, pty_id, pty_lhelc_sts_shr 
+						FROM config_data.view_pty_lh_sts_shr
 					) AS PTY_LH_STS_SHR
 				USING(lh_id)
 			) AS CAB_LH_CONFIGS
