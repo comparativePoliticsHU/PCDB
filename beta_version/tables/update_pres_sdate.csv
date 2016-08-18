@@ -1,0 +1,75 @@
+prselc_id;ctr_id;prs_n;prselc_date;prs_sdate;date_dif;prs_valid_sdate;prs_src;prs_comment
+9001;9;Juho Kusti Paasikivi;09.03.46;11.03.46;2;f;;
+9002;9;Juho Kusti Paasikivi;17.01.50;01.02.50;15;f;;
+9003;9;Urho Kekkonen;15.02.56;01.03.56;44;f;;
+9004;9;Urho Kekkonen;16.01.62;01.02.62;16;f;;
+9005;9;Urho Kekkonen;16.01.68;01.02.68;16;f;;
+9006;9;Urho Kekkonen;15.02.78;01.03.78;14;f;;
+9007;9;Mauno Koivisto;15.02.78;11.09.81;1304;f;;
+9008;9;Mauno Koivisto;26.02.82;01.03.82;3;f;;
+9009;9;Mauno Koivisto;15.02.88;01.03.88;15;f;;
+9010;9;Martti Ahtisaari;06.02.94;01.03.94;23;t;http://www.kansallisbiografia.fi/english/?id=634;here election date equals second round. First was 16.01.1994
+9011;9;Tarja Halonen;06.02.00;01.03.00;24;f;;
+9012;9;Tarja Halonen;29.01.06;01.02.06;3;f;;
+9013;9;Sauli Väinämö Niinistö;05.02.12;01.03.12;25;f;;
+17001;17;Antonio dos Santos Ramalho Eanes;27.06.76;14.07.76;17;t;http://www.presidencia.pt/?idc=13&idi=24;
+17002;17;Antonio dos Santos Ramalho Eanes;07.12.80;09.03.81;92;t;http://www.presidencia.pt/?idc=13&idi=25;
+17003;17;Mario Alberto Nobre Lopes Soares;16.02.86;09.03.86;21;t;http://www.presidencia.pt/?idc=13&idi=23;
+17004;17;Mario Alberto Nobre Lopes Soares;13.01.91;09.03.91;55;t;http://www.presidencia.pt/?idc=13&idi=24;
+17005;17;Jorge Fernando Branco de Sampaio;14.01.96;09.03.96;55;t;http://www.presidencia.pt/?idc=13&idi=40;
+17006;17;Jorge Fernando Branco de Sampaio;14.01.01;09.03.01;54;t;http://www.presidencia.pt/?idc=13&idi=41;
+17007;17;Anibal Antonio Cavaco Silva;22.01.06;09.03.06;46;t;http://www.presidencia.pt/?idc=13&idi=103404;
+17008;17;Anibal Antonio Cavaco Silva;23.01.11;09.03.11;45;t;http://www.presidencia.pt/?idc=13&idi=103405;
+19001;19;Franklin D. Roosevelt;07.11.44;20.01.45;74;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19002;19;Harry S. Truman;07.11.44;12.04.45;156;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19003;19;Harry S. Truman;02.11.48;20.01.49;79;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19004;19;Dwight D. Eisenhower;04.11.52;20.01.53;77;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19005;19;Dwight D. Eisenhower;06.11.56;20.01.57;75;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19006;19;John F. Kennedy;08.11.60;20.01.61;73;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19007;19;Lyndon B. Johnson;08.11.60;22.11.63;1109;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19008;19;Lyndon B. Johnson;03.11.64;20.01.65;78;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19009;19;Richard M. Nixon;05.11.68;20.01.69;76;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19010;19;Richard M. Nixon;07.11.72;20.01.73;74;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19011;19;Gerald F. Ford;07.11.72;09.08.74;640;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19012;19;James E. Carter;02.11.76;20.01.77;79;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19013;19;Ronald W. Reagan;04.11.80;20.01.81;77;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19014;19;Ronald W. Reagan;06.11.84;21.01.85;76;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19015;19;George H. W. Bush;08.11.88;20.01.89;73;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19016;19;William J. Clinton;03.11.92;20.01.93;78;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19017;19;William J. Clinton;05.11.96;20.01.97;76;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19018;19;George W. Bush;07.11.00;20.01.01;74;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19019;19;George W. Bush;02.11.04;20.01.05;79;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19020;19;Barack Obama;04.11.08;20.01.09;77;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+19021;19;Barack Obama;06.11.12;21.01.13;75;t;http://www.inaugural.senate.gov/about/facts-and-firsts       https://en.wikipedia.org/wiki/List_of_elections_in_the_United_States;
+20001;20;Benjamin Netanyahu;29.05.96;18.06.96;20;t;http://www.knesset.gov.il/govt/eng/govtbyministry_eng.asp    https://www.knesset.gov.il/description/eng/eng_mimshal_res.htm;
+20002;20;Ehud Barak;17.05.99;06.07.99;50;t;http://www.knesset.gov.il/govt/eng/govtbyministry_eng.asp    https://www.knesset.gov.il/description/eng/eng_mimshal_res.htm;
+20003;20;Ariel Sharon;06.02.01;07.03.01;29;t;http://www.knesset.gov.il/govt/eng/govtbyministry_eng.asp      https://www.knesset.gov.il/history/eng/eng_hist15_s.htm;
+25001;25;Lech Walesa;09.12.90;23.12.90;13;t;http://www.president.pl/en/president/polish-presidents/lech-walesa/;
+26001;26;Michael Ková?;15.02.93;02.03.93;15;t;https://www.prezident.sk/michal-kovac/;
+26002;26;Rudolf Schuster;29.05.99;15.06.99;17;t;https://archiv.prezident.sk/schuster/index4734.html?273;
+26003;26;Ivan Gasparovic;17.04.04;15.06.04;59;t;https://www.prezident.sk/page/ivan-gasparovic/;
+26004;26;Ivan Gasparovic;04.04.09;15.06.09;72;t;https://archiv.prezident.sk/gasparovic/index5e79.html?biography;
+29001;29;Rene Coty;23.12.53;16.01.54;24;t;https://en.wikipedia.org/wiki/Ren%C3%A9_Coty#Postwar_life_and_presidency;
+29002;29;Charles de Gaulle;21.12.58;08.01.59;18;t;http://www.charles-de-gaulle.de/biografische-zeittafel-charles-de-gaulle.html;
+29003;29;Charles de Gaulle;05.12.65;19.12.65;14;f;;
+29004;29;Alain Poher;05.12.65;28.04.69;1240;f;;ATTENTION: POHER WAS INTERIMS PRESIDENT FROM 28.04.1969 20.06.1969 and 2.04.-27.05.1974. MAY BE VERY MISSLEADING 
+29005;29;Georges Pompidou;01.06.69;20.06.69;19;t;https://fr.wikipedia.org/wiki/Georges_Pompidou#Pr.C3.A9sidence_de_la_R.C3.A9publique_.281969-1974.29;
+29006;29;Alain Poher;01.06.69;02.04.74;1766;f;;
+29007;29;Valery Giscard d_Estaing;05.05.74;27.05.74;22;t;https://fr.wikipedia.org/wiki/Val%C3%A9ry_Giscard_d%27Estaing;
+29008;29;Francois Mitterrand;26.04.81;21.05.81;25;t;http://www.mitterrand.org/1981-1986-L-exercice-du-pouvoir.html;https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Mitterrand#Suicides_de_Pierre_B.C3.A9r.C3.A9govoy_et_Fran.C3.A7ois_de_Grossouvre
+29009;29;Francois Mitterrand;24.04.88;08.05.88;14;t;http://www.mitterrand.org/1981-1986-L-exercice-du-pouvoir.html;As Mitterand and de Gaulle 1965 were presidents before, they did not enter into force, so the date of the second election is the start date - no other information found 
+29010;29;Jacques Chirac;23.04.95;17.05.95;24;t;http://www.france-politique.fr/election-presidentielle-1995.htm;https://fr.wikipedia.org/wiki/Jacques_Chirac#Pr.C3.A9sidence_de_la_R.C3.A9publique
+29011;29;Jacques Chirac;21.04.02;16.05.02;22;t;https://fr.wikipedia.org/wiki/Jacques_Chirac#Pr.C3.A9sidence_de_la_R.C3.A9publique;
+29012;29;Nicolas Sarkozy;22.04.07;16.05.07;24;t;http://www.france-politique.fr/elections-presidentielles.htm;https://fr.wikipedia.org/wiki/Nicolas_Sarkozy#Pr.C3.A9sidence_de_la_R.C3.A9publique
+29013;29;Francois Hollande;22.04.12;15.05.12;23;t;http://www.france-politique.fr/elections-presidentielles.htm;
+33001;33;Carlos Salinas de Gortari;06.07.88;01.12.88;148;t;http://presidentes.mx/presidentes/carlos-salinas-de-gortari/;
+33002;33;Ernesto Zedillo;21.08.94;01.12.94;102;t;http://presidentes.mx/presidentes/ernesto-zedillo-ponce-de-leon/;
+33003;33;Vicente Fox Quesada;02.07.00;01.12.00;148;t;http://fox.presidencia.gob.mx/en/vicentefox/?contenido=17322;
+33004;33;Felipe Calderon;02.06.06;01.12.06;182;t;http://presidentes.mx/presidentes/felipe-calderon-hinojosa/;
+33005;33;Enrique Pena Nieto;01.07.12;01.12.12;153;t;http://en.presidencia.gob.mx/presidencia/presidente/;
+34001;34;Roh Tae Woo;16.12.87;25.02.88;71;t;https://www.britannica.com/biography/Roh-Tae-Woo;http://www.worldlibrary.org/articles/south_korean_presidential_election,_1987
+34002;34;Kim Young Sam;18.12.92;25.02.93;69;t;http://www.worldlibrary.org/articles/South_Korean_presidential_election,_1992;https://de.wikipedia.org/wiki/Kim_Young-sam
+34003;34;Kim Dae Jung;19.12.97;25.02.98;69;t;http://www.washingtonpost.com/wp-srv/inatl/longterm/korea/stories/daejung022598.htm;
+34004;34;Roh Moo Hyun;19.12.02;25.02.03;68;t;https://en.wikipedia.org/wiki/Roh_Moo-hyun;
+34005;34;Lee Myung Bak;19.12.07;25.02.08;68;t;https://en.wikipedia.org/wiki/South_Korean_presidential_election,_2007;
+34006;34;Park Geun-Hye;19.12.12;25.02.13;68;t;http://www.koreaherald.com/view.php?ud=20130224000257   http://www.economist.com/blogs/banyan/2012/12/south-koreas-presidential-election;
