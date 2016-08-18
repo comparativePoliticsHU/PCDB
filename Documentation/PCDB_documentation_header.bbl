@@ -1,72 +1,11 @@
 \begin{thebibliography}{xx}
 
-\harvarditem{Abou-Chadi}{2014}{Abou-Chadi2014}
-Abou-Chadi, Tarik. 2014.
-\newblock ``Niche Party Success and Mainstream Party policy Shifts: How Green
-  and radical Right Parties Differ in Their Impact.'' {\em British Journal of
-  Political Science} FirstView.
-\newline\harvardurl{\url{http://journals.cambridge.org/action/displayAbstract?fromPage=online&aid=9290332&fileId=S0007123414000155}}
-
-\harvarditem{Carey \harvardand\ Hix}{2008}{Carey&Hix2008}
-Carey, John~M. \harvardand\ Simon Hix. 2008.
-\newblock {\em Maximizing Representation and Accountability in the Design of
-  Electoral systems: Data Codebook Version 2.0}.
-
-\harvarditem{Carey \harvardand\ Hix}{2011}{Carey&Hix2011}
-Carey, John~M. \harvardand\ Simon Hix. 2011.
-\newblock ``The Electoral Sweet Spot: {L}sow-Magnitude Proportional Electoral
-  Systems.'' {\em American Journal of Political Science} 55.
-
 \harvarditem{D\"oring \harvardand\ Manow}{2012}{ParlGov2012}
 D\"oring, Holger \harvardand\ Philip Manow. 2012.
 \newblock ``Parliament and government composition database ({ParlGov}): {A}n
   infrastructure for empirical information on parties, elections and
   governments in modern democracies. {V}ersion 12/10 – 15 October 2012.''.
 \newline\harvardurl{\url{http://Parlgov.org/stable/data.html}}
-
-\harvarditem{EU}{2015}{EUwebsite:member_countries}
-EU, European~Union. 2015.
-\newblock ``{EU} member mountries.''.
-\newline\harvardurl{\url{http://europa.eu/about-eu/countries/member-countries/index_en.htm}}
-
-\harvarditem{Gallagher \harvardand\ Mitchell}{2005}{Gallagher&Mitchell2005}
-Gallagher, M. \harvardand\ P. Mitchell. 2005.
-\newblock {\em The Politics of Electoral Systems}.
-\newblock Oxford University Press.
-
-\harvarditem{Gallagher}{1991}{Gallagher1991}
-Gallagher, Michael. 1991.
-\newblock ``Proportionality, Disproportionality and Electoral Systems.'' {\em
-  Electoral Studies} 10:33--51.
-
-\harvarditem{Gallagher}{1992}{Gallagher1992}
-Gallagher, Michael. 1992.
-\newblock ``Comparing Proportional Representation Electoral Systems: Quotas,
-  Thresholds, Paradoxes and Majorities.'' {\em British Journal of Political
-  Science} 22:469--496.
-
-\harvarditem{ISO}{2015}{ISOwebsite}
-ISO, International Organization for~Standardization. 2015.
-\newblock ``Country Codes -- {ISO} 3166.''.
-\newline\harvardurl{\url{http://www.iso.org/iso/home/standards/country_codes.htm}}
-
-\harvarditem[Kollman et~al.]{Kollman, Hicken, Caramani, Backer \harvardand\
-  Lublin}{2014}{CLEA2014}
-Kollman, K., A. Hicken, D. Caramani, D. Backer \harvardand\ D. Lublin. 2014.
-\newblock ``Constituency-level elections archive [data file and codebook].''.
-\newline\harvardurl{\url{http://www.electiondataarchive.org/cite.html}}
-
-\harvarditem{Laakso \harvardand\ Taagepera}{1979}{Laakso&Taagepera1979}
-Laakso, Markku \harvardand\ Rein Taagepera. 1979.
-\newblock ``The `Effective' Number of Parties: {A} Measure with Application to
-  West Europe.'' {\em Comparative Political Studies} 12(1):3--27.
-
-\harvarditem{Lijphart}{1994}{Lijphart1994}
-Lijphart, Arend. 1994.
-\newblock {\em Electoral Systems and Party Systems: A Study of Twenty-Seven
-  Democracies, 1945-1990}.
-\newblock Comparative European Politics Series Oxford:  Oxford University
-  Press.
 
 \harvarditem{Nohlen}{2001}{Nohlen2001}
 Nohlen, Dieter. 2001.
@@ -83,33 +22,11 @@ Nohlen, Dieter. 2010.
 \newblock {\em Elections in Europe. A Data Handbook}.
 \newblock Baden-Baden:  Nomos Verlags-Gesellschaft.
 
-\harvarditem{{OECD}}{2015}{OECDwebsite:members&partners}
-{OECD}, {The Organisation for Economic Co-operation and Development}. 2015.
-\newblock ``Members and Partners: List of {OECD} Member countries --
-  {R}atification of the Convention on the {OECD}.''.
-\newline\harvardurl{\url{http://www.oecd.org/about/membersandpartners/list-oecd-member-countries.htm}}
-
-\harvarditem{Powell \harvardand\ Tucker}{2013}{Powell&Tucker2013}
-Powell, Eleanor~Neff \harvardand\ Joshua~A. Tucker. 2013.
-\newblock ``Revisiting electoral Volatility in Post-Communist Sountries: New
-  Data, New Results and New Approaches.'' {\em British Journal of Political
-  Science} 44:123--147.
-
-\harvarditem{Taagepera}{2002}{Taagepera2002}
-Taagepera, Rein. 2002.
-\newblock ``Nationwide threshold of representation.'' {\em Electoral Studies}
-  21(3):383--401.
-
 \harvarditem[Volkens et~al.]{Volkens, Lehmann, Merz, Regel, Werner, Lacewell
   \harvardand\ Schultze}{2013}{ManifestoData2013}
 Volkens, Andrea, Pola Lehmann, Nicolas Merz, Sven Regel, Annika Werner,
   Onawa~Promise Lacewell \harvardand\ Henrike Schultze. 2013.
 \newblock ``The Manifesto Data Collection (version 2013b).''.
 \newline\harvardurl{\url{https://manifesto-project.wzb.eu/}}
-
-\harvarditem{WTO}{2015}{WTOwebsite:members&observers}
-WTO, World Trade~Organization. 2015.
-\newblock ``Members and Observers.''.
-\newline\harvardurl{\url{https://www.wto.org/english/thewto_e/whatis_e/tif_e/org6_e.htm}}
 
 \end{thebibliography}

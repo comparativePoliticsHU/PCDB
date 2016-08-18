@@ -4,13 +4,13 @@ This chapter provides the code and corresponding explanatory descriptions of the
 
 Four types of objects will be discussed in succession:
 \begin{itemize}
-\item[(1)]{{\bf Tables}: The permanent data repositories that store information at different levels (e.g., parties, institutions, countries, etc.) and serve as priamry source for all computed indices and aggregate figures.}
-\item[(1)]{{\bf Views}: Virtual tables based on the result-sets of defined SQL-queries.
+\item[1.]{{\bf Tables}: The permanent data repositories that store information at different levels (e.g., parties, institutions, countries, etc.) and serve as priamry source for all computed indices and aggregate figures.}
+\item[2.]{{\bf Views}: Virtual tables based on the result-sets of pre-defined SQL-queries.
 Views serve two purposes in the PCDB:
 \begin{itemize}
-\item[i.]Compute aggregates and indices from the primary data contained in tables,
-\item[ii.]and create consistency checks that allow o control for the consistency of the data and to trace coding failures.
+\item[a)]Compute aggregates and indices from the primary data contained in tables,
+\item[b)]and create consistency checks that allow o control for the consistency of the data and to trace coding failures.
 \end{itemize}}
-\item[(3)]{{\bf Materialized views}: Tables created from views that may be updated from the original base tables from time to time.
-\item[(3)]{{\bf Triggers}: functions implemented on tables or materialized views to insert, update, or delete data as consequence of specific events. Triggers are mainly implemented to enable the automatic up-dating of the PCDB.}
+\item[3.]{{\bf Materialized views}: Tables created from views that may be updated from the original base tables from time to time.}
+\item[4.]{{\bf Triggers}: Functions implemented on tables or materialized views to insert, update, or delete data as consequence of specific events. Triggers are mainly implemented to enable the automatic up-dating of the PCDB.}
 \end{itemize}

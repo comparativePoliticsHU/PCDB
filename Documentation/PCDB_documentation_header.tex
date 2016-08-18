@@ -6,17 +6,17 @@ oneside,%
 english,%
 abstract=off,%
 toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
-\usepackage{fontspec}%	font specification, fuegt umlaute hinzu
-\usepackage{libertine}%	font
+% \usepackage{fontspec}%	font specification, fuegt umlaute hinzu
+% \usepackage{libertine}%	font
 
 \usepackage[svgnames*]{xcolor}%extended color, cmyk ist die Spezifizierung
 \usepackage{color}
 
-\setcounter{tocdepth}{4}%
-\setcounter{secnumdepth}{4}%
+\setcounter{tocdepth}{3}%
+\setcounter{secnumdepth}{3}%
 \usepackage[backref=section]{hyperref}
 
-\hypersetup{colorlinks=false}
+\hypersetup{colorlinks=true}
 \hypersetup{linkcolor=black}
 \hypersetup{citecolor=teal}
 \hypersetup{urlcolor=blue}
@@ -59,7 +59,10 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 	morekeywords={%
 		replace,%
 		with,%
+		window,%
+		over,%
 		::,%
+    to,%
 		text,%
 		boolean,%
 		name,%
@@ -143,12 +146,17 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 { >{\hspace{0pt}\RaggedLeft\RaggedRight} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
 
 \usepackage{tabularx}% 	extended tabular
+\usepackage{graphicx}
+\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{threeparttable}
 \usepackage{longtable}
 
-\DeclareCaptionLabelFormat{Uppercaselabel}{\MakeUppercase{#1 #2}}%Uppercase caption label (e.g. TABLE 1)
-%\captionsetup[table]{labelformat=Uppercaselabel, labelsep=newline}%no collon but newline as sepaeartor of label and title 
+\DeclareCaptionLabelFormat{Uppercaselabel}{\MakeUppercase{ #1 #2}}%Uppercase caption label (e.g. TABLE 1)
+\DeclareCaptionLabelFormat{Boldfacelabel}{\bf #1 #2}%Uppercase caption label (e.g. TABLE 1)
+
+\captionsetup[table]{labelformat=Boldfacelabel}%
+\captionsetup[figure]{labelformat=Boldfacelabel}%
 
 \usepackage{dcolumn}
 \usepackage{booktabs}
@@ -170,15 +178,17 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 \hypersetup{pdfauthor = {Hauke Licht}}
 
 \title{\huge Political Configurations Database}
-\subtitle{\SubTitleFont\textbf{Documentation}\footnote{Last update: \today}}
+\subtitle{\SubTitleFont\textbf{Documentation}\footnote{Last update od document: \today}}
 \author{
-	%Tarik Abou-Chadi, Ph.D.\thanks{Humboldt-University of Berlin}%
+	Ellen M. Immergut, Ph.D.\thanks{Project Coordinator, Humboldt-University of Berlin}%
+  \and%
+	Tarik Abou-Chadi, Ph.D.\thanks{Post-Doc Researcher, Humboldt-University of Berlin}%
 	\and%
 	%Matthias Orlowski, Ph.D.\thanks{Humboldt-University of Berlin}%	
-	\and%	
-	%Hauke Licht\thanks{\href{mailto:hauke.licht.1@hu-berlin.de}{Contact: hauke.licht.1@hu-berlin.de}}%
+	%\and%	
+	Hauke Licht, B.A.\thanks{Research assistant and documentation author, \href{mailto:hauke.licht.1@cms.hu-berlin.de}{hauke.licht.1@cms.hu-berlin.de}}%
 	%\and
-	%{\ss}% {\ss} produzeirt sz
+	%{\ss}% {\ss} produziert sz
 	%\thanks{Freie Universität Berlin%Free University Berlin
 	%}%
 	%\and
@@ -186,7 +196,12 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 	%\thanks{Institution}%
 }
 \publishers{
-	Chair of Comparative Politics\\ Humboldt University of Berlin
+  %Ellen M. Immergut, Ph.D.\\
+	Chair of Comparative Politics\\ 
+	Humboldt University of Berlin\\
+	%Universitätsstra{\ss}e 3b, room 413b\\
+	%c/o Unter den Linden 6\\ 
+	%10099 Berlin \\
 	%Ellen M. Immergut, Professor Ph.D.\thanks{Humboldt University of Berlin}
 	%\and%
 	%Tarik Abou-Chadi, Ph.D.\thanks{Humboldt University of Berlin}%

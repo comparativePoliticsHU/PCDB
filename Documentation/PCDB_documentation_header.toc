@@ -1,132 +1,17 @@
-\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}
-\contentsline {chapter}{\numberline {2}Query for data in the PCDB}{6}{chapter.2}
-\contentsline {section}{\numberline {2.1}Access to the PCDB}{6}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Roles in the PCDB}{6}{subsection.2.1.1}
-\contentsline {section}{\numberline {2.2}Query for data from Tables and Views}{7}{section.2.2}
-\contentsline {chapter}{\numberline {3}Programming the PCDB}{8}{chapter.3}
-\contentsline {section}{\numberline {3.1}Tables in the config\_data scheme}{9}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Country}{9}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Cabinet}{9}{subsection.3.1.2}
-\contentsline {subparagraph}{\nonumberline Cabinet start date}{10}{section*.3}
-\contentsline {subparagraph}{\nonumberline Total number of cabinet portfolios}{10}{section*.4}
-\contentsline {subsection}{\numberline {3.1.3}Cabinet Portfolios}{10}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Lower House}{11}{subsection.3.1.4}
-\contentsline {subparagraph}{\nonumberline Lower house start date}{11}{section*.5}
-\contentsline {subparagraph}{\nonumberline Total number of seats in lower house}{11}{section*.6}
-\contentsline {subsection}{\numberline {3.1.5}Lower House Election}{12}{subsection.3.1.5}
-\contentsline {subparagraph}{\nonumberline Elections, pluarality versus proportional voting, and seat allocation}{12}{section*.7}
-\contentsline {subparagraph}{\nonumberline Electoral system}{12}{section*.8}
-\contentsline {subsection}{\numberline {3.1.6}Lower House Vote Results}{14}{subsection.3.1.6}
-\contentsline {subsection}{\numberline {3.1.7}Lower House Seat Results}{14}{subsection.3.1.7}
-\contentsline {subsection}{\numberline {3.1.8}Upper House}{14}{subsection.3.1.8}
-\contentsline {subparagraph}{\nonumberline Upper house start date}{15}{section*.9}
-\contentsline {subsection}{\numberline {3.1.9}Upper House Election}{15}{subsection.3.1.9}
-\contentsline {subsection}{\numberline {3.1.10}Upper House Seat Results}{15}{subsection.3.1.10}
-\contentsline {subsection}{\numberline {3.1.11}Presidential Election}{16}{subsection.3.1.11}
-\contentsline {section}{\numberline {3.2}Presidential Election Vote Results}{16}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Veto Points}{17}{subsection.3.2.1}
-\contentsline {subparagraph}{\nonumberline Veto Institution Type}{17}{section*.10}
-\contentsline {subparagraph}{\nonumberline Veto Potential}{17}{section*.11}
-\contentsline {subparagraph}{\nonumberline Veto institution start and end date}{18}{section*.12}
-\contentsline {subsection}{\numberline {3.2.2}Party}{18}{subsection.3.2.2}
-\contentsline {subparagraph}{\nonumberline Party identifier}{18}{section*.13}
-\contentsline {subsection}{\numberline {3.2.3}Electoral Alliances}{19}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Views in the config\_data scheme}{21}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Cabinet's Seat Share in the Lower House}{21}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Cabinet's Seat Share in the Upper House}{22}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Cabinet's Total Number of Seats}{23}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Number of Cabinet Parties}{23}{subsection.3.3.4}
-\contentsline {subsection}{\numberline {3.3.5}Configuration Events}{23}{subsection.3.3.5}
-\contentsline {subsection}{\numberline {3.3.6}Configuration Year Duplicates}{26}{subsection.3.3.6}
-\contentsline {subsection}{\numberline {3.3.7}Configuration Duration in Year}{27}{subsection.3.3.7}
-\contentsline {subsection}{\numberline {3.3.8}Configuration Weight in Year}{28}{subsection.3.3.8}
-\contentsline {subsection}{\numberline {3.3.9}Configuration Cohabitation}{28}{subsection.3.3.9}
-\contentsline {subsection}{\numberline {3.3.10}Partisan Veto Players}{29}{subsection.3.3.10}
-\contentsline {subsection}{\numberline {3.3.11}Lower House Veto}{30}{subsection.3.3.11}
-\contentsline {subsection}{\numberline {3.3.12}Upper House Veto}{31}{subsection.3.3.12}
-\contentsline {subsection}{\numberline {3.3.13}Presidents' Veto}{32}{subsection.3.3.13}
-\contentsline {subsection}{\numberline {3.3.14}Judiciary's Veto}{33}{subsection.3.3.14}
-\contentsline {subsection}{\numberline {3.3.15}Electorate's Veto}{33}{subsection.3.3.15}
-\contentsline {subsection}{\numberline {3.3.16}Territorial Units' Veto}{34}{subsection.3.3.16}
-\contentsline {subsection}{\numberline {3.3.17}Lower House Total Seats}{34}{subsection.3.3.17}
-\contentsline {subsection}{\numberline {3.3.18}Effective Number of Parties in Parliament, Minimum Fragmentation}{35}{subsection.3.3.18}
-\contentsline {subsection}{\numberline {3.3.19}Effective Number of Parties in Parliament, Maximum Fragmentation}{36}{subsection.3.3.19}
-\contentsline {subsection}{\numberline {3.3.20}ENPP Adjustment Parameter (m)}{37}{subsection.3.3.20}
-\contentsline {subsection}{\numberline {3.3.21}Others and Independents}{38}{subsection.3.3.21}
-\contentsline {subsection}{\numberline {3.3.22}Lower House Election Effective Thresholds}{38}{subsection.3.3.22}
-\contentsline {subsection}{\numberline {3.3.23}Lower House Election Disproportionality, Gallagher's LSq}{39}{subsection.3.3.23}
-\contentsline {subsection}{\numberline {3.3.24}Type A Volatility in Lower House Seat Shares}{43}{subsection.3.3.24}
-\contentsline {subsection}{\numberline {3.3.25}Type B Volatility in Lower House Seat Shares}{46}{subsection.3.3.25}
-\contentsline {subsection}{\numberline {3.3.26}Type A Volatility in Lower House Vote Shares}{48}{subsection.3.3.26}
-\contentsline {subsection}{\numberline {3.3.27}Type B Volatility in Lower House Vote Shares}{52}{subsection.3.3.27}
-\contentsline {subsection}{\numberline {3.3.28}Lower House Election Registered Voters}{54}{subsection.3.3.28}
-\contentsline {subsection}{\numberline {3.3.29}Party's Total Seats in the Lower House}{54}{subsection.3.3.29}
-\contentsline {subsection}{\numberline {3.3.30}Party's Seat Share in the Lower House}{55}{subsection.3.3.30}
-\contentsline {subsection}{\numberline {3.3.31}Party's Seat Share in the Upper House}{55}{subsection.3.3.31}
-\contentsline {section}{\numberline {3.4}Materialized view Configuration Events}{57}{section.3.4}
-\contentsline {section}{\numberline {3.5}Views in the public scheme}{59}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Configuration}{59}{subsection.3.5.1}
-\contentsline {subparagraph}{\nonumberline Configuration start dates, end dates, duration}{59}{section*.16}
-\contentsline {subparagraph}{\nonumberline Cabinet's seat share in the lower and the upper house}{59}{section*.17}
-\contentsline {subparagraph}{\nonumberline Veto points}{59}{section*.18}
-\contentsline {subsection}{\numberline {3.5.2}Configuration Country-Years}{61}{subsection.3.5.2}
-\contentsline {subparagraph}{\nonumberline Choosing representative configurations}{61}{section*.19}
-\contentsline {section}{\numberline {3.6}Triggers}{64}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Identify previous institution-configurations within countries}{64}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Identify next institution-configurations within countries}{64}{subsection.3.6.2}
-\contentsline {subsection}{\numberline {3.6.3}Identify end dates of political configurations}{65}{subsection.3.6.3}
-\contentsline {subsection}{\numberline {3.6.4}Selecting corresponding institution identifiers within political configurations}{66}{subsection.3.6.4}
-\contentsline {subsection}{\numberline {3.6.5}Integrity and consistency of materialized view Configuration Events}{68}{subsection.3.6.5}
-\contentsline {subsubsection}{\numberline {3.6.5.1}Defining tables and functions that underlie the trigger-structure}{68}{subsubsection.3.6.5.1}
-\contentsline {subsubsection}{\numberline {3.6.5.2}Implementing trigger-structure on base-tables}{70}{subsubsection.3.6.5.2}
-\contentsline {subparagraph}{\nonumberline Insert function and trigger}{70}{section*.23}
-\contentsline {subparagraph}{\nonumberline Update function and trigger}{71}{section*.24}
-\contentsline {subparagraph}{\nonumberline Delete function and trigger}{71}{section*.25}
-\contentsline {subsubsection}{\numberline {3.6.5.3}Summarizing the trigger-structure}{71}{subsubsection.3.6.5.3}
-\contentsline {subparagraph}{\nonumberline What to do in the worst case}{73}{section*.26}
-\contentsline {section}{\numberline {3.7}Consistency Checks}{74}{section.3.7}
-\contentsline {subsection}{\numberline {3.7.1}CC Cabinet start date}{74}{subsection.3.7.1}
-\contentsline {subsection}{\numberline {3.7.2}CC Lower House start date}{75}{subsection.3.7.2}
-\contentsline {subsection}{\numberline {3.7.3}CC President start date}{75}{subsection.3.7.3}
-\contentsline {subsection}{\numberline {3.7.4}CC Upper House start date}{76}{subsection.3.7.4}
-\contentsline {subsection}{\numberline {3.7.5}CC Institution start and election dates summary statistics}{77}{subsection.3.7.5}
-\contentsline {subsection}{\numberline {3.7.6}CC Country time-series}{78}{subsection.3.7.6}
-\contentsline {subsection}{\numberline {3.7.7}CC Lower House parties' seat records missing}{78}{subsection.3.7.7}
-\contentsline {subsection}{\numberline {3.7.8}CC Party seat results in Lower House elections}{79}{subsection.3.7.8}
-\contentsline {subsection}{\numberline {3.7.9}CC Lower House total seats}{79}{subsection.3.7.9}
-\contentsline {subsection}{\numberline {3.7.10}CC Lower House election total distributed seats}{80}{subsection.3.7.10}
-\contentsline {subsection}{\numberline {3.7.11}CC Lower House Seat A Volatility}{80}{subsection.3.7.11}
-\contentsline {subsection}{\numberline {3.7.12}CC Lower House Seat B Volatility}{81}{subsection.3.7.12}
-\contentsline {subsection}{\numberline {3.7.13}CC Lower House election vote records and seat results missing}{82}{subsection.3.7.13}
-\contentsline {subsection}{\numberline {3.7.14}CC Lower House election vote records missing}{82}{subsection.3.7.14}
-\contentsline {subsection}{\numberline {3.7.15}CC Lower House Election Vote A Volatility}{83}{subsection.3.7.15}
-\contentsline {subsection}{\numberline {3.7.16}CC Lower House Election Vote B Volatility}{84}{subsection.3.7.16}
-\contentsline {subsection}{\numberline {3.7.17}CC Lower House Election Vote Results}{84}{subsection.3.7.17}
-\contentsline {subsection}{\numberline {3.7.18}CC Cabinet Head of Government}{85}{subsection.3.7.18}
-\contentsline {subsection}{\numberline {3.7.19}CC Head of State and cabinet in cohabitation}{85}{subsection.3.7.19}
-\contentsline {subsection}{\numberline {3.7.20}CC Upper House seat records missing}{86}{subsection.3.7.20}
-\contentsline {subsection}{\numberline {3.7.21}CC Cabinet's Lower House seat share}{87}{subsection.3.7.21}
-\contentsline {subsection}{\numberline {3.7.22}CC Cabinet's Upper House seat share}{87}{subsection.3.7.22}
-\contentsline {subsection}{\numberline {3.7.23}CC Lower House and corresponding election}{88}{subsection.3.7.23}
-\contentsline {subsection}{\numberline {3.7.24}CC LSq missing}{88}{subsection.3.7.24}
-\contentsline {subsection}{\numberline {3.7.25}CC `Othersw'-excluding LSq missing}{89}{subsection.3.7.25}
-\contentsline {subsection}{\numberline {3.7.26}CC President candidates' electoral collage votes}{90}{subsection.3.7.26}
-\contentsline {section}{\numberline {3.8}Keeping the PCDB updated}{91}{section.3.8}
-\contentsline {subsection}{\numberline {3.8.1}Insert}{91}{subsection.3.8.1}
-\contentsline {subsection}{\numberline {3.8.2}Update}{92}{subsection.3.8.2}
-\contentsline {chapter}{\numberline {4}Bibliography}{93}{chapter.4}
-\contentsline {chapter}{\numberline {5}Appendix}{95}{chapter.5}
-\contentsline {section}{\numberline {5.1}Details on Trigger functions}{95}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Description of Triggers to Identify Previous Instituion-Configrations}{95}{subsection.5.1.1}
-\contentsline {subparagraph}{\nonumberline Identify Previous Cabinet within Country}{95}{section*.27}
-\contentsline {subparagraph}{\nonumberline Identify Previous Lower House within Country}{95}{section*.28}
-\contentsline {subparagraph}{\nonumberline Identify Previous Lower House Election within Country}{96}{section*.29}
-\contentsline {subparagraph}{\nonumberline Identify Previous Upper House within Country}{96}{section*.30}
-\contentsline {subparagraph}{\nonumberline Identify Previous Presidential Election within Country}{97}{section*.31}
-\contentsline {subsection}{\numberline {5.1.2}Description of Triggers to Identify Next Instituion-Configrations}{97}{subsection.5.1.2}
-\contentsline {subparagraph}{\nonumberline Identify Next Cabinet within Country}{97}{section*.32}
-\contentsline {subparagraph}{\nonumberline Identify Next Lower House within Country}{98}{section*.33}
-\contentsline {subparagraph}{\nonumberline Identify Next Lower House Election within Country}{98}{section*.34}
-\contentsline {subsection}{\numberline {5.1.3}Description of Triggers that Insert Corresponding Identifiers in Political Configurations}{99}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Description of Triggers that Execute Refresh of Materialized View Configuration Events}{102}{subsection.5.1.4}
-\contentsline {section}{\numberline {5.2}Overview of variables in Tables}{106}{section.5.2}
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
+\contentsline {chapter}{\numberline {2}The PCDB in \texttt {\bf pgAdmin3}}{4}{chapter.2}
+\contentsline {section}{\numberline {2.1}Connecting to the PCDB}{4}{section.2.1}
+\contentsline {paragraph}{\nonumberline In case you fail}{5}{section*.3}
+\contentsline {paragraph}{\nonumberline In case you succeed}{5}{section*.4}
+\contentsline {section}{\numberline {2.2}Querying data from the PCDB}{6}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Browse data in the PCDB: The `Data viewer' window}{8}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Export data from the PCDB: The SQL-query tool}{9}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Keeping the PCDB updated}{12}{section.2.3}
+\contentsline {paragraph}{\nonumberline Some words of caution}{12}{section*.14}
+\contentsline {paragraph}{\nonumberline Some words on data consistency}{13}{section*.15}
+\contentsline {subsection}{\numberline {2.3.1}Manually inserting data}{13}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Manually updating data}{14}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Manually deleting data}{15}{subsection.2.3.3}
+\contentsline {chapter}{\numberline {3}Programming the PCDB}{16}{chapter.3}
+\contentsline {section}{\numberline {3.1}Roles in the PCDB}{16}{section.3.1}
+\contentsline {chapter}{\numberline {4}Bibliography}{18}{chapter.4}
