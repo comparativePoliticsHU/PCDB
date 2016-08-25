@@ -1,0 +1,9 @@
+\subsection{Insert and update using the `upsert' function}\label{subsec_upsert_data_function}
+
+
+
+
+
+\lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
+language=postgreSQL]%
+{../Updates/fun_update_base_table.sql}

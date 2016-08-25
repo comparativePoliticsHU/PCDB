@@ -1,17 +1,16 @@
-\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
-\contentsline {chapter}{\numberline {2}The PCDB in \texttt {\bf pgAdmin3}}{4}{chapter.2}
-\contentsline {section}{\numberline {2.1}Connecting to the PCDB}{4}{section.2.1}
-\contentsline {paragraph}{\nonumberline In case you fail}{5}{section*.3}
-\contentsline {paragraph}{\nonumberline In case you succeed}{5}{section*.4}
-\contentsline {section}{\numberline {2.2}Querying data from the PCDB}{6}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Browse data in the PCDB: The `Data viewer' window}{8}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Export data from the PCDB: The SQL-query tool}{9}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}Keeping the PCDB updated}{12}{section.2.3}
-\contentsline {paragraph}{\nonumberline Some words of caution}{12}{section*.14}
-\contentsline {paragraph}{\nonumberline Some words on data consistency}{13}{section*.15}
-\contentsline {subsection}{\numberline {2.3.1}Manually inserting data}{13}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Manually updating data}{14}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Manually deleting data}{15}{subsection.2.3.3}
-\contentsline {chapter}{\numberline {3}Programming the PCDB}{16}{chapter.3}
-\contentsline {section}{\numberline {3.1}Roles in the PCDB}{16}{section.3.1}
-\contentsline {chapter}{\numberline {4}Bibliography}{18}{chapter.4}
+\contentsline {chapter}{\numberline {1}The PCDB in \texttt {\bf pgAdmin3}}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Connecting to the PCDB}{3}{section.1.1}
+\contentsline {paragraph}{\nonumberline In case you fail}{4}{section*.3}
+\contentsline {paragraph}{\nonumberline In case you succeed}{4}{section*.4}
+\contentsline {section}{\numberline {1.2}Querying data from the PCDB}{5}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Browse data in the PCDB: The `Data viewer' window}{7}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Export data from the PCDB: The SQL-query tool}{8}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}Keeping the PCDB updated}{10}{section.1.3}
+\contentsline {paragraph}{\nonumberline Some words of caution}{10}{section*.14}
+\contentsline {paragraph}{\nonumberline Some words on data consistency}{11}{section*.15}
+\contentsline {subsection}{\numberline {1.3.1}Manually inserting data}{11}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Manually updating data}{12}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Manually deleting data}{13}{subsection.1.3.3}
+\contentsline {subsection}{\numberline {1.3.4}Insert and update using the `upsert' function}{14}{subsection.1.3.4}
+\contentsline {chapter}{\numberline {2}Programming the PCDB}{16}{chapter.2}
+\contentsline {section}{\numberline {2.1}Roles in the PCDB}{16}{section.2.1}

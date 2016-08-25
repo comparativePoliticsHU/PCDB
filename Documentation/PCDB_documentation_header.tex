@@ -58,6 +58,7 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 	  language     = SQL,
 	morekeywords={%
 		replace,%
+		drop,%
 		with,%
 		window,%
 		over,%
@@ -81,6 +82,7 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 		nulls,%
 		security,%
 		definer,%
+		declare,%
 		language,%
 		function,%
 		functions,%
@@ -92,6 +94,8 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 		for,%
 		each,%
 		row,%
+		array,%
+		array_to_string%
 	}%
 }
 
@@ -132,7 +136,8 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 \usepackage{marginnote}%	erlaubt einfuegen von Randbemerkungen
 \usepackage{varioref}%	erlaubt das Referenzieren von Abbildungen und Tabellen mit 							\ref{} und \pageref{}
 
-
+\let\OLDitemize\itemize
+\renewcommand\itemize{\OLDitemize\addtolength{\itemsep}{-.3em}}
 
 \usepackage{ragged2e}%	erlaubt Flatteratz mit Trennung
 \usepackage{array}%	 	erlaubt es neue Spaltentypen zu definieren
@@ -180,13 +185,13 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 \title{\huge Political Configurations Database}
 \subtitle{\SubTitleFont\textbf{Documentation}\footnote{Last update od document: \today}}
 \author{
-	Ellen M. Immergut, Ph.D.\thanks{Project Coordinator, Humboldt-University of Berlin}%
-  \and%
-	Tarik Abou-Chadi, Ph.D.\thanks{Post-Doc Researcher, Humboldt-University of Berlin}%
-	\and%
+	%Ellen M. Immergut, Ph.D.\thanks{Project Coordinator, Humboldt-University of Berlin}%
+  %\and%
+	%Tarik Abou-Chadi, Ph.D.\thanks{Post-Doc Researcher, Humboldt-University of Berlin}%
+	%\and%
 	%Matthias Orlowski, Ph.D.\thanks{Humboldt-University of Berlin}%	
 	%\and%	
-	Hauke Licht, B.A.\thanks{Research assistant and documentation author, \href{mailto:hauke.licht.1@cms.hu-berlin.de}{hauke.licht.1@cms.hu-berlin.de}}%
+	Hauke Licht\thanks{Documentation author, \href{mailto:hauke.licht.1@cms.hu-berlin.de}{hauke.licht.1@cms.hu-berlin.de}}%
 	%\and
 	%{\ss}% {\ss} produziert sz
 	%\thanks{Freie Universität Berlin%Free University Berlin

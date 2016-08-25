@@ -1,2 +1,10 @@
 Archive
 Archive/
+Codebook/*.log
+Codebook/*.synctex.gz
+Codebook/*.toc
+Documentation/*.log
+Documentation/*.synctex.gz
+Documentation/*.toc
+HU_Server_Zugang.pdf
+beta_version/work_in_progress.rtf

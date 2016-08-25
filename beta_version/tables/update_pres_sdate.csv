@@ -11,7 +11,7 @@ prselc_id;ctr_id;prs_n;prselc_date;prs_sdate;date_dif;prs_valid_sdate;prs_src;pr
 9010;9;Martti Ahtisaari;06.02.94;01.03.94;23;t;http://www.kansallisbiografia.fi/english/?id=634;here election date equals second round. First was 16.01.1994
 9011;9;Tarja Halonen;06.02.00;01.03.00;24;f;;
 9012;9;Tarja Halonen;29.01.06;01.02.06;3;f;;
-9013;9;Sauli Väinämö Niinistö;05.02.12;01.03.12;25;f;;
+9013;9;Sauli Vaeinaemoe Niinistoe;05.02.12;01.03.12;25;f;;
 17001;17;Antonio dos Santos Ramalho Eanes;27.06.76;14.07.76;17;t;http://www.presidencia.pt/?idc=13&idi=24;
 17002;17;Antonio dos Santos Ramalho Eanes;07.12.80;09.03.81;92;t;http://www.presidencia.pt/?idc=13&idi=25;
 17003;17;Mario Alberto Nobre Lopes Soares;16.02.86;09.03.86;21;t;http://www.presidencia.pt/?idc=13&idi=23;
@@ -45,7 +45,7 @@ prselc_id;ctr_id;prs_n;prselc_date;prs_sdate;date_dif;prs_valid_sdate;prs_src;pr
 20002;20;Ehud Barak;17.05.99;06.07.99;50;t;http://www.knesset.gov.il/govt/eng/govtbyministry_eng.asp    https://www.knesset.gov.il/description/eng/eng_mimshal_res.htm;
 20003;20;Ariel Sharon;06.02.01;07.03.01;29;t;http://www.knesset.gov.il/govt/eng/govtbyministry_eng.asp      https://www.knesset.gov.il/history/eng/eng_hist15_s.htm;
 25001;25;Lech Walesa;09.12.90;23.12.90;13;t;http://www.president.pl/en/president/polish-presidents/lech-walesa/;
-26001;26;Michael Ková?;15.02.93;02.03.93;15;t;https://www.prezident.sk/michal-kovac/;
+26001;26;Michael Kovac;15.02.93;02.03.93;15;t;https://www.prezident.sk/michal-kovac/;
 26002;26;Rudolf Schuster;29.05.99;15.06.99;17;t;https://archiv.prezident.sk/schuster/index4734.html?273;
 26003;26;Ivan Gasparovic;17.04.04;15.06.04;59;t;https://www.prezident.sk/page/ivan-gasparovic/;
 26004;26;Ivan Gasparovic;04.04.09;15.06.09;72;t;https://archiv.prezident.sk/gasparovic/index5e79.html?biography;
@@ -55,7 +55,7 @@ prselc_id;ctr_id;prs_n;prselc_date;prs_sdate;date_dif;prs_valid_sdate;prs_src;pr
 29004;29;Alain Poher;05.12.65;28.04.69;1240;f;;ATTENTION: POHER WAS INTERIMS PRESIDENT FROM 28.04.1969 20.06.1969 and 2.04.-27.05.1974. MAY BE VERY MISSLEADING 
 29005;29;Georges Pompidou;01.06.69;20.06.69;19;t;https://fr.wikipedia.org/wiki/Georges_Pompidou#Pr.C3.A9sidence_de_la_R.C3.A9publique_.281969-1974.29;
 29006;29;Alain Poher;01.06.69;02.04.74;1766;f;;
-29007;29;Valery Giscard d_Estaing;05.05.74;27.05.74;22;t;https://fr.wikipedia.org/wiki/Val%C3%A9ry_Giscard_d%27Estaing;
+29007;29;Valery Giscard d Estaing;05.05.74;27.05.74;22;t;https://fr.wikipedia.org/wiki/Val%C3%A9ry_Giscard_d%27Estaing;
 29008;29;Francois Mitterrand;26.04.81;21.05.81;25;t;http://www.mitterrand.org/1981-1986-L-exercice-du-pouvoir.html;https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Mitterrand#Suicides_de_Pierre_B.C3.A9r.C3.A9govoy_et_Fran.C3.A7ois_de_Grossouvre
 29009;29;Francois Mitterrand;24.04.88;08.05.88;14;t;http://www.mitterrand.org/1981-1986-L-exercice-du-pouvoir.html;As Mitterand and de Gaulle 1965 were presidents before, they did not enter into force, so the date of the second election is the start date - no other information found 
 29010;29;Jacques Chirac;23.04.95;17.05.95;24;t;http://www.france-politique.fr/election-presidentielle-1995.htm;https://fr.wikipedia.org/wiki/Jacques_Chirac#Pr.C3.A9sidence_de_la_R.C3.A9publique

@@ -2,7 +2,10 @@
 AS
 SELECT VETO_INST.ctr_id, sdate, 
 	cab_id, lh_id, cab_lh_sts_shr, vto_pwr AS vto_pwr_lh,
-	SIGN(SIGN(vto_pwr-(cab_lh_sts_shr+0.00001))+1)::SMALLINT AS vto_lh
+	CASE WHEN (cab_lh_sts_shr-vto_pwr)::NUMERIC >= 0 -- if cab has at least seat share of (ordinarily) 50% 
+		THEN 0::SMALLINT -- veto point is closed
+		ELSE 1::SMALLINT -- else, it's open
+	END AS vto_lh
 FROM
 	(SELECT *
 		FROM
