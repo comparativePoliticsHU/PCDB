@@ -8,3 +8,7 @@ Documentation/*.synctex.gz
 Documentation/*.toc
 HU_Server_Zugang.pdf
 beta_version/work_in_progress.rtf
+.Rproj.user
+beta_version/tables/minister.csv
+Documentation/.Rhistory
+Documentation/Documentation.Rproj
