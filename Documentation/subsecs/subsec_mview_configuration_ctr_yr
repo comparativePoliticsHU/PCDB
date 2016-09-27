@@ -1,0 +1,9 @@
+\subsec{Materilaized View Configuration Country-Years}\label{subsec_mview_configuration_ctr_yr}
+Because it is not possible to insert data into views, a materialized view that is identical with view Configuration Events is created: \texttt{mv\_configuration\_events}
+The Configuration Events Materialized View (\texttt{mv\_configuration\_events}) is an exact copy of the Configuration Events View (see subsection \ref{subsec_view_configuration_events}).
+Creating a materialization of the Configuration Events View is necessary to fill in the identifier values of temporarily corresponding institutional configurations, and to compute configuration end dates.\footnote{%
+Generally, in database managment a view is a virtual table representing the result of a defined query on the database.%\footnote{See \href{https://en.wikipedia.org/wiki/Materialized_view#Introduction}{https://en.wikipedia.org/wiki/Materialized_view#Introduction}} 
+While, a view complies the defined data whenever it is queried (and hence is always up-to-date), a materialized view caches the result of the defined query as a concrete table that may be updated from the original base tables from time to time. 
+Due to materialization, this comes at the cost of being being potentially out-of-date.}
+
+To ensure that the Configuration Events materialized view is up-to-date, there exists a trigger structure that is described in subsection \ref{integrity_and_consistency_of_MV}.

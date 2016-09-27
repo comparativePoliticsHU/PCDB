@@ -1,4 +1,4 @@
-\subsection{Insert and update using the `upsert' function}\label{subsec_upsert_data_function}
+\subsection{Insert and update using the \texttt{upsert}-function}\label{subsec_upsert_data_function}
 
 Suppose you have created a CSV table with, say, cabinet configuration that contains both new cabinet configurations and, in addition, changes to already existing cabinets. That is, the listed cabinet configurations in your table may match some recorded cabinet configurations in the PCDB cabinet table. 
 
@@ -20,7 +20,7 @@ If ``Is 1040 is in the list of all values of the \texttt{cab\_id} column in targ
 
 
 
-\paragraph{Function definition}
+\subsubsection{Function definition}
 
 Because the \texttt{upsert}-function is at the heart of the updating process, it follows a detailed description of its definition, both in pseudo-code and the PostreSQL procedural language \texttt{plpgsql}.\footnote{See \url{https://www.postgresql.org/docs/8.4/static/plpgsql.html}}.
 
@@ -46,7 +46,7 @@ All input arguments have require type \texttt{TEXT}.
 \item[-]{Lines 19-30: array \texttt{shared\_columns} stores a comma-seperated list of the columns the target and source tables have in common; will be used in \texttt{INSERT}-statement (lines 58 and 59)}
 \item[-]{Lines 32-46: array \texttt{update\_columns} stores a comma-seperated list of target columns that are set equal to source columns in \texttt{SET}-statementto of update operation (line 50)}
 \item[-]{Line 48: \texttt{EXECUTE} block starts here}
-\item[-]{Lines 49-56: execute \texttt{UPDATE} target table, setting target column values equal to source column values for all intersecting identifiers (\texttt{WHERE}-clause, lines 52-54)}
+\item[-]{Lines 49-56: execute \texttt{updates} target table, setting target column values equal to source column values for all intersecting identifiers (\texttt{WHERE}-clause, lines 52-54)}
 \item[-]{Lines 58-64: execute \texttt{INSERT INTO} target table, inserting data into from source table for all rows that are not in target table (set difference of identifiers)}
 \item[-]{Line 66: cluster data, i.e., order by priamary key values}
 \end{itemize}
@@ -55,12 +55,12 @@ All input arguments have require type \texttt{TEXT}.
 language=postgreSQL,commentstyle=\color{white}]%
 {../Updates/fun_update_base_table.sql}
 
-\paragraph{A minimal working example}\label{par_upsert_minimal_working_example}
+\subsubsection{A minimal working example}\label{par_upsert_minimal_working_example}
 
 To stick with the above example of making changes to the cabinet table in the PCDB, suppose yout task is to check cabinet start dates, and to add cabinet configurations that are not yet recorded in the \texttt{config\_data} schema of the database.
 Say you split the work load with your co-workers, and you start with checking and updating all Australian cabinet configurations.
 
-\subparagraph{Exporting the to-be-updated data}
+\paragraph{Exporting the to-be-updated data}
 The first step in a well-organized work flow would be to export all recorded Australian cabinet configurations that require a double-check of the start date into a CSV.
 The following query would give you just these configurations: 
 \begin{lstlisting}[language=postgreSQL]
@@ -84,64 +84,101 @@ SELECT * FROM config_data.cabinet
 \end{lstlisting}
 in order to get the respective information, or export all Austrian cabinet configurations in the first place, and only check start dates of these where  \texttt{cab\_valid\_sdate} is false instead.
 
-\subparagraph{Changing the to-be-updated data}
+\paragraph{Changing the to-be-updated data}
 With the exported CSV at hand, you can directly make your changes in the repective cells of the table; of course always documenting your changes and the information sources in the comment and source columns.
 In case of already existing cabinets, you would not change the \texttt{cab\_id} but only the \texttt{cab\_sdate}.
 In case of missing cabinets, you would choose a not existing \texttt{cab\_id} value (optimally increasing it by one within country with ascending start dates) and add all corresponding inforamtion in the respective cells of that new entry.
 
-\subparagraph{Getting the to-be-updated data into the PCDB}
+\paragraph{Getting the to-be-updated data into the PCDB}
 In order to upsert the target table with the changes you have recorded in your CSV, the data in your CSV first needs to be imported into the PCDB again.
-The \texttt{update} schema of the PCDB provides for the environment in which you can securely import to-be-updated data into upsert source tables.
+The \texttt{updates} schema of the PCDB provides for the environment in which you can securely import to-be-updated data into upsert source tables.
 
-Note that, if it not already exists, you first have to create a table in the \texttt{update} schema that matches the column names and types of your CSV.
+Note that, if it not already exists, you first have to create a table in the \texttt{updates} schema that matches the column names and types of your CSV.
 If you have proceeded as described thus far in this minimal working example, your CSV containing the to-be-updated data will have the same definition as the upsert target table (because the CSV was orginally exported from the target table).
 Hence you can simply type 
 \begin{lstlisting}[language=postgreSQL]
-CREATE TABLE IF NOT EXISTS update.cabinet (LIKE config_data.cabinet INCLUDING ALL)
+CREATE TABLE IF NOT EXISTS updates.cabinet (LIKE config_data.cabinet INCLUDING ALL)
 \end{lstlisting}
 Note that the option \texttt{INCLUDING ALL} will create a new table that copies all column names, their data types, their not-null constraints, primary and foreign key.\footnote{See \url{https://www.postgresql.org/docs/9.1/static/sql-createtable.html}}
 The resulting table will be empty but prompt the same requirments when inserting data as the target table (here cabinet in the \texttt{config\_data} schema). 
 That is, you won't be able to insert duplicate \texttt{cab\_id}s, rows with missing start date information, etc. (see the definition of table cabinet for a compelte list of column and table cosntraints).
 
-Once you have created an empty source table in the \texttt{update} schema as, you can use \texttt{pgAdmin3}'s easy-to-handle import wizard to import data to the now existing table.\footnote{%
+Once you have created an empty source table in the \texttt{updates} schema as, you can use \texttt{pgAdmin3}'s easy-to-handle import wizard to import data to the now existing table.\footnote{%
 If the table is not empty, e.g., storing data from previous updating rounds, its recommended to remove the superflous data before adding new to-be-updated data. 
 Use the `Drop/Delete ...' function provided on right-click on the respective table in the Objecet Browser or explicit SQL to empty the source table.}
 Simply right-click on the table in the Object Browser and select ``Import'' (See Figure \ref{fig_pgadmin3_import_data_to_table}). 
-The `Import data from file into table' wizard will open (shown for the case of the cabinet table in Figure \ref{fig_pgadmin3_import_data_wizard}), and allow you to browse your system for the respective CSV. 
-Remember to select check-box Header in the `Misc. Options' tab of the wizard and enter the delimiter of the data (in CSVs produced with German configuration, this is commonly the semicolon \texttt{;}).
+The `Import data from file into table' wizard will open (shown for the case of the cabinet table in Figure \ref{fig_pgadmin3_import_data_wizard_file_options}), and allow you to browse your system for the respective CSV. 
+Remember to select check-box `Header' in the `Misc. Options' tab of the wizard and enter the delimiter of the data (see Figure \ref{fig_pgadmin3_import_data_wizard_misc_options}).\footnote{In CSVs produced with German default settings, columns are usually separated with semicolons (\texttt{;}).}
 
 \begin{figure}[ht!]
 \centering
-  \begin{subfigure}{.45\textwidth}
+  \begin{subfigure}{.50\textwidth}
   \includegraphics[width=\textwidth,trim= 0 0 0 0, clip]{pcdb_documentation_screenshots/pgadmin3_import_data_to_table.png}
     \subcaption{How to open the data-import wizard for a table in \texttt{pgAdmin3}'s Object Browser.}
     \label{fig_pgadmin3_import_data_to_table}
   \end{subfigure}
   ~%
-  \begin{subfigure}{.45\textwidth}
-  \includegraphics[width=\textwidth,trim= 0 0 0 0, clip]{pcdb_documentation_screenshots/pgadmin3_import_data_wizard.png}
-    \subcaption{The `File Options' tab of \texttt{pgAdmin3}'s data-import wizard.}
-    \label{fig_pgadmin3_import_data_wizard}
-  \end{subfigure} 
-  \caption{\texttt{pgAdmin3}'s `Import data from file into table' wizard.}
+  \begin{subfigure}{.40\textwidth}
+    \begin{subfigure}{1\linewidth}
+    \includegraphics[width=\textwidth,trim= 0 0 0 0, clip]{pcdb_documentation_screenshots/pgadmin3_import_data_wizard_file_options.png}
+      \subcaption{The `File Options' tab.}
+      \label{fig_pgadmin3_import_data_wizard_file_options}
+    \end{subfigure}
+    ~\\%
+    \begin{subfigure}{1\linewidth}
+    \includegraphics[width=\textwidth,trim= 0 0 0 0, clip]{pcdb_documentation_screenshots/pgadmin3_import_data_wizard_misc_options.png}
+      \subcaption{The `Misc. Options' tab.}
+      \label{fig_pgadmin3_import_data_wizard_misc_options}
+    \end{subfigure}
+  \end{subfigure}
+\caption{\texttt{pgAdmin3}'s `Import data from file into table' wizard.}
 \end{figure}
 
 In case you have initially exported fewer columns from the target table, you can use the `Columns' tab in the wizard to unselect the columns of the source table that are not recorded in your CSV.
-Alternatively, you can define a table writing explicit SQL. Refer to section \ref{sec_tables} for examples. 
 
-\subparagraph{Upserting the target table based on the data in the source table}
+Alternatively, you can define a table writing explicit SQL. 
+Suppose, for instance, you have updated presidency start dates (i.e., column \texttt{prs\_sdate}) for configurations in table presidential election, but your work-in-progress CSV looks like the example displayed in Figure \ref{fig_excel_update_prs_sdate_csv}.
 
-Once you have exported the to-be-updated data from your target table into a CSV, made your changes in the CSV, and imported it to the source table in the \texttt{update} schema, you can call the upsert function by executing the following code in the SQL editor:
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.9\textwidth,trim= 0 0 0 0, clip]{pcdb_documentation_screenshots/excel_update_prs_sdate_csv.png}
+  \caption{Example of CSV with to-be-updated data that does not match column structure of target table.}
+  \label{fig_excel_update_prs_sdate_csv}
+\end{figure}
+
+Because the order of the columns in this CSV do not match the order of columns in the target table (e.g., in the CSV \texttt{prs\_n} comes before \texttt{prselc\_date} and \texttt{prs\_sdate}, whereas it comes between \texttt{prselc\_date} and \texttt{prs\_sdate} in the target table), just unselecting the columns that do not exist in the source table when importing data to an exact, empty copy of the presidential election table in the \texttt{updates} schema would nor fix the problem.
+Instead, you would have to define a matching table in the \texttt{updates} schema like
+\begin{lstlisting}[language=postgreSQL]
+CREATE TABLE updates.presidential_election (
+	prselc_id	NUMERIC(5,0)	PRIMARY KEY	,
+	ctr_id		SMALLINT	UNIQUE NOT NULL,
+	prs_n		NAME	, 
+	prselc_date	DATE	UNIQUE NOT NULL,
+	prs_sdate	DATE	, 
+	date_dif	INTEGER	,
+	prs_valid_sdate	BOOLEAN	,
+	prs_src		TEXT	, 
+	prs_comment	TEXT);
+\end{lstlisting}
+
+The work-flow in this example is clearly more complicated, so be aware of the difficulties arising from non-matching column ordering when attempting to update an existing table in the \texttt{config\_data} schema.\footnote{You may wonder why then deviating from the column structure of the target table should be considered at all when creating (i.e., exporting) a CSV with to-be-updated data. 
+The answer is readability. Some tables, like the lower house election tables have more then a dozen of columns; just exporting the data from the columns that actually require updating then is quiet convenient. And you are on the sage side, if you simple stick to the column order in the target table.}
+%Refer to section \ref{sec_tables} for examples. 
+
+\paragraph{Upserting the target table based on the data in the source table}
+Let'S return to our previous minimal workin example: updating the cabinet table.
+Once you have exported the to-be-updated data from your target table into a CSV, made your changes in the CSV, and imported it to the source table in the \texttt{updates} schema, you can call the \texttt{upsert}-function by executing the following code in the SQL-editor:
 
 \begin{lstlisting}[language=postgreSQL]
 SELECT upsert_base_table(
   target_schema='config_data', target_table='cabinet',
-  source_schema='update', source_table='cabinet')
+  source_schema='updates', source_table='cabinet')
 -- alternatively, but less explicit and hence more error prone
-SELECT upsert_base_table('config_data', 'cabinet', 'update', 'cabinet')
+SELECT upsert_base_table('config_data', 'cabinet', 'updates', 'cabinet')
 \end{lstlisting}
 
-In order to better understand the working of the \texttt{upsert}-function, lets use this minimal working example to reconstruct what's happening under the hood when executing above query.
+\paragraph{Summary: under the hood of the \texttt{upsert}-function} 
+In order to better understand the working of the \texttt{upsert}-function, lets use this minimal working example to reconstruct what's happening under the hood when executing the above query.
 
 First, it queries the primary-key information from the \texttt{constraint\_column\_usage} table in the \texttt{information\_schema} schema.
 
@@ -169,7 +206,7 @@ WITH intersecting_columns AS (
   	AND column_name IN 
   		(SELECT column_name 
   			FROM information_schema.columns 
-  			WHERE table_schema = 'update'
+  			WHERE table_schema = 'updates'
   			AND table_name = 'cabinet')
   	ORDER BY ordinal_position)
 SELECT ARRAY_TO_STRING(ARRAY(SELECT column_name::VARCHAR AS columns FROM intersecting_columns), ', ');	
@@ -185,7 +222,7 @@ WITH intersecting_columns AS (
   	AND column_name IN 
   		(SELECT column_name 
   			FROM information_schema.columns 
-  			WHERE table_schema = 'update'
+  			WHERE table_schema = 'updates'
   			AND table_name = 'cabinet')
   	AND column_name NOT LIKE 'cab_id' -- which is the value stored in parameter pkey_column
   	ORDER BY ordinal_position)
@@ -215,7 +252,7 @@ EXECUTE 'UPDATE config_data.cabinet
 		cab_src = update_source.cab_src, 
 		cab_nxt_id = update_source.cab_nxt_id, 
 		cab_valid_sdate = update_source.cab_valid_sdate
-	FROM (SELECT * FROM update.cabinet 
+	FROM (SELECT * FROM updates.cabinet 
 		WHERE cab_id IN (SELECT DISTINCT cab_id FROM config_data.cabinet) 
 		) AS update_source 
 	WHERE cabinet.cab_id = update_source.cab_id';
@@ -231,7 +268,7 @@ EXECUTE 'INSERT INTO config_data.cabinet
 	SELECT cab_id, cab_prv_id, ctr_id, cab_sdate, 
 	    cab_hog_n, cab_sts_ttl, cab_care, cab_cmt, 
 	    cab_src, cab_nxt_id, cab_valid_sdate
-		FROM (SELECT * FROM update.cabinet
+		FROM (SELECT * FROM updates.cabinet
 			WHERE cab_id NOT IN (SELECT DISTINCT cab_id FROM config_data.cabinet)
 		) AS insert_source';
 \end{lstlisting}

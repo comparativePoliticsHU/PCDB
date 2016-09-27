@@ -20,6 +20,19 @@ Function \texttt{\footnotesize mv\_config\_ev\_refresh\_row(\#$_{ctr}$, \#$_{dat
 \lstinputlisting[%caption={Code to create row-refresh function on materialized view Configuration Events.},
 language=postgreSQL]%
 {../SQL-codes/fun_mv_config_ev_refresh_row.sql}
+% 
+% 
+% Rows in mv_configuration_events are uniquely identified by primary key (ctr_id, sdate).
+% Data in mv_configuration_events comes from tables that are mentioned in the underly the definition of view_configuration events (i.e., tables Cabinet, Lower House, Upper House, Presidential Election, and Veto Points)-
+% 
+% In order to execute a refresh of rows of mv_configuration_events (triggered by insert/delete/update actions on base tables), 
+% 	(i) all triggers on MV are disabled, 
+% 	(ii) row identified by ctr_id and sdate (defined as arguments to function) is deletedfrom MV,
+% 	(iii) row identified by ctr_id and sdate (defined as arguments to function) is inserted to MV from underlying view view_configuration_events,
+% 	(iv) all triggers on MV are enabled, 
+% 	(v) columns containing corresponding IDs of institions in mv_configuration_events are updated in order to trigger trg_mv_config_ev_correspond_ids, and
+% 	(vi) column containing end date of given configuration is updated where date is younger then recently refreshed row (for odler start and end dates will not be affected by refresh) 
+%   
 
 The function performs the following procedures:
 \begin{itemize}

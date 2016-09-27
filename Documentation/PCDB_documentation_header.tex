@@ -97,6 +97,7 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 		row,%
 		array,%
 		array_to_string,%
+		date_part,%
 		$$,%
 		plpgsql,%
 		:=,%
@@ -142,8 +143,8 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
 \usepackage{marginnote}%	erlaubt einfuegen von Randbemerkungen
 \usepackage{varioref}%	erlaubt das Referenzieren von Abbildungen und Tabellen mit 							\ref{} und \pageref{}
 
-\let\OLDitemize\itemize
-\renewcommand\itemize{\OLDitemize\addtolength{\itemsep}{-.3em}}
+\usepackage{enumitem}
+\setlist[itemize]{rightmargin=\leftmargin, itemsep=-.3em}
 
 \usepackage{ragged2e}%	erlaubt Flatteratz mit Trennung
 \usepackage{array}%	 	erlaubt es neue Spaltentypen zu definieren
