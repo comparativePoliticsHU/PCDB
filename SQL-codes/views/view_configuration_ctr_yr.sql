@@ -1,7 +1,7 @@
-﻿CREATE OR REPLACE VIEW beta_version.view_configuration_ctr_yr
-AS 
+﻿-- CREATE OR REPLACE VIEW config_data.view_configuration_ctr_yr
+-- AS 
 WITH
-configs AS (SELECT * FROM beta_version.mv_configuration_events) , -- WITH AS configs
+configs AS (SELECT * FROM config_data.mv_configuration_events) , -- WITH AS configs
 max_sdate_in_year_configs AS (SELECT ctr_id, year, max(sdate) AS sdate, max(edate) AS edate
 				FROM configs GROUP BY ctr_id, year), 
 country_years AS (SELECT ctr_id, year::NUMERIC(4,0) FROM -- cross-product of all countries and series of years

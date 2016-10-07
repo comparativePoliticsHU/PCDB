@@ -1,15 +1,15 @@
-﻿-- CREATE OR REPLACE VIEW beta_version.view_configuration_vto_lh
--- AS
+﻿CREATE OR REPLACE VIEW config_data.view_configuration_vto_lh
+AS
 WITH 
-configs AS (SELECT ctr_id, sdate, cab_id, lh_id FROM beta_version.mv_configuration_events), -- WITH AS configs
+configs AS (SELECT ctr_id, sdate, cab_id, lh_id FROM config_data.mv_configuration_events), -- WITH AS configs
 pty_lh_sts_shr AS (SELECT lh_id, pty_id, pty_lh_sts, 
 			SUM(pty_lh_sts::NUMERIC) OVER (PARTITION BY lh_id) AS lh_sts_ttl_computed,
 			(pty_lh_sts::NUMERIC / SUM(pty_lh_sts::NUMERIC) OVER (PARTITION BY lh_id) ) AS pty_lhelc_sts_shr
-			FROM beta_version.lh_seat_results 
+			FROM config_data.lh_seat_results 
 			WHERE pty_lh_sts <> 0), -- WITH AS pty_lhelc_sts_shr
 cab_lh_sts_shr AS (SELECT DISTINCT ON (ctr_id, sdate) ctr_id, sdate, cab_id, lh_id, SUM(pty_lhelc_sts_shr) AS cab_lh_sts_shr
 			FROM
-				(SELECT cab_id, pty_id, pty_cab FROM beta_version.cabinet_portfolios ) AS CAB_PORTFOLIOS
+				(SELECT cab_id, pty_id, pty_cab FROM config_data.cabinet_portfolios ) AS CAB_PORTFOLIOS
 			JOIN
 				(SELECT * FROM configs LEFT OUTER JOIN pty_lh_sts_shr USING(lh_id) ) AS CAB_LH_CONFIGS
 			USING(cab_id, pty_id)
@@ -17,7 +17,7 @@ cab_lh_sts_shr AS (SELECT DISTINCT ON (ctr_id, sdate) ctr_id, sdate, cab_id, lh_
 			GROUP BY ctr_id, sdate, lh_id, cab_id ), -- WITH AS cab_lh_sts_shr
 configs_w_sts_shr AS (SELECT * FROM configs JOIN cab_lh_sts_shr USING(ctr_id, sdate, cab_id, lh_id)),
 veto_inst AS (SELECT ctr_id, vto_pwr, vto_inst_sdate, vto_inst_edate
-		FROM beta_version.veto_points
+		FROM config_data.veto_points
 		WHERE vto_inst_typ = 'lower house') 
 SELECT veto_inst.ctr_id, sdate, 
 	cab_id, lh_id, cab_lh_sts_shr, vto_pwr AS vto_pwr_lh,

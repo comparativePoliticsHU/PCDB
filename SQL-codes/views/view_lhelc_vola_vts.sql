@@ -1,15 +1,15 @@
-﻿CREATE OR REPLACE VIEW beta_version.view_lhelc_vola_vts
+﻿CREATE OR REPLACE VIEW config_data.view_lhelc_vola_vts
 AS
 WITH 
-lhelc_ids AS (SELECT lhelc_id, lhelc_prv_id, lhelc_nxt_id FROM beta_version.lh_election) , -- WITH AS lhelc_ids, enlists lower house election IDs 
+lhelc_ids AS (SELECT lhelc_id, lhelc_prv_id, lhelc_nxt_id FROM config_data.lh_election) , -- WITH AS lhelc_ids, enlists lower house election IDs 
 lh_ids AS (SELECT * 
-		FROM  (SELECT ctr_id, lh_id, lhelc_id FROM beta_version.lower_house) AS LHS 
+		FROM  (SELECT ctr_id, lh_id, lhelc_id FROM config_data.lower_house) AS LHS 
 		LEFT OUTER JOIN lhelc_ids USING (lhelc_id)), -- WITH AS lh_ids, enlists lower house configurations and corrsponding elections
 
 lhelc_vres AS (SELECT lhelc_id, pty_id, 
 			NULLIF(COALESCE(pty_lh_vts_pr, 0) + COALESCE(pty_lh_vts_pl, 0), 0)::NUMERIC AS pty_lhelc_vts_computed, -- NULL if plurality and proportional vote records sum to zero
 			(SUM(COALESCE(pty_lh_vts_pr, 0) + COALESCE(pty_lh_vts_pl, 0)) OVER (PARTITION BY lhelc_id))::NUMERIC AS lhelc_vts_ttl_computed
-			FROM beta_version.lh_vote_results
+			FROM config_data.lh_vote_results
 			WHERE (pty_id - 999) % 1000 != 0), 
 lhelc_vote_res AS (SELECT *, (pty_lhelc_vts_computed/lhelc_vts_ttl_computed) AS pty_lhelc_vts_shr_computed -- computes party's vote share
 		FROM lh_ids LEFT OUTER JOIN lhelc_vres USING (lhelc_id)), -- WITH AS lhelc_vote_res, records lower house election vote results at party level 

@@ -1,7 +1,7 @@
-﻿CREATE OR REPLACE VIEW beta_version.view_configurations_in_year
+﻿CREATE OR REPLACE VIEW config_data.view_configurations_in_year
 AS
 WITH  
-configs AS (SELECT  ctr_id, sdate, edate, year FROM beta_version.mv_configuration_events), 
+configs AS (SELECT ctr_id, sdate, edate, year FROM config_data.mv_configuration_events), 
 max_sdate_in_year_configs AS (SELECT ctr_id, year, max(sdate) AS sdate, max(edate) AS edate
 				FROM configs GROUP BY ctr_id, year), 
 matches	AS (SELECT ctr_id, year, COALESCE(matched, NULL, FALSE) AS matched -- matched is defined as FALSE if NULL 
@@ -23,7 +23,7 @@ matches	AS (SELECT ctr_id, year, COALESCE(matched, NULL, FALSE) AS matched -- ma
 	), -- WITH as matches 
 matched AS (SELECT ctr_id, year FROM matches WHERE matched = FALSE)
 SELECT ctr_id, year, sdate, edate, DATE_PART('year', sdate) AS syear, DATE_PART('year', edate) AS eyear 
-	FROM  beta_version.mv_configuration_events
+	FROM  config_data.mv_configuration_events
 	WHERE (ctr_id, year) -- conditions on country-year combinations enlisted in confuguration_events 
 		IN (SELECT DISTINCT ON (ctr_id, year) ctr_id, year FROM matches WHERE matched = TRUE) 
 UNION -- for all country-year combinations not enlisted in confuguration_events, select temporally closest configuration with lower start year than current year as 'then still active' configuration

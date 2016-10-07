@@ -1,10 +1,10 @@
-﻿CREATE OR REPLACE VIEW beta_version.view_lh_vola_sts
+﻿CREATE OR REPLACE VIEW config_data.view_lh_vola_sts
 AS
 WITH 
-lh_ids AS (SELECT ctr_id, lh_id, lh_prv_id, lh_nxt_id FROM beta_version.lower_house) , -- WITH AS lh_ids, enlists lower house configurations
+lh_ids AS (SELECT ctr_id, lh_id, lh_prv_id, lh_nxt_id FROM config_data.lower_house) , -- WITH AS lh_ids, enlists lower house configurations
 lh_seat_res AS (SELECT lh_id, pty_id, pty_lh_sts::NUMERIC , 
 			SUM(pty_lh_sts::NUMERIC) OVER (PARTITION BY lh_id) AS lh_sts_ttl_computed --  suming parties' seats within lower house configurations to total lower house seats
-			FROM beta_version.lh_seat_results
+			FROM config_data.lh_seat_results
 			WHERE pty_lh_sts >= 1), -- WITH AS lh_seat_res, records lower house seat results at party level 
 new_ptys AS (SELECT DISTINCT ON (lh_id) lh_id, 
 	SUM(pty_lh_sts/lh_sts_ttl_computed) OVER (PARTITION BY lh_id) AS new_ptys_sts_shr
