@@ -1,20 +1,15 @@
-\subsection{Upper House Veto}\label{view_configuration_vto_uh}
-View \texttt{\footnotesize view\_configuration\_vto\_uh} is based on table Veto Points, view Cabinet's Seat Share in the Upper House (\ref{view_cab_uh_sts_shr}), and materialized view Configuration Events, and provides information at the level of political configurations.
+\subsection{Upper House Veto Point}\label{view_configuration_vto_uh}
 
-It computes whether the upper house constitutes an open veto point vis-\`a-vis the government in a given configuration by comparing cabinet's seat share in the temproally corresponding lower house with decisive threshold enlisted in table Veto Points. 
+View \texttt{view\_configuration\_vto\_uh} is based on table Veto Points, Cabinet Portfolios and Upper House Seat Results, and materialized view Configuration Events, and provides information at the level of political configurations.
+It computes whether the upper house constitutes an open veto point vis-\`{a}-vis the government in a given configuration, by comparing cabinet's seat share in the temproal corresponding upper house with the decisive counter-majority threshold recorded in table Veto Points. 
 
-To guarantee that the computation of the upper houses veto potential is sensitive to constitutional changes, joining poltitical configurations with veto inforamtion is proceeded by date and country. 
-Computation of the upper house's veto power in a given configuration is therefore up-to-date according to the inforamtion recorded in the Veto Points table.
-
-View \texttt{\footnotesize view\_configuration\_vto\_lh} is programmed as follows:
-
+View \texttt{view\_configuration\_vto\_lh} is defined as follows:
 \lstinputlisting[%caption={Code to determine if the upper house constitutes an open  veto point in a configuration.},%
 language=SQL]%
-{../SQL-codes/view_configuration_vto_uh.sql}
+{../SQL-codes/views/view_configuration_vto_uh.sql}
 
 
-{\bf Note}: 	Substracting the total seat share of cabinet parties in the upper house from the respective veto power threshold of upper houses results in a positive value when the former is smaller than the latter, for instance, in the case of a minority government in a parliamentary system.
-
-To guarantee that the binary variable \texttt{\footnotesize vto\_uh} indicates a closed veto point even when the  government holds a seat share equal to 50 percent in the upper house, and thus equals the veto power threshold (e.g. cab\_uh\_sts\_shr = 50.0), the total seat share of cabinet parties in upper house is increased by an abitrarly small value ($1e^{-5}$) that does not effect the computation substantially.
-
-Apparently, a lower house's veto potential in a given configuration can only be determined where full information on the veto institution's start and end date as well as on the respective veto power threshold exists in table Veto Points. 
+To guarantee that the computation of the upper houses veto points is sensitive to constitutional changes, joining political configurations with veto information is proceeded by start dates and country identifier. 
+% Computation of the upper house's veto power in a given configuration is therefore up-to-date according to the inforamtion recorded in the Veto Points table.
+Substracting the total seat share of cabinet parties in the upper house from the respective veto power threshold of upper houses results in a positive value when the former is smaller than the latter.
+In this case, \texttt{vto\_pwr\_uh} assumes a value equal to one, indicating an open veto point.

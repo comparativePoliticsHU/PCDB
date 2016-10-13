@@ -1,6 +1,6 @@
 \section{Keeping the PCDB updated}\label{sec_keeping_the_PCDB_updated}
 
-Data in the PCDB is manipulated using \texttt{PostgreSQL}'s data manipulation language (DML) operations \texttt{INSERT}, \texttt{UPDATE}, and \texttt{DELETE}. \footnote{\url{https://www.postgresql.org/docs/9.3/static/dml.html}}
+Data in the PCDB is manipulated using \texttt{PostgreSQL}'s data manipulation language (DML) operations \texttt{INSERT}, \texttt{UPDATE}, and \texttt{DELETE}. \footnote{See \url{https://www.postgresql.org/docs/9.3/static/dml.html}}
 
 The following paragraphs will use the cabinet table (see subsection \ref{subsec_tab_cabinet}) in the \texttt{config\_data} schema of the \texttt{polconfdb} database as an example to introdcue some minimal working examples.
 
@@ -35,7 +35,8 @@ In other cases, such as the interrelation between the cabinet portfolios on the 
 Likewise, if you record a new lower house election (upper house election), you have to make sure that the corresponding vote results are listed at the party level in the lower house vote results table, and that you record the lower house (upper house) configuration that corresponds to the election.
 And if you record a new lower house (upper house) composition, you have to make sure that the corresponding seat results are listed at the party level in the lower house seat results (upper house seat results) table. 
 
-  \input{subsecs/subsec_manually_inserting_data}
-  \input{subsecs/subsec_manually_updating_data}
-  \input{subsecs/subsec_manually_deleting_data}
-  \input{subsecs/subsec_upsert_data_function}
+
+  \input{./subsecs/subsec_manually_inserting_data}
+  \input{./subsecs/subsec_manually_updating_data}
+  \input{./subsecs/subsec_manually_deleting_data}
+  \input{./subsecs/subsec_upsert_data_function}

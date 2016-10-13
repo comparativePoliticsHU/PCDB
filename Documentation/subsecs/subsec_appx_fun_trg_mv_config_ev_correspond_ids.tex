@@ -1,0 +1,7 @@
+\subsection{Insert corresponding insitution identifiers}\label{subsec_appx_fun_trg_mv_config_ev_correspond_ids}
+
+Function \texttt{trg\_mv\_config\_ev\_correspond\_ids()} is defined on table Configuration Events Materialized View in order to insert the identifiers of the then active institutional configuration into empty cells.
+The function and trigger that execute it are defined as follows:
+\lstinputlisting[%caption={Code to create triggers that identify and insert corresponding  identifier in configuarations.},%
+language=postgreSQL,commentstyle=\color{white}]%
+{../SQL-codes/triggers/trg_mv_config_ev_correspond_ids.sql}

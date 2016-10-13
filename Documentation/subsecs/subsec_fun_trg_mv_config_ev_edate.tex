@@ -1,0 +1,9 @@
+\subsection{Computing configurations end dates}\label{subsec_fun_trg_mv_config_ev_edate}
+
+Function \texttt{trg\_mv\_config\_ev\_edate()} is defined to computed and inserted configuration end dates into cells of column \texttt{edate} of table Configuration Events Materialized View.
+The function selects the start date of the next recorded political configuration, as identified by the next bigger date of all recorded political configurations for a country, substracts one day from this date and assigns the resulting date as end date of the respective configuration:
+\lstinputlisting[%caption={Code to create and implement trigger that computes configurations' end dates.},%
+language=postgreSQL,commentstyle=\color{white}]%
+{../SQL-codes/triggers/trg_mv_config_ev_edate.sql}
+
+It is called by triggers \texttt{trg\_*\_mv\_config\_ev\_edate} (see \ref{subsec_trg_mv_config_ev_edate}).

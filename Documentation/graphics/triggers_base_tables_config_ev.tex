@@ -1,0 +1,59 @@
+% \newgeometry{left=1cm,right=1cm,bottom=1cm,top=1cm}
+\begin{sidewaysfigure}
+\centering
+  \begin{tikzpicture}[node distance=1cm]
+  \footnotesize
+  
+      \node (Action dummy) [circle, text width=1cm]{};
+      
+      \node[right=4cm of Action dummy] (dummy beside Action dummy) {}; 
+      
+      \node[table, text width=4.5cm, right=1.75cm of Action dummy, rectangle split, rectangle split parts=2] (Base Table) {
+              \textbf{Base Table}
+              \nodepart{second} \vspace{4.5cm} 
+      }; 
+      
+      \node[right=3cm of Base Table] (dummy beside Base Table) {}; 
+
+      \node (Configuration Events View) [table, fill=verylightgreyish!60!orangish, text width=5cm, 
+                                         rectangle split, rectangle split parts=2, 
+                                         right=1.5cm of dummy beside Base Table]{
+              \textbf{View Configuration Events}
+              \nodepart{second} \vspace{5cm}
+      };
+      
+     \node (Configuration Events MV) [table, text width=4cm, rectangle split, rectangle split parts=2, right=2cm of dummy beside Base Table]{
+              \textbf{Materialized View Configuration Events}
+              \nodepart{second} \ldots
+      };
+      
+      \node[trigger, above=of dummy beside Action dummy] (actiontrigger) {\texttt{mv\_config\_ev\_*}}; 
+          \draw[trigger_arrow, bend left=20] (Action dummy.north) to node[auto] {triggers} (actiontrigger.west);
+        \node[function, above right=1.25cm and 3cm of dummy beside Action dummy] (mv_refresh_row) {\texttt{mv\_config\_ev\_reresh\_row()}};
+          \draw[call_arrow] (actiontrigger.east) to node[auto] {executes} (mv_refresh_row.west);
+          \draw[call_arrow, thin, bend right=45] (mv_refresh_row.south) to node[auto] {queries} (Configuration Events View.west);
+          \draw[call_arrow, thin, bend right=45] (mv_refresh_row.south) to node[auto] {queries} (Configuration Events View.west);
+          %\draw[<-, dashed, bend right=10] (mv_refresh_row.south) to node[auto] {returns}  (Configuration Events View.west);
+          \draw[trigger_arrow, bend left=30] (mv_refresh_row.east) to node[auto] {updates} (Configuration Events MV.north);
+
+      \node[trigger, below=of dummy beside Action dummy] (idtrigger) {\texttt{mv\_config\_ev\_\#\_id\_*\_trg}};
+          \draw[trigger_arrow, bend right=20] (Action dummy.south) to node[auto] {} (idtrigger.west);
+        \node[function, below right=1.25cm and 3cm of dummy beside Action dummy] (mv_refresh_ids) {\texttt{mv\_config\_ev\_\#\_id\_*\_trg()}}; 
+          \draw[call_arrow] (idtrigger.east) to node[auto] {} (mv_refresh_ids.west);
+          \draw[trigger_arrow, bend right=30] (mv_refresh_ids.east) to node[auto] {} (Configuration Events MV.south);
+
+
+    \node (Action Manipulation) [action, text width=2cm, circle split, left=-0.75cm of Action dummy]{
+              \textbf{Action}
+              \nodepart{lower} insert, update, or delete 
+      };
+      
+      
+    
+    
+    
+  \end{tikzpicture}
+
+\bigskip
+\caption{Functions and trigger structure implemented in \texttt{config\_data} schema in order to propagate changes on base tables through to configuration events.}
+\end{sidewaysfigure}

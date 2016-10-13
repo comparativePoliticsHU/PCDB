@@ -1,0 +1,13 @@
+\subsection{Insert corresponding insitution identifiers}\label{subsec_fun_trg_mv_config_ev_correspond_ids}
+
+Function \texttt{trg\_mv\_config\_ev\_correspond\_ids()} is defined on table Configuration Events Materialized View in order to insert the identifiers of the then active institutional configuration into empty cells.
+To do so, it chooses the identifier value of the institutional configuration that became active most recently. 
+It is triggered by insert, update, or delete from the Configuration Events Materialized View (see \ref{subsec_trg_mv_config_ev_correspond_ids}).
+
+Technically, this equates to select the value of row with the next smallest start date where the identifier is not null
+Schematically, the functions and triggers are defined as follows
+\lstinputlisting[%caption={Code to create triggers that identify and insert corresponding  identifier in configuarations.},%
+language=postgreSQL,commentstyle=\color{white}]%
+{../SQL-codes/triggers/trg_mv_config_ev_correspond_ids_example.sql}
+Where the asterisk (\texttt{*}) replaces \texttt{cab}, \texttt{lh}, \texttt{lhelc}, \texttt{uh} or \texttt{prselc}.
+A detailed definition of the single functions and triggers is provided in the Appendix (see \ref{subsec_appx_fun_trg_mv_config_ev_correspond_ids}).

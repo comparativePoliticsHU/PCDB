@@ -1,17 +1,15 @@
-\subsection{Identify next institution-configurations within countries}\label{trg_prv_ids}
-Another set of triggers (\texttt{\footnotesize trg\_*\_nxt\_id()}) is implemented on the base-tables Cabinet, Lower House, and on table Lower House Election, respectively, to assign the identifiers of the next instituion-configurations into cells of column \texttt{\footnotesize *\_prv\_id}.
+\subsection{Identify next institution configurations within countries}\label{subsec_trg_prv_ids}
 
-Specifically, functions \texttt{\footnotesize trg\_*\_nxt\_id()} selects the identifier of the next  configuration, as identified by the next higher date of all the configurations recorded for a country within a table.
-Schematically, it is programmed as follows:
+Another set of triggers (\texttt{trg\_*\_nxt\_id()}) is implemented on the basetables Cabinet, Lower House, and on table Lower House Election, respectively, to assign the identifiers of the next instituion configurations into cells of column \texttt{*\_prv\_id}.
 
-% \lstinputlisting[%caption={Example code to identify and select next identifier.},%
-% language=SQL]%
-% {../SQL-codes/trg_*_nxt_id_example.sql}
+Specifically, functions \texttt{trg\_*\_nxt\_id()} selects the identifier of the next  configuration, as identified by the next higher date of all the configurations recorded for a country within a table.
+Schematically, it is defined as follows:
+\lstinputlisting[%caption={Example code to identify and select next identifier.},%
+language=postgreSQL]%
+{../SQL-codes/triggers/trg_tab_nxt_id_example.sql}
 
-Where generally \texttt{\footnotesize *} refers to either \texttt{\footnotesize cab}, \texttt{\footnotesize lh}, or \texttt{\footnotesize lhelc}, and \texttt{\footnotesize *table} to either \texttt{\footnotesize cabinet}, \texttt{\footnotesize lower\_house}, or \texttt{\footnotesize lh\_election}.
+Where the asterisk (\texttt{*}) replaces \texttt{cab}, \texttt{lh}, or \texttt{lhelc}, and \texttt{\#} to either \texttt{cabinet}, \texttt{lower\_house}, or \texttt{lh\_election}.
 
-Trigger \texttt{\footnotesize trg\_cab\_nxt\_id} is executed for each row before inserting or updating data to the base table.
+{\bf Note}: In the case of table Lower House Election \texttt{\_sdate} is replaced by \texttt{\_date}, as it refers to election date instead of institution-configuration start date.
 
-{\bf Note}: In the case of table Lower House Election \texttt{\footnotesize \_sdate} is replaced by \texttt{\footnotesize \_date}, as it refers to election date instead of institution-configuration start date.
-
-A detailed description of the respective triggers and functions is provided in the appendix (\ref{appendix_trigger_nxt_ids})
+A detailed description of the respective triggers and functions is provided in the Appendix (see \ref{subsec_appx_trigger_nxt_ids}).

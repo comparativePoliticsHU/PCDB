@@ -4,56 +4,59 @@ Suppose you have created a CSV table with, say, cabinet configuration that conta
 
 Due to the \texttt{UNIQUE}-constraint on \texttt{ctr\_id} and \texttt{cab\_sdate} in the cabinet table, attempting to insert cabinet configurations that are identified by an already recorded \texttt{ctr\_id}-\texttt{cab\_sdate} combination would prompt an error. 
 And its likely that, while you want to add not-yet recorded configurations to the cabinet table, you simply want to update the already existing configuration in the PCDB where the information on a given configuration on in your table differs from that in the current record.
-
 This scenario is where the \texttt{upsert}-function comes in to play (`upsert' stands for update-or-insert).
-Plainly speaking, the upsert function performs exaclty the steps outlined in the above paragraph: 
+
+Plainly speaking, the \texttt{upsert}-function performs exactly the steps outlined in the above paragraph: 
 First, it takes your table as source of the upsert operation, checking which columns actually correspond to the columns of the target table (i.e., the table you want to populate with your new records). 
 Second, the function checks if a record in the source table matches a record (i.e., row) in the target table.
-The result of this second check are two distinct result sets (your source table is split into two categories, so to speak): One containing all observations that are not yet recorded in the target table. This first result set is the base of a grand insert operation on the target table.
+The result of this second step are two distinct result sets (your source table is split into two categories, so to speak): One containing all observations that are not yet recorded in the target table. This first result set is the base of a grand insert operation on the target table.
 The other result set comprises all observations in the source table that are already recorded in the target table, and hence is the base of a grand update opertion on the target table. 
 
 Put simply, the function looks up which column(s) contain the primary key of the target variable, and then checks if a given observation's primary-key column value in the source table exists in the target table. 
 For example, \texttt{cab\_id} is the primary-key column of the cabinet table. Say your target table contains a cabinet configration with the \texttt{cab\_id} value 1040.
-If ``Is 1040 is in the list of all values of the \texttt{cab\_id} column in target table?'' evaluates to true, this row in the source table will be in the second result set. Otherwise it will be in the first, insert-operations result set.
+If `Is 1040 is in the list of all values of the \texttt{cab\_id} column in target table?' evaluates to true, this row in the source table will be in the second result set. 
+Otherwise it will be in the first, insert-operations result set.
 
 
+\subsubsection{Function description}
 
-
-
-\subsubsection{Function definition}
-
-Because the \texttt{upsert}-function is at the heart of the updating process, it follows a detailed description of its definition, both in pseudo-code and the PostreSQL procedural language \texttt{plpgsql}.\footnote{See \url{https://www.postgresql.org/docs/8.4/static/plpgsql.html}}.
+Because the \texttt{upsert}-function is at the heart of the updating process, it follows a detailed description of its working in verbatim pseudo-code.
 
 You may want to skip this paragraph if you are immediately interested in a minimal working example (beginning on page \pageref{par_upsert_minimal_working_example}). 
 You may need to turn to the functional defintion, however, Whenever the \texttt{upsert}-function is not yielding the results you were intending it to give.
 
+Function \texttt{upsert\_base\_table()} is defined in the \texttt{public} schema of the \texttt{polconfdb} database.%(Lines 3-5) 
 \begin{itemize}
-\item[-]{Lines 3-5: 
-the function is defined in the \texttt{public} schema of the \texttt{polconfdb} database.
-It has four input arguments:
+\item[-]{It has four input arguments:
   \begin{itemize}
-  \item[]{\texttt{target\_schema}: schema name of the table that is upserted (target)}
-  \item[]{\texttt{target\_table}: name of the table that is upserted (target)}
-  \item[]{\texttt{source\_schema}: schema name of the table that is the source of the upserted operation}
-  \item[]{\texttt{source\_table}: name of the table that is the source of the upserted operation}
+  \item[-]{\texttt{target\_schema}: schema name of the table that is upserted (target)}
+  \item[-]{\texttt{target\_table}: name of the table that is upserted (target)}
+  \item[-]{\texttt{source\_schema}: schema name of the table that is the source of the upserted operation}
+  \item[-]{\texttt{source\_table}: name of the table that is the source of the upserted operation}
   \end{itemize}
 All input arguments have require type \texttt{TEXT}.
 }
-\item[-]{Line 6: return type is \texttt{VOID}, i.e., nothing is returned}
-\item[-]{Line 8: \texttt{DECLARE} variable that will be used in \texttt{EXECUTE} block (lines 48-69)}
-\item[-]{Lines 9-12: variable \texttt{pkey\_column} stores the name of the column that contains the primary key of the target table}
-\item[-]{Lines 14-17: variable \texttt{pkey\_constraint} stores the name of the primary key constraints of the target table}
-\item[-]{Lines 19-30: array \texttt{shared\_columns} stores a comma-seperated list of the columns the target and source tables have in common; will be used in \texttt{INSERT}-statement (lines 58 and 59)}
-\item[-]{Lines 32-46: array \texttt{update\_columns} stores a comma-seperated list of target columns that are set equal to source columns in \texttt{SET}-statementto of update operation (line 50)}
-\item[-]{Line 48: \texttt{EXECUTE} block starts here}
-\item[-]{Lines 49-56: execute \texttt{updates} target table, setting target column values equal to source column values for all intersecting identifiers (\texttt{WHERE}-clause, lines 52-54)}
-\item[-]{Lines 58-64: execute \texttt{INSERT INTO} target table, inserting data into from source table for all rows that are not in target table (set difference of identifiers)}
-\item[-]{Line 66: cluster data, i.e., order by priamary key values}
+\item[-]{Return type is \texttt{VOID}, i.e., nothing is returned}
+\item[-]{\texttt{DECLARE} variables that will be used in \texttt{EXECUTE} block:%(lines 48-69)
+\begin{itemize}
+  \item[-]{variable \texttt{pkey\_column} stores the name of the column that contains the primary key of the target table}%(Lines 9-12)
+  \item[-]{variable \texttt{pkey\_constraint} stores the name of the primary key constraints of the target table}%(Lines 14-17)
+  \item[-]{array \texttt{shared\_columns} stores a comma-seperated list of the columns the target and source tables have in common; will be used in \texttt{INSERT}-statement%(lines 58 and 59)
+  }%(Lines 19-30)
+  \item[-]{array \texttt{update\_columns} stores a comma-seperated list of target columns that are set equal to source columns in \texttt{SET}-statementto of update operation%(line 50)
+  }%(Lines 32-46)
 \end{itemize}
-
-\lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
-language=postgreSQL,commentstyle=\color{white}]%
-{../Updates/fun_update_base_table.sql}
+}%(Line 8 ff.)
+\item[-]{\texttt{EXECUTE} block:%(Lines 48 ff.)
+\begin{itemize}
+    \item[-]{execute \texttt{UPDATE} of target table, setting target column values equal to source column values for all intersecting identifiers% (\texttt{WHERE}-clause, lines 52-54)
+    }%(Lines 49-56)
+    \item[-]{execute \texttt{INSERT INTO} target table, inserting data into from source table for all rows that are not in target table (set difference of identifiers)}%(Lines 58-64)
+    \item[-]{cluster data, i.e., order by priamary key values}%(Line 66)
+\end{itemize}
+}
+\end{itemize}
+A definition of function \texttt{upsert\_base\_table()} in the \texttt{PostreSQL} procedural language \texttt{plpgsql}\footnote{See \url{https://www.postgresql.org/docs/8.4/static/plpgsql.html}} is provided in the Appendix (see \ref{subsec_appx_fun_upsert_base_table}).
 
 \subsubsection{A minimal working example}\label{par_upsert_minimal_working_example}
 

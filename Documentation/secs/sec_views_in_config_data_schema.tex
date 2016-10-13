@@ -1,0 +1,38 @@
+\section{Views in the \texttt{config\_data} schema}\label{sec_views_in_config_data_schema}
+
+The views contained in the \texttt{config\_data} schema of the PCDB compute aggregates and indices from primary data (see section \ref{sec_tables}).
+
+In the following subsections, the views that exist in the \texttt{config\_data} schema will be dicussed with regard to the tables, views and materialized views they are based on, the level at which information is provided, and sources of potential missings (i.e., \texttt{NULL}-values).
+
+\paragraph{Some words on terminology}
+A view is {\bf based on} another view, table, or materilaized view, if it is queried in the view's definition. 
+This is equivalent to say that a view references another entity or that this view stems from that entity, and implies that the view depends on it respectively that the view is a dependent of that entity.
+
+The level at which a view provides information (i.e., data) is equivalent to its {\bf level of aggregation} or analysis, respectively. 
+If, for instance, a view references a vote results table, and aggregates these results at the institution level, it provides inforamtion at the institution level.
+If it, in contrast, computes some aggregate measure, grouping by country and party, it provides information at the party level.
+The level of aggregation may or may not differ from the level of aggregation of the entities a view is based on.
+
+    \newpage
+    \input{./subsecs/subsec_view_configuration_events}
+    % \input{./subsecs/subsec_view_configurations_in_year}
+    \input{./subsecs/subsec_view_configuration_ctr_yr}
+
+		\input{./subsecs/subsec_view_configuration_vto_pts}
+		\input{./subsecs/subsec_view_configuration_vto_lh}
+		\input{./subsecs/subsec_view_configuration_vto_uh}
+		\input{./subsecs/subsec_view_configuration_vto_prs}
+		\input{./subsecs/subsec_view_configuration_vto_jud}
+		\input{./subsecs/subsec_view_configuration_vto_elec}
+		\input{./subsecs/subsec_view_configuration_vto_terr}
+
+		\input{./subsecs/subsec_view_lhelc_lsq}
+		\input{./subsecs/subsec_view_lh_enpp_minfrag}
+		\input{./subsecs/subsec_view_lh_enpp_maxfrag}
+		\input{./subsecs/subsec_view_lhelc_eff_thrshlds}
+
+		\input{./subsecs/subsec_view_lhelc_vola_vts}
+		\input{./subsecs/subsec_view_lhelc_volb_vts}
+
+		\input{./subsecs/subsec_view_lh_vola_sts}
+		\input{./subsecs/subsec_view_lh_volb_sts}

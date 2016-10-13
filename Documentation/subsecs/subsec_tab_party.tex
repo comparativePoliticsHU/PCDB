@@ -1,21 +1,22 @@
-\subsection{Party}\label{subsec_tab_party}
-Table \texttt{\footnotesize party} provides basic information on parties, permitting to link them to other party-level databases or tables in the PCDB. 
-Rows are parties within countries, identified by unique combinations of  \texttt{\footnotesize ctr\_id} and \texttt{\footnotesize pty\_id}.
+\subsection{Parties}\label{subsec_tab_party}
+
+Table \texttt{party} provides general information on parties, permitting to link them to other party-level databases or tables in the PCDB. 
+Rows are parties within countries, identified by \texttt{pty\_id} or unique combinations of \texttt{ctr\_id} and \texttt{pty\_abr}.
 
 \subparagraph{Party identifier}
-The PCDB uses simple running counters to identify parties in a country's political system and history (variable \texttt{\footnotesize pty\_id}).
-That is, in contrast to the coding schemes applied in the Manifesto Project \citep{ManifestoData2013} or the ParlGov data \citep{ParlGov2012}, identifiers do not encode allignment with party-families or ideological leaning on a left-right scale.
+The PCDB uses simple running counters to identify parties in a country's political system and history (variable \texttt{pty\_id}).
+In contrast to the coding schemes applied in other political databases (e.g., \citealt{ManifestoData2013} or \citealt{ParlGov2012}), identifiers convey no meaning such as allignment with party-families or ideological leaning on a left-right scale.
 
 Special suffix are assigned to
 independent candidates (\#\#997), 
-other parties with seats (\#\#998), and 
+other parties with seats in the legislature (\#\#998), and 
 other parties without seats in the legislature (\#\#999).
   
-Table \texttt{\footnotesize party} is defined as follows: 
-
+\subparagraph{}
+Table \texttt{party} is defined as follows: 
 \lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
 language=postgreSQL]%
-{../SQL-codes/tab_party.sql}
+{../SQL-codes/tables/tab_party.sql}
 
 
 

@@ -1,0 +1,30 @@
+\section{Materialized view Configuration Events}\label{sec_mview_configuration_events}
+
+Materialized view \texttt{\footnotesize mv\_configuration\_events} is an exact copy of the Configuration Events view (see subsection \ref{subsec_view_configuration_events}).
+Creating a materialization of the Configuration Events view is necessary to fill in corresponding institution identifiers and to compute configuration end dates, as described in subsections \ref{trg_mv_config_ev_prv_ids} and \ref{trg_mv_config_ev_edate}.  
+
+Generally, in database managment a view is a virtual table representing the result of a defined query on the database.%\footnote{See \href{https://en.wikipedia.org/wiki/Materialized_view#Introduction}{https://en.wikipedia.org/wiki/Materialized_view#Introduction}} 
+While, a view complies the defined data whenever it is queried (and hence is always up-to-date), a materialized view caches the result of the defined query as a concrete table that may be updated from the original base tables from time to time. Due to materialization, this comes at the cost of being being potentially out-of-date.
+
+To ensure that the Configuration Events materialized view is up-to-date, there exists a trigger structure that is described in subsection \ref{integrity_and_consistency_of_MV} in detail. 
+
+Materialized view \texttt{\footnotesize mv\_configuration\_events} is created by calling function \texttt{\footnotesize create\_matview(mv\_name, v\_name)}, where  \texttt{\footnotesize mv\_name} is  \texttt{\footnotesize 'mv\_configuration\_events'} and \texttt{\footnotesize v\_name}  is \texttt{\footnotesize 'config\_data.view\_configuration\_events'}.
+
+Function \texttt{\footnotesize create\_matview(mv\_name, v\_name)} is programmed as follows:\footnote{Source is Listing 2 at \url{http://www.varlena.com/GeneralBits/Tidbits/matviews.html}.} 
+
+\lstinputlisting[%caption={Code to create summary of institutions' start and election date differences.},%
+language=SQL]%
+{../SQL-codes/fun_create_matview(mv_name,v_name).sql}
+
+Function \texttt{\footnotesize refresh\_matview(mv\_name)} generally executes a refresh of materialized views.\footnote{Source is Listing 3 at \url{http://www.varlena.com/GeneralBits/Tidbits/matviews.html}.} 
+
+\lstinputlisting[%caption={Code to create summary of institutions' start and election date differences.},%
+language=SQL]%
+{../SQL-codes/fun_refresh_matview(mv_name).sql}
+
+%Specifically, function \texttt{\footnotesize  refresh\_mv\_config\_events()} performs a refresh of materialized view Configuration Events. It is programmed as follows:\footnote{Note that this function is different from function \texttt{\smallfont refresh\_mv\_config\_events(\#$_{ctr}$)}, as the latter executes a refresh only for those rows identified by \texttt{\smallfont \#$_{ctr}$)} whereas the former refresh-funtion is unconditional.}
+
+%\lstinputlisting[%caption={Code to create summary of institutions' start and election date differences.},%language=SQL]%{../SQL-codes/fun_refresh_mv_config_events().sql}
+
+{\bf Note}: Alternatively, \texttt{\footnotesize postgreSQL} provides for an implemented command \texttt{\footnotesize CREATE MATERIALIZED VIEW}\footnote{See \url{http://www.postgresql.org/docs/9.3/static/sql-creatematerializedview.html}} and a corresponding \texttt{\footnotesize REFRESH}-command.\footnote{See \url{http://www.postgresql.org/docs/9.3/static/sql-refreshmaterializedview.html}}
+It is worth considering to re-implement materialized view Configuration Events with the built-in commands in a beta version, though the solution described above appeares to yield the same result.

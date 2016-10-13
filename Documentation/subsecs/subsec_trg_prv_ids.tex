@@ -1,20 +1,18 @@
-\subsection{Identify previous institution-configurations within countries}\label{trg_prv_ids}
-A set of triggers (\texttt{\footnotesize trg\_*\_prv\_id()}) is implemented on the base-tables Cabinet, Lower House, Upper House, and Presidential Election, and on table Lower House Election, respectively, to assign the identifiers of previous instituion-configurations into cells of column \texttt{\footnotesize *\_prv\_id}.
+\subsection{Identify previous institution configurations within countries}\label{subsec_trg_prv_ids}
 
-Specifically, functions \texttt{\footnotesize trg\_*\_prv\_id()} selects the identifier of the previous  configuration, as identified by the next lower date of all the configurations recorded for a country within a base-table.
-Schematically, it is programmed as follows:
-% 
-% \lstinputlisting[%caption={Example code to identify and select previous identifier.},%
-% language=SQL]%
-% {../SQL-codes/trg_*_prv_id_example.sql}
+A set of triggers (\texttt{trg\_*\_prv\_id()}) is implemented on the base tables Cabinet, Lower House, Upper House, and Presidential Election, and on table Lower House Election, respectively, to assign the identifiers of previous institution configurations into cells of column \texttt{*\_prv\_id} (the asterisk replaces table names).
 
-Where generally \texttt{\footnotesize *} refers to either \texttt{\footnotesize cab}, \texttt{\footnotesize lh}, \texttt{\footnotesize lhelc}, \texttt{\footnotesize uh} or \texttt{\footnotesize prselc}, and \texttt{\footnotesize *table} to either \texttt{\footnotesize cabinet}, \texttt{\footnotesize lower\_house}, \texttt{\footnotesize lh\_election}, \texttt{\footnotesize upper\_house} or \texttt{\footnotesize presidential\_election}.
+Specifically, functions \texttt{trg\_*\_prv\_id()} selects the identifier of the previous configuration, as identified by the next lower date of all the configurations recorded for a country within a base-table.
+Schematically, it is defined as follows:
+\lstinputlisting[%caption={Example code to identify and select previous identifier.},%
+language=postgreSQL]%
+{../SQL-codes/triggers/trg_tab_prv_id_example.sql}
 
-Trigger \texttt{\footnotesize trg\_cab\_nxt\_id} is executed for each row before inserting or updating data to the base table.
+Where the asterisk (\texttt{*}) replaces \texttt{cab}, \texttt{lh}, \texttt{lhelc}, \texttt{uh} or \texttt{prselc}, and \texttt{\#} to either \texttt{cabinet}, \texttt{lower\_house}, \texttt{lh\_election}, \texttt{upper\_house} or \texttt{presidential\_election}.
 
-{\bf Note}: In the case of table Lower House Election \texttt{\footnotesize \_sdate} is replaced by \texttt{\footnotesize \_date}, as it refers to election date instead of institution-configuration start date.
+{\bf Note}: In the case of table Lower House Election \texttt{\_sdate} is replaced by \texttt{\_date}, as it refers to election date instead of institution configuration start date.
 
-A detailed description of the respective triggers and functions is provided in the appendix (\ref{appendix_trigger_prv_ids})
+A detailed description of the respective triggers and functions is provided in the Appendix (see \ref{subsec_appx_trigger_prv_ids}).
 
 
 

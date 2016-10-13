@@ -1,0 +1,28 @@
+\subsection{Lower House Election Effective Thresholds}\label{view_lhelc_eff_thrshlds}
+View \texttt{view\_lhelc\_eff\_thrshlds} is based on table Lower House Elections and provides data at the level of lower house elections.
+
+It computes different measurements of the effective threshold in a given lower house election.
+
+Variable \texttt{lhelc\_eff\_thrshld\_lijphart1994} computes the threshold according to the definition provided by \citet{Lijphart1994}: 
+\begin{equation}\label{EffT_Lijphart_equation}
+\mbox{EffT}_{\mbox{\tiny Lijphart}}=\frac{0.5}{m+1}+\frac{0.5}{2m},
+\end{equation} 
+where $m$ is the district magnitude.
+
+Variable \texttt{lhelc\_eff\_thrshld\_taagepera2002}, in contrast, computes the threshold according to the definition provided by \citet[p.\,309]{Taagepera2002}: 
+\begin{equation}\label{EffT_Taagepera_equation}
+\mbox{EffT}_{\mbox{\tiny Taagepera}}=\frac{0.75}{n^{2}+(S/n^{2})},
+\end{equation}
+where $S$ is the size of the lower house (i.e., the total number of seats), and $n$ is the number of seat winning parties.
+
+In the PCDB, it is assumed that $n \approx \sqrt[4]{m*S}$. 
+This yields
+\begin{equation}\label{EffT_PCDB_equation}
+\mbox{EffT}_{\mbox{\tiny PCDB}}=\frac{0.75}{(m+1)*\sqrt{S/m}}
+\end{equation} to compute variable \texttt{lhelc\_eff\_thrshld\_pcdb}, which is in fact identical with \citeauthor{Taagepera2002}'s formula, if $n = \sqrt[4]{m*S}$.
+
+
+View \texttt{view\_lhelc\_eff\_thrshlds} is defined as follows:
+\lstinputlisting[%caption={Code to compute different measures of the effective threshold in lower house elections.},%
+language=SQL]%
+{../SQL-codes/views/view_lhelc_eff_thrshlds.sql}

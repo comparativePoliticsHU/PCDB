@@ -2,7 +2,7 @@
 RETURNS trigger AS $function$ 
 	BEGIN  
 		NEW.*_nxt_id :=  
-			(SELECT *_id FROM config_data.*table 
+			(SELECT *_id FROM config_data.#
 			WHERE *_sdate > NEW.*_sdate 
 			AND ctr_id = NEW.ctr_id 
 			ORDER BY ctr_id, *_sdate ASC 
@@ -12,7 +12,7 @@ RETURNS trigger AS $function$
 $function$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_*_nxt_id 
-	BEFORE INSERT OR UPDATE ON config_data.*table 
+	BEFORE INSERT OR UPDATE ON config_data.# 
 	FOR EACH ROW 
 	EXECUTE PROCEDURE config_data.trg_*_nxt_id(); 
 

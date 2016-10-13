@@ -1,0 +1,18 @@
+
+\subsection{Function \texttt{mv\_config\_ev\_refresh\_row()}}\label{subsec_fun_mv_config_ev_refresh_row}
+
+Function \texttt{mv\_config\_ev\_refresh\_row()} performs a refresh of rows in materialized view Configuration Events for a given combination of country identifier and start date.
+It executes the following actions:
+\begin{itemize}
+\item[(i)]{It disables all triggers implemented on materialized view Configuration Events;}
+\item[(ii)]{deletes the row from materialized view Configuration Events that is identified by input arguments country identifier and start date (\texttt{ctr\_id} and \texttt{sdate});}
+\item[(iii)]{inserts the respective configuration information (country identifier and start date) from {\em view} Configuration Events into {\em materialized view} Configuration Events;}
+\item[(iv)]{enables all triggers implemented on materialized view Configuration Events;}
+\item[(v)]{updates all columns containing the affected institution identifiers in order to trigger \texttt{trg\_mv\_config\_ev\_correspond\_ids}; and}
+\item[(vi)]{updates column containing configuration end dates (\texttt{edate}) of the configurations of the same country that have a younger start date younger than the currently refreshed row (for odler start and end dates will not be affected by refresh).}
+\end{itemize}
+
+The function is defined as follows:
+\lstinputlisting[%caption={Code to create row-refresh function on materialized view Configuration Events.},
+language=postgreSQL]%
+{../SQL-codes/functions/fun_mv_config_ev_refresh_row.sql}

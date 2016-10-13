@@ -1,11 +1,10 @@
-\section{Presidential Election Vote Results}\label{subsec_tab_pres_elec_vres}
-Table \texttt{\footnotesize pres\_elec\_vres} provides data on vote results in presidential elections at the candidate-level. 
-Rows are the candidates running in the (multiple rounds of) election(s) and their respective vote results, identified by \texttt{\footnotesize prsvres\_is} as well as unique combinations of \texttt{\footnotesize prselc\_is}, \texttt{\footnotesize prselc\_rnd} and \texttt{\footnotesize prselc\_cnd\_pty}.
+\subsection{Presidential Election Vote Results}\label{subsec_tab_pres_elec_vres}
 
-Table \texttt{\footnotesize pres\_elec\_vres} is defined as follows:
+Table \texttt{pres\_elec\_vres} provides data on vote results in presidential elections at the candidate-election round level . 
+Rows are the candidates running in the (multiple rounds of) election(s) and their respective vote results, identified by \texttt{prsvres\_is} as well as unique combinations of \texttt{prselc\_id}, \texttt{prselc\_rnd} and \texttt{prselc\_cnd\_pty}.
 
-
+Table \texttt{pres\_elec\_vres} is defined as follows:
 \lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
 language=postgreSQL]%
-{../SQL-codes/tab_pres_elec_vres.sql}
+{../SQL-codes/tables/tab_pres_elec_vres.sql}
 

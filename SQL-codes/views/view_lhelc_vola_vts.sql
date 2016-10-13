@@ -5,10 +5,13 @@ lhelc_ids AS (SELECT lhelc_id, lhelc_prv_id, lhelc_nxt_id FROM config_data.lh_el
 lh_ids AS (SELECT * 
 		FROM  (SELECT ctr_id, lh_id, lhelc_id FROM config_data.lower_house) AS LHS 
 		LEFT OUTER JOIN lhelc_ids USING (lhelc_id)), -- WITH AS lh_ids, enlists lower house configurations and corrsponding elections
-
 lhelc_vres AS (SELECT lhelc_id, pty_id, 
-			NULLIF(COALESCE(pty_lh_vts_pr, 0) + COALESCE(pty_lh_vts_pl, 0), 0)::NUMERIC AS pty_lhelc_vts_computed, -- NULL if plurality and proportional vote records sum to zero
-			(SUM(COALESCE(pty_lh_vts_pr, 0) + COALESCE(pty_lh_vts_pl, 0)) OVER (PARTITION BY lhelc_id))::NUMERIC AS lhelc_vts_ttl_computed
+			NULLIF(COALESCE(pty_lh_vts_pr, 0) + 
+			       COALESCE(pty_lh_vts_pl, 0), 
+			0)::NUMERIC AS pty_lhelc_vts_computed, -- NULL if plurality and proportional vote records sum to zero
+			(SUM(COALESCE(pty_lh_vts_pr, 0) + 
+			     COALESCE(pty_lh_vts_pl, 0)
+			) OVER (PARTITION BY lhelc_id))::NUMERIC AS lhelc_vts_ttl_computed
 			FROM config_data.lh_vote_results
 			WHERE (pty_id - 999) % 1000 != 0), 
 lhelc_vote_res AS (SELECT *, (pty_lhelc_vts_computed/lhelc_vts_ttl_computed) AS pty_lhelc_vts_shr_computed -- computes party's vote share
@@ -22,7 +25,8 @@ new_ptys AS (SELECT DISTINCT ON (lhelc_id) lhelc_id,
 						FROM (SELECT lhelc_id, pty_id FROM lhelc_vote_res) AS VRES
 						JOIN lhelc_ids USING(lhelc_id)) AS PREV_LHELC 
 					JOIN lhelc_vote_res AS CUR_LHELC 
-					ON (CUR_LHELC.lhelc_id = PREV_LHELC.lhelc_nxt_id AND CUR_LHELC.pty_id = PREV_LHELC.pty_id)) -- joining current lower houses on previous lower house configs by CUR_LHELC.lhelc_id = PRV_LHELC.lh_nxt_id allows to identify parties that contested the previous and the current lower house election, i.e., present stable parties
+					ON (CUR_LHELC.lhelc_id = PREV_LHELC.lhelc_nxt_id 
+					    AND CUR_LHELC.pty_id = PREV_LHELC.pty_id)) -- joining current lower houses on previous lower house configs by CUR_LHELC.lhelc_id = PRV_LHELC.lh_nxt_id allows to identify parties that contested the previous and the current lower house election, i.e., present stable parties
 			AND lhelc_id NOT IN (SELECT min(lhelc_id) OVER (PARTITION BY ctr_id) FROM lh_ids)), -- exclusion of first config, for no previous config exists
 ret_ptys AS (SELECT DISTINCT ON (lhelc_id) lhelc_id, sum(pty_lhelc_vts_shr_computed) OVER (PARTITION BY lhelc_id) AS ret_ptys_vts_shr
 		FROM lhelc_vote_res

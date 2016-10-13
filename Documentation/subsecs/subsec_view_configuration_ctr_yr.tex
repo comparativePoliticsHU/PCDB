@@ -1,13 +1,15 @@
 \subsection{Configuration Country-Years}\label{subsec_view_configuration_ctr_yr}
-The Configuration Country Year View \texttt{\footnotesize view\_configuration\_ctr\_yr} provides information on political configurations in a country-year format. 
-It is based on the Configuration Events Materilized View (\ref{subsec_mview_configuration_events}) and the basic logic of political configurations, described in subsection \ref{subsec_view_configuration_events}, applies. 
 
-The configurations that are reported for country-years are {\em no} aggregates (e.g., averaging across all configurations in a given country-year, as it is often done when summarizing economic data),
+The Configuration Country-Year View \texttt{view\_configuration\_ctr\_yr} provides information at the level of political configurations in a country-year format. 
+It is based on the Configuration Events Materialized View (see \ref{subsec_mview_configuration_events},) and the basic logic of political configurations, described in subsection \ref{subsec_view_configuration_events}, applies. 
+
+The configurations that are reported for country-years are {\em no} aggregates (e.g., averaging across all configurations in a given country-year, as it is often done when coding economic data at the yearly interval),
 but the view reports {\em representative configurations}, having the highest temporal weight in a given country-year. 
 
 \paragraph{Choosing representative configurations}\label{choosing_rep_configs}
-A configuration's temporal weight in a country-year is computed by dividing its duration in the given year\footnote{Not to be confused with variable \texttt{config\_duration}, which reports a configuration's total duration from the day it started to its end.} by the total recorded days of that year (365 days, except from leap years, and years of a country's first and last recorded configurations).
-The configurations with the highest weight in a given country-year is selected as representative for this year.\footnote{There occure no configurations between 1945 and 2014 where the weight of two or more configurations in a year equal each other.\label{fn_uniquness_of_weights_in_ctr_yrs}% In fact, for having equal weight there would have to occur five configurations during one year with exactly equal duration of 73 days.
+
+A configuration's temporal weight in a country-year is computed by dividing its duration in the given year by the total recorded days of that year (365 days or 366 for leap years, and except from years of a country's first and last recorded year).
+The configurations with the highest weight in a given country-year is selected as representative for this year.\footnote{There occur no configurations between 1945 and 2014 where the weight of two or more configurations in a year equal each other.\label{fn_uniquness_of_weights_in_ctr_yrs}% In fact, for having equal weight there would have to occur five configurations during one year with exactly equal duration of 73 days.
 }
 \begin{table}[h!]
 \centering\footnotesize
@@ -37,15 +39,16 @@ In 1948 only one configuration is recorded. This is because the fourth configura
 The third configuration that started in 1947 and outlasted 1948 durated total 343 days in 1949. 
 It was temporally dominant also in the year of its end, as the other to configurations recorded with a start date in 1949 only amounted to weights equal to 0.0247 and 0.0356, respectively.
 
-The code to compile public view \texttt{\footnotesize view\_configuration\_ctr\_yr} reads as follows:
-
-\lstinputlisting[%caption={Code to determine if the president constitutes an open veto point in a configuration.},
-commentstyle=\color{white}
-, language=SQL]%
-{../SQL-codes/view_configuration_ctr_yr.sql}
-
-%{\bf Note}: The \texttt{\footnotesize WHERE}-clause ensures that only the configurations that have the highest thempral weight within a country-year ar reported. Specifically, the \texttt{\footnotesize IN}-condition draws on a combination of year and temporal weights to uniquely identify configurations within country-years. Obviously, this procedure presupposes uniquness of temporal weights within country-years; a condtion that is met in the PCDB to date.\footref{fn_uniquness_of_weights_in_ctr_yrs}
-
+\paragraph{View Definition}
+Because the definition of view \texttt{view\_configuration\_ctr\_yr} is lengthy, it is provided in the Appendix (see \ref{subsec_appx_view_configuration_ctr_yr}), and only verbatim pseudo code is provided here.
+\begin{itemize}
+\item[-]{Generate country-year time series by taking the cross-product of all countries and the series of years, starting from the lowest recorded year to the current year.}
+\item[-]{Join time series on all country-start year combinations enlisted in Configuration Events Materialized View, and keep only those with a match (i.e., if a configuration started in 1970 and ended in 1971, 1971 will not be matched in the country's time serie).}
+\item[-]{Select configurations from the Configuration Events Materialized View that are matched; select temporally most proximate configurations with lower start year than current year as `then still active' configurations for all country-year combinations not enlisted in configuration events; get the set union of both selects, and compute start and end years.}
+\item[-]{Compute configurations' durations in the year(s) of their activity (i.e., from start day in start year to first day of next year, from last day of start year to last day of duration in end year, and number of days of year for all years in which its was the only active configuration).}
+\item[-]{Right outer join configuration information from materialized view on configurations with highest temporal weight in a given year of the country's time serie by country identifier and start date. 
+In case of two configurations having the same temporal weight in a given year, select the one with the lowest start date as a tie-breaking rule.}
+\end{itemize}
 
 
 

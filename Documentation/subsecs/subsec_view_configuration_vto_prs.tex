@@ -1,14 +1,12 @@
-\subsection{Presidents' Veto}\label{view_configuration_vto_prs}
-View \texttt{\footnotesize view\_configuration\_vto\_prs} is based on tables Presidential Elections, Cabinet Portfolios, Veto Points, and materialized view Configuration Events, and provides information at the level of political configurations.
+\subsection{Presidential Veto Point}\label{view_configuration_vto_prs}
+View \texttt{view\_configuration\_vto\_prs} is based on tables Presidential Elections, Cabinet Portfolios, Veto Points, and materialized view Configuration Events, and provides information at the level of political configurations.
+It computes whether the president, that is, the Head of State (HoS) constitutes an open veto point vis-\`{a}-vis the government in a given configuration, by checking for cohabitation and whether the president is constitutionally entitled to veto national legislation. 
 
-It computes whether the president/Head of State (HoS) constitutes an open veto point vis-\`a-vis the government in a given configuration by checking for cohabitation and whether the constitution assigns veto power to the president.
-
-To guarantee that the computation of the lower houses veto potential is sensitive to constitutional changes, joining poltitical configurations with veto inforamtion is proceeded by date and country. 
-Computation of the HoS's veto power in a given configuration is therefore up-to-date according to the inforamtion recorded in the Veto Points table.
-
-
-View \texttt{\footnotesize view\_configuration\_vto\_prs} is programmed as follows:
-
+View \texttt{view\_configuration\_vto\_prs} is defined as follows:
 \lstinputlisting[%caption={Code to determine if the president constitutes an open veto point in a configuration.},
 language=SQL]%
-{../SQL-codes/view_configuration_vto_prs.sql}
+{../SQL-codes/views/view_configuration_vto_prs.sql}
+
+To guarantee that the computation of the presidents' veto potential is sensitive to constitutional changes, joining political configurations with veto information is proceeded by start dates and country identifier.
+The resulting indicator is $1$, if the president was entitled to veto national legislation, and if he or she was in cohabitation (i.e., was affiliated with a party that was not in government) in a given political configuration.
+%Computation of the HoS's veto power in a given configuration is therefore up-to-date according to the inforamtion recorded in the Veto Points table.

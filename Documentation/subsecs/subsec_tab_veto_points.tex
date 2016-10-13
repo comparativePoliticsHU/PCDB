@@ -1,35 +1,41 @@
 \subsection{Veto Points}\label{subsec_tab_veto_points}
-Table \texttt{\footnotesize veto\_points} contains information on the potential veto points in a country’s political system, including the type of institution and the time period of its existence as a veto point. 
-Rows are the different institutions in a country, identified by  \texttt{\footnotesize vto\_id} as well as unique combinations of \texttt{\footnotesize ctr\_id}, \texttt{\footnotesize vto\_inst\_typ} and \texttt{\footnotesize vto\_inst\_sdate}.
+
+Table \texttt{veto\_points} contains information on the different veto institutions in a country’s political system and their veto power (i.e., entitlement to block national legislation).
+Rows are the veto institution configurations in a country, identified by \texttt{vto\_id} as well as unique combinations of \texttt{ctr\_id}, \texttt{vto\_inst\_typ} and \texttt{vto\_inst\_sdate}.
+Each institution type is recorded at least once, and each additional record per type is due to a change in national constitutional law that affects the institution's veto power.
+
+Do not confuse a institutions veto power with its status as veto point.
+A veto institution may have differing veto potential in the legislative process, depending on national constitutional law; but whether it is active or not, and hence, whether it is an open or a closed veto point, varies both with its temporal correspondence vis-\'{a}-vis a government political configurations, and changing constitutional law. 
 
 \subparagraph{Veto Institution Type}
-Variable \texttt{\footnotesize vto\_inst\_typ} is defined as customed type labeled , which is defined as follows:
-
+Variable \texttt{vto\_inst\_typ} is defined as customed type, and is defined as follows:
 \lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
-language=postgreSQL]%
-{../SQL-codes/type_vto_type.sql}
+language=postgreSQL,commentstyle={white}]%
+{../SQL-codes/types/type_vto_type.sql}
 
 \subparagraph{Veto Potential}
-Variable \texttt{\footnotesize vto\_pwr} records the veto potential for each institution type in a country. It is  ordinal and bound between $1$ and $0$. 
-\begin{itemize}\itemsep-4pt \parsep0pt
-\item[-] An institution's veto power is coded $0$ if it is generally not entitled to a veto right; 
-\item[-] coded $1$ if it enjoys unconditional veto potential; 
-\item[-] or may assume values in between $0.5$ and $1$, indicating conditionality of veto potential with regard to the required seats share of cabinet parties in lower or upper house, respectively, given a certain constitutional threshold.
+Variable \texttt{vto\_pwr} records the veto potential for each institution type in a country. 
+It is a ordinal variable bound between $1$ and $0$. 
+An institution's veto power is
+\begin{itemize}%\itemsep-4pt \parsep0pt
+\item[-] coded $0$ if it is generally not entitled to veto national legislation; 
+\item[-] coded $1$ if it is assigned unconditional veto potential; 
+\item[-] or may assume values in the range between $0.5$ and $1$, indicating conditionality of its veto power with regard to the required seats share of cabinet parties in the lower or upper house, respectively, given a certain constitutional threshold.
 \end{itemize}
 
-Note that information on institutions' veto potential is essential to identify open institutional veto points in a given political configuration, for they depend on both constitutional entitlement of veto and the specific date (i.e., duration) of the present political configuartion, and---given some conditionality---on the size of political majorities or party allignment of the president.
+Note that information on institutions' veto power is essential to identify open institutional veto points in a given political configuration, for they depend on both constitutional entitlement of veto and the specific date (i.e., duration) of the present political configuartion, and---given some conditionality---on the size of political majorities or party allignment of the president.
 
 \subparagraph{Veto institution start and end date}
-Variables \texttt{\footnotesize vto\_inst\_sdate} and \texttt{\footnotesize vto\_inst\_edate} report the start and end dates of the veto power status of respective institutions.
+Variables \texttt{vto\_inst\_sdate} and \texttt{vto\_inst\_edate} report the start and end dates of the veto power status of respective institutions.
 
-Though constitutional reforms are rare and in the vast majority of cases there is recorded only one veto power status per type of veto instution within countries, not every institution's veto power has remained unchanged throughout the  PCDB's period of coverage. 
-The Belgian Senaat (the upper house), for instance, lost its conditional, 50-percent counter-majoritarian threshold veto potential in 1995. 
-The Veto Points table therefore records two rows for the Belgian upper house, one with start date 1\ts{st} January, 1900, (the default start date) and May 20, 1995, as end date, and one row with start date May 21, 1995, and the default end date December 31, 2099, because no other change of veto power took place until the end of 2014.
+Though constitutional reforms are rare and in the vast majority of cases there is recorded only one veto power status per type of veto instution within countries, not every institution's veto power has remained unchanged throughout the PCDB's period of coverage.\footnote{%
+The {\em Belgian Senaat} (the upper house), for instance, lost its conditional, 50-percent counter-majoritarian threshold veto power in 1995. 
+The Veto Points table therefore records two rows for the Belgian upper house, one with start date 1\ts{st} January, 1900, (the default start date) and May 20, 1995, as end date, and one row with start date May 21, 1995, and the default end date December 31, 2099, because no other change of veto power took place until the end of 2014.}
 
-Table \texttt{\footnotesize veto\_points} is defined as follows: 
-
+\subparagraph{}
+Table \texttt{veto\_points} is defined as follows: 
 \lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
 language=postgreSQL]%
-{../SQL-codes/tab_veto_points.sql}
+{../SQL-codes/tables/tab_veto_points.sql}
 
 

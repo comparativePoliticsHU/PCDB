@@ -1,0 +1,18 @@
+\subsection{Configuration Duration in Year}\label{view_configuration_duration_in_year}
+View \texttt{\footnotesize view\_configuration\_duration\_in\_year} is based on view Configuration Year Duplicates and provides information at the level of configuration-in-years.
+
+It computes configurations' duration in the year of its start date and the year of its end date. 
+Obviously, if a configuration started and ended in the same year, its duration in the given year is equal to the difference in days between both dates. 
+If, however, a configuration started in another year than it ended, its duration in the year of its starty equals the count of days from its start date to the first day of the next year,
+and the count of days from the last day of the previous year to the end date for the year of its end for its duration in the year it ended.
+
+In addition, it provides primary configuration information (country identifier and configuration start and end dates) for the year of a configuration's start as well as for the year of its end, given they are not identical. 
+
+View \texttt{\footnotesize view\_configuration\_duration\_in\_year} is programmed as follows: 
+
+\lstinputlisting[%caption={Code to compute configuration in-year duration.},
+language=SQL]%
+{../SQL-codes/view_configuration_duration_in_year.sql}
+
+
+{\bf Note}: Configurations end date is implemented by a trigger on materialized view Configuration Events (see subsection \ref{trg_mv_config_ev_edate}), which selects the start date of the next configuration within country and substracts one day from it.

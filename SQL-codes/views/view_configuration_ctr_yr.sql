@@ -1,5 +1,5 @@
-﻿-- CREATE OR REPLACE VIEW config_data.view_configuration_ctr_yr
--- AS 
+﻿CREATE OR REPLACE VIEW config_data.view_configuration_ctr_yr
+AS 
 WITH
 configs AS (SELECT * FROM config_data.mv_configuration_events) , -- WITH AS configs
 max_sdate_in_year_configs AS (SELECT ctr_id, year, max(sdate) AS sdate, max(edate) AS edate
@@ -23,7 +23,7 @@ configs_in_year AS (SELECT ctr_id, year, sdate, edate,
 				FROM  configs
 				WHERE (ctr_id, year) -- conditions on country-year combinations enlisted in confuguration_events 
 					IN (SELECT DISTINCT ON (ctr_id, year) ctr_id, year FROM matched) 
-			UNION -- for all country-year combinations not enlisted in configuration_events, select temporarily most proximate configuration with lower start year than current year as 'then still active' configuration
+			UNION -- for all country-year combinations not enlisted in configuration_events, select temporally most proximate configuration with lower start year than current year as 'then still active' configuration
 			SELECT matched.ctr_id as ctr_id, matched.year AS year, max(sdate) AS sdate, max(edate) AS edate, 
 				DATE_PART('year', max(sdate)) AS syear, DATE_PART('year', max(edate)) AS eyear 
 				FROM

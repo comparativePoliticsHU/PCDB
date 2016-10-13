@@ -1,21 +1,22 @@
-\subsection{Upper House}\label{subsec_tab_upper_house}
-Table \texttt{\footnotesize upper\_house} provides basic information on upper houses, including start date of legislature and the total number of seats. 
-Rows are compositions of upper houses, identified by \texttt{\footnotesize uh\_id} as well as unique combinations of \texttt{\footnotesize ctr\_id} and \texttt{\footnotesize uh\_sdate}.
+\subsection{Upper Houses}\label{subsec_tab_upper_house}
+Table \texttt{upper\_house} provides basic information on upper houses, including start date of legislature and the total number of seats. 
+Rows are compositions of upper houses, identified by \texttt{uh\_id} as well as unique combinations of \texttt{ctr\_id} and \texttt{uh\_sdate}.
  
 A new upper house composition is included when
-\begin{itemize}\itemsep-4pt \parsep0pt
+\begin{itemize}%\itemsep-4pt \parsep0pt
 \item[a)]the composition changes through legislative elections, or
 \item[b)]mergers or splits in factions occur during the legislature.
 \end{itemize} 
-Obviously, information is only provided for countries with bicameral systems.
+Only countries with bicameral systems are recorded.
 
 \subparagraph{Upper house start date}
-PCDB codes the date of the first meeting in the first legislative session of a new upper house as its start date. If no information on these events was available, the default is equal to the corresponding election date. 
+PCDB codes the date of the first meeting in the first legislative session of a new upper house as its start date. 
+If no information on these events was available, the default is equal to the corresponding election date. 
 %The table contains the following variables:
 
-Table \texttt{\footnotesize upper\_house} is defined as follows:
-
+\subparagraph{}
+Table \texttt{upper\_house} is defined as follows:
 \lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
 language=postgreSQL]%
-{../SQL-codes/tab_upper_house.sql}
+{../SQL-codes/tables/tab_upper_house.sql}
 

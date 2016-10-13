@@ -1,0 +1,22 @@
+\chapter{Data in the PCDB}\label{chap_data_in_the_PCDB}
+
+This chapter provides a description of the data structre in the PCDB. 
+
+Five entity types will be discussed:
+\begin{itemize}
+\item[]{{\bf Tables}: 
+  The permanent data repositories that store information at different levels of aggregation (e.g., parties, institutions, countries, etc.) and serve as priamry source for all computed indices and aggregate figures.}
+\item[]{{\bf Views}: 
+  Virtual tables based on the result-sets of predefined SQL-queries.
+  Views serve two purposes in the PCDB:
+  \begin{itemize}
+    \item[a)]Compute aggregates and indices from the primary data contained in tables,
+    \item[b)]and create consistency checks that allow to control for the consistency of the data.
+  \end{itemize}}
+\item[]{{\bf Materialized views}: Tables created from views that may be updated from the original base tables as implemented by triggers and fucntions.}
+\item[]{{\bf Triggers}: 
+  Implemented on tables or materialized views to insert, update, or delete data as consequence of specific events. 
+  Triggers are mainly implemented to enable the automatic up-dating of the data in the PCDB.}
+\item[]{{\bf Functions}: The stored procedures to exectue predefined data manipulation operations when called.} 
+\end{itemize}
+ 

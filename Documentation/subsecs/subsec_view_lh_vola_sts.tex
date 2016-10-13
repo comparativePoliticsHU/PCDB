@@ -1,37 +1,34 @@
 \subsection{Type A Volatility in Lower House Seat Shares}\label{subsec_view_lh_vola_sts}
-View \texttt{\footnotesize view\_lh\_vola\_sts} is based on tables Lower House and Lower House Seat Results, and provides data at the level of lower houses.
+
+View \texttt{view\_lh\_vola\_sts} is based on tables Lower Houses and Lower House Seat Results, and provides data at the level of lower houses.
 
 Generally, type A volatility measures volatility from party entry and exit to the political system and is quantified by the change that occurs in the distribution of shares between parties due to parties newly entering respectively retiering from the electoral arena \citep{Powell&Tucker2013}, majorly the domestic party system or the lower house. 
 
-Type A volatitlity in seats in a given lower house is defined as volatility in the distribution of seats arising from new entering and retiering parties, given by the formular: 
+Type A volatitlity in seats in a given lower house is defined as volatility in the distribution of seats arising from new entering and retiering parties, given by the formula 
 \begin{equation}\label{equ_seat_a_volatility}
-Seat\,A\,Volatility\,(k) = \frac{ | \sum\limits_{n=1}^{New} s_{n,k} + \sum\limits_{o=1}^{Old} s_{o,k} | }{2}
+\mbox{Seat\,A\,Volatility}(k) = \frac{ \bigg| \sum\limits_{n=1}^{New} s_{n,k} + \sum\limits_{o=1}^{Old} s_{o,k} \bigg| }{2},
 \end{equation}
-, where $o$ refers to retiering parties that contested only the election $k-1$ and $n$ to new-entering
-parties that contested only election $k$, and generally $s$ is party's seat share in the lower house (i.e., the number of seats gained by party, divided by the total number of seats distributed between all parties $J$ that entered the lower house $k$ in the corresponding election).
+where $o$ refers to retiering parties that contested only the election $k-1$ and $n$ to new-entering parties that contested only election $k$, and generally $s$ is party's seat share in the lower house (i.e., the number of seats gained by party, divided by the total number of seats distributed between all parties $J$ that entered the lower house $k$ in the corresponding election).
 
-
-
-
-View \texttt{\footnotesize view\_lh\_vola\_sts} is programmed as follows:
-
+View \texttt{view\_lh\_vola\_sts} is defined as follows:
 \lstinputlisting[%caption={Code to compute type A volatitlity ins lower house seats.},%
 language=SQL]%
-{../SQL-codes/view_lh_vola_sts.sql}
+{../SQL-codes/views/view_lh_vola_sts.sql}
 
-Because the \texttt{\footnotesize SQL}-syntax of \texttt{\footnotesize view\_lhelc\_vola\_sts} is rather complex, some brief comments are instructive:
+Because the \texttt{SQL}-syntax of \texttt{view\_lhelc\_vola\_sts} is rather complex, some comments follow:
 \begin{itemize}
-\item[-]{The enumerator of Equ \ref{equ_seat_a_volatility} consists of two summands; each is computed seperately (the parts embraced by paranthesis and labeled \texttt{\footnotesize NEWENTRY\_PARTIES} and \texttt{\footnotesize LH\_RETIERING\_PARTIES}, respectively) and added only in the very first lines of the query.}
+\item[-]{The enumerator of Equ \ref{equ_seat_a_volatility} consists of two summands; each is computed seperately as \texttt{new\_ptys\_sts\_shr} and \texttt{ret\_ptys\_sts\_shr}, respectively.}
 \item[-]{With respect to the subqueries, 
-\texttt{\footnotesize NEWENTRY\_PARTIES} aggregates the seat shares of parties that newly entered in the present lower house for the present lower house, and 
- \texttt{\footnotesize LH\_RETIERING\_PARTIES} aggregates the seat shares of parties that entered the previous but not the current lower house.}
-\item[-]{Exluding `stable' parties (i.e., parties that entered the present as well as the previous lower house) within the subqueries is achieved by the \texttt{\footnotesize EXCEPT}-clauses, which pair parties recorded for the present and the previous lower house by party identifiers. If a party was only in the present lower house, or if it was in the previous but is not in present lower house, then it does not occur in the query that follows the \texttt{\footnotesize EXCEPT}-clauses. In consequence, only seats gained by new entering parties, and those lost  by retiering parties enter the aggregation.}
+\texttt{new\_ptys} aggregates the seat shares of parties that newly entered in the present lower house for the present lower house, and 
+ \texttt{ret\_ptys} aggregates the seat shares of parties that entered the previous but not the current lower house.}
+\item[-]{Exluding `stable' parties (i.e., parties that entered the present as well as the previous lower house) within the subqueries is achieved by the \texttt{EXCEPT}-clauses, which pair parties recorded for the present and the previous lower house by party identifiers. If a party was only in the present lower house, or if it was in the previous but is not in present lower house, then it does not occur in the query that follows the \texttt{EXCEPT}-clauses. 
+  In consequence, only seats gained by new entering parties, and those lost  by retiering parties enter the aggregation.}
 \item[-]{Generally, joining parties' seat results with different combinations of the identifiers of the previous, the current, and the next lower house enables to easily identify new entering and retiering parties.}
 \end{itemize}
 
-{\bf Note}:	No figures for first an last recorded elections in a given country are reported, because it is impossible to determin which parties are 'newcomers' in first and which parties will retier in last election, respectively. The exclusion of first lower house configurations is a consequence of the final left-outer join, as the first lower house reported by subquery \texttt{\footnotesize NEWENTRY\_PARTIES} 
-is always only the second for a given country. 
-The excludsion of first lower house configurations, in turn, is achieved by selecting only parties seat results from lower house elections that have not the highest within country election identifier.\footnote{specifically, that is quering \texttt{\smallfont \ldots SELECT lhelc\_id, pty\_id, pty\_lh\_sts \ldots WHERE lhelc\_id NOT IN (SELECT MAX(lhelc\_id) \ldots}. A feasible alternative would be programming the restriction based on selection of the election with the highest date within a country (would prevent from coding failures in the ordering of lower house election identifiers).}
+Note that no figures for first an last recorded elections in a given country are reported, because it is impossible to determine which parties are 'newcomers' in first and which parties will retier in last election, respectively.
+% The exclusion of first lower house configurations is a consequence of the final left-outer join, as the first lower house reported by subquery \texttt{new\ptys} is always only the second for a given country. 
+% The excludsion of first lower house configurations, in turn, is achieved by selecting only parties seat results from lower house elections that have not the highest within country election identifier.\footnote{specifically, that is quering \texttt{\smallfont \ldots SELECT lhelc\_id, pty\_id, pty\_lh\_sts \ldots WHERE lhelc\_id NOT IN (SELECT MAX(lhelc\_id) \ldots}. A feasible alternative would be programming the restriction based on selection of the election with the highest date within a country (would prevent from coding failures in the ordering of lower house election identifiers).}
 
 
 

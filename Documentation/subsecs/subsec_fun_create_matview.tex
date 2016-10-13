@@ -1,0 +1,9 @@
+\subsection{Create materialized view}\label{subsec_fun_create_matview}
+
+Function \texttt{create\_matview()} creates a table if not exists named as given by \texttt{matview\_name} as an exact copy of the view \texttt{view\_name}, and records by time stamp in table Materialized Views (see \ref{subsec_tab_matviews}) as \texttt{last\_refresh},
+where \texttt{schema.matview\_name} and \texttt{schema.view\_name} are the single two non-optional input arguments.
+
+Function \texttt{create\_matview()} is defined as follows:\footnote{Source is Listing 2 at \url{http://www.varlena.com/GeneralBits/Tidbits/matviews.html}.} 
+\lstinputlisting[%caption={Code to create summary of institutions' start and election date differences.},%
+language=postgreSQL,commentstyle=\color{white}]%
+{../SQL-codes/functions/fun_create_matview(mv_name,v_name).sql}

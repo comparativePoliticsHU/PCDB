@@ -4,15 +4,18 @@ Adding a new row (i.e., an observation) to a table is proceeded with the \texttt
 Though insertation does not requiere to specify the target columns, as the original order of columns of a table is used as default, specifying target columns corresponding to insert values is best-practice, as it ensures a correct insert operation.
 
 Here a minimum workin example:
+
 \begin{lstlisting}[language=postgreSQL]
 INSERT INTO config_data.cabinet
 	(cab_id, ctr_id, cab_sdate, cab_hog_n, cab_care)
 	VALUES (6038, 6, '2017-01-01', 'Licht', 'FALSE');
 \end{lstlisting}
+
 Note that the values you attempt to insert need to match the specified types of the target columns. 
 If you attempt to insert a value that does not match the type of the respective column, an error message will be raised.\footnote{%
 To recall the type of a given column, refer to the Codebook or browse the properties of the given table in \texttt{pgAdmin3} (left click on table in menu bar, and view `SQL pane').}
 You can avoid such error messages, if you type instead 
+
 \begin{lstlisting}[language=postgreSQL]
 INSERT INTO config_data.cabinet
 	(cab_id, ctr_id, cab_sdate, cab_hog_n, cab_care)
@@ -27,4 +30,4 @@ Finally, remember that the primary key of the cabinet table, \texttt{cab\_id}, c
 Due to this dependency, inserting a new cabinet configuration necessitates to also insert the corresponding observations to the cabinet portfolios table.\footnote{%
 Particularly, because information on the on the newly inserted cabinet's portfolios is required to generate indicators at the level of political configuration (i.e., the cabinet's cumulated seat share in the lower house and upper house, respectively, or to identify whether a president is in cohabitation with the cabinet).}
 
-Please refer to the \texttt{PostgreSQL} documentation for further details.\footnote{\url{https://www.postgresql.org/docs/9.3/static/dml-insert.html}}
+Please refer to the \texttt{PostgreSQL} documentation for further details.\footnote{See \url{https://www.postgresql.org/docs/9.3/static/dml-insert.html}}

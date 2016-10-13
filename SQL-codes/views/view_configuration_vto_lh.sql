@@ -1,5 +1,5 @@
-﻿CREATE OR REPLACE VIEW config_data.view_configuration_vto_lh
-AS
+﻿-- CREATE OR REPLACE VIEW config_data.view_configuration_vto_lh
+-- AS
 WITH 
 configs AS (SELECT ctr_id, sdate, cab_id, lh_id FROM config_data.mv_configuration_events), -- WITH AS configs
 pty_lh_sts_shr AS (SELECT lh_id, pty_id, pty_lh_sts, 

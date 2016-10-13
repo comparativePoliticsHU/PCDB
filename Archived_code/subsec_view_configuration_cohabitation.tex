@@ -1,0 +1,15 @@
+\subsection{Configuration Cohabitation}\label{view_configuration_cohabitation}
+View \texttt{\footnotesize view\_configuration\_cohabitation} is based on tables Presidential Elections and Cabinet Portfolios, and materialized view Configuration Events, and provides information at the level of political configurations.
+
+It computes whether the president/Head of State (HoS) is in cohabitation with the government, that is, if he or she not affiliated with one of the cabinet parties (indicated by binary variable  \texttt{\footnotesize cohabitation}).
+
+View \texttt{\footnotesize view\_configuration\_cohabitation} is programmed as follows:
+
+\lstinputlisting[%caption={Code to identify configurations in cohabitation.},
+language=SQL]%
+{../SQL-codes/view_configuration_cohabitation.sql}
+
+
+{\bf Note}: Variable \texttt{\footnotesize cohabitation} can only be computed if a configuration enlist both a cabinet identifier (providing for information on cabinet parties) and a corresponding presidential election identifier (providing for information of the president's/HoS' party affiliation).
+
+\texttt{\footnotesize view\_configuration\_cohabitation} is essential to identify presidents/HoSs that constitute open veto points vis-\`a-vis the government (see \texttt{\footnotesize view\_configuration\_vto\_prs}). 

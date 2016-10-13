@@ -1,0 +1,9 @@
+\subsection{Table Materialized Views}\label{subsec_tab_matviews}
+
+Table Materialized Views is defined as follows:\footnote{Source is Listing 1 at \url{http://www.varlena.com/GeneralBits/Tidbits/matviews.html}.}
+\begin{lstlisting}[language=postgreSQL] 
+CREATE TABLE config_data.matviews ( 
+	mv_name NAME NOT NULL PRIMARY KEY, 
+	v_name NAME NOT NULL,  
+	last_refresh TIMESTAMP WITH TIME ZONE);
+\end{lstlisting}

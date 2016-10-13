@@ -1,0 +1,20 @@
+\subsection{Configuration Year Duplicates}\label{view_configuration_year_duplicates}
+View \texttt{\footnotesize view\_configuration\_year\_duplicates} is based on materialized view Configuration Events, which matches temporally corresponding configurations of cabinets, lower houses, upper houses, and presidencies.
+
+It compiles primary configuration information (country identifier and configuration start and end dates) for the year of a configuration's start as well as for the year of its end, provided they are not identical. 
+
+View \texttt{\footnotesize view\_configuration\_year\_duplicates} is programmed as follows: 
+
+\lstinputlisting[%caption={Code to create year-duplicates of configurations.},
+language=SQL]%
+{../SQL-codes/view_configuration_year_duplicates.sql}
+
+View \texttt{\footnotesize view\_configuration\_year\_duplicates} is essential to compute configruations' duration in a year (subsection \ref{view_configuration_duration_in_year}).
+
+ 
+
+
+
+
+
+
