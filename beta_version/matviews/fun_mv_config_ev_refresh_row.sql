@@ -15,13 +15,13 @@
 CREATE OR REPLACE FUNCTION beta_version.mv_config_ev_refresh_row(SMALLINT, DATE) 
 RETURNS VOID
 SECURITY DEFINER
-LANGUAGE 'plpgsql' AS '
+LANGUAGE 'plpgsql' AS $$
 DECLARE
 	country ALIAS FOR $1;
 	start_date ALIAS FOR $2;
 	entry beta_version.matviews%ROWTYPE;
 BEGIN
-	ALTER TABLE beta_version.mv_configuration_events DISABLE TRIGGER USER;
+	ALTER TABLE beta_version.mv_configuration_events DISABLE TRIGGER USER; 
 	
 	DELETE FROM beta_version.mv_configuration_events 
 		WHERE mv_configuration_events.ctr_id = country
@@ -33,9 +33,14 @@ BEGIN
 		WHERE view_configuration_events.ctr_id = country 
 		AND view_configuration_events.sdate = start_date;
 		
-	ALTER TABLE beta_version.mv_configuration_events ENABLE TRIGGER USER;	
+	ALTER TABLE beta_version.mv_configuration_events ENABLE TRIGGER USER;
 
-	UPDATE beta_version.mv_configuration_events SET cab_id = cab_id, lh_id = lh_id, lhelc_id = lhelc_id, uh_id = uh_id, prselc_id = prselc_id
+	UPDATE beta_version.mv_configuration_events 
+		SET cab_id = cab_id, 
+		    lh_id = lh_id, 
+		    lhelc_id = lhelc_id, 
+		    uh_id = uh_id, 
+		    prselc_id = prselc_id
 		WHERE mv_configuration_events.ctr_id = country 
 		AND mv_configuration_events.sdate = start_date;
 
@@ -48,5 +53,4 @@ BEGIN
 			ORDER BY ctr_id, sdate DESC
 			LIMIT 1);
   RETURN;
-END
-';
+END $$;

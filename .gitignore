@@ -24,3 +24,4 @@ Documentation/flow_charts/*
 *.Rproj.user
 beta_version/work_in_progress.rtf
 beta_version/tables/minister.csv
+.Rproj.user

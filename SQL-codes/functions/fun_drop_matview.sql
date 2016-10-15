@@ -5,22 +5,22 @@
 
 -- NOTE: as the mv_configuration_events is intended to have multiple dependencies, consider executing DROP CASCADE instead, though this is a radical step
 
-CREATE OR REPLACE FUNCTION beta_version.drop_matview(NAME) RETURNS VOID
+CREATE OR REPLACE FUNCTION config_data.drop_matview(NAME) RETURNS VOID
 SECURITY DEFINER
 LANGUAGE plpgsql AS $$
 DECLARE
     matview ALIAS FOR $1;
-    entry beta_version.matviews%ROWTYPE;
+    entry config_data.matviews%ROWTYPE;
 BEGIN
 
-    SELECT * INTO entry FROM beta_version.matviews WHERE mv_name = matview;
+    SELECT * INTO entry FROM config_data.matviews WHERE mv_name = matview;
 
     IF NOT FOUND THEN
-        RAISE EXCEPTION ''Materialized view % does not exist.'', matview;
+        RAISE EXCEPTION 'Materialized view ''%'' does not exist.', matview;
     END IF;
 
-    EXECUTE ''DROP TABLE '' || matview;
-    DELETE FROM beta_version.matviews WHERE mv_name=matview;
+    EXECUTE 'DROP TABLE ' || matview;
+    DELETE FROM config_data.matviews WHERE mv_name=matview;
 
     RETURN;
 END $$;

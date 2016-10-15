@@ -5,13 +5,13 @@
 
 --	NOTE: when triggers on matview are defined, below line that updates row in matviews table, a line needs to be added that triggers, e.g. update <some column> of matview 
 
-CREATE OR REPLACE FUNCTION beta_version.refresh_matview(TEXT, TEXT[] DEFAULT '{}') 
+CREATE OR REPLACE FUNCTION config_data.refresh_matview(TEXT, TEXT[] DEFAULT '{}') 
 RETURNS VOID 
 SECURITY DEFINER
 LANGUAGE plpgsql AS $$
 DECLARE 
     matview_name ALIAS FOR $1;
-    entry beta_version.matviews%ROWTYPE; -- note change to destination of entry
+    entry config_data.matviews%ROWTYPE; -- note change to destination of entry
 
     primary_key_columns TEXT := ARRAY_TO_STRING($2, ', ');
     mv_schema_name TEXT := (REGEXP_SPLIT_TO_ARRAY($1,E'\\.'))[1];
@@ -24,7 +24,7 @@ DECLARE
     
 BEGIN
 
-    SELECT mv_name, v_name INTO entry FROM beta_version.matviews WHERE matviews.mv_name = matview_name;
+    SELECT mv_name, v_name INTO entry FROM config_data.matviews WHERE matviews.mv_name = matview_name;
 
     IF NOT FOUND THEN
         RAISE EXCEPTION 'Materialized view % does not exist.', matview_name;
@@ -50,7 +50,7 @@ BEGIN
 	EXECUTE 'CLUSTER ' || matview_name || ' USING ' || pkey_constraint ;
     END IF;
     
-    UPDATE beta_version.matviews
+    UPDATE config_data.matviews
         SET last_refresh=CURRENT_TIMESTAMP
         WHERE matviews.mv_name = matview_name;
         	

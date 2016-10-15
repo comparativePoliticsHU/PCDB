@@ -16,10 +16,11 @@ A new political configuration is recorded when one of the following changes occu
 \item[-]{A change in the veto power of an instituion (rows in table Veto Poinst, identified by \texttt{vto\_inst\_id} or unique combination of \texttt{ctr\_id}, \texttt{vto\_inst\_typ} and \texttt{vto\_inst\_sdate}).}
 \end{itemize}
 
-Hence, changes in political configurations are either due to a change in the partisan composition of some institution, i.e., a change in the (veto-)power relations \emph{within} the institution, and consquently reflect changes in the (veto-)power relations \emph{between} the institutions.\footnote{Cases where \ldots constitute exceptions.}
-Or a new configuration is recorded due to party splits or merges, newly elected upper or lower houses, or new presidencies, that not necessarly affect the respective instituional veto potential vis\`a-vis the government
+Hence, changes in political configurations are either due to a change in the partisan composition of some institution, i.e., a change in the (veto-)power relations \emph{within} the institution, and consquently reflect changes in the (veto-)power relations \emph{between} the institutions.
+Or a new configuration is recorded due to party splits or merges in the legisalature, newly elected upper or lower houses, or new presidencies, that not necessarly affect the respective instituional veto potential vis\`a-vis the government.
+Variable \texttt{type\_of\_change} classifies every configuration according to its emergence, that is, what discerns is fro mthe respective previous configuration in that country.
 
-View \texttt{view\_configuration\_events} is programmed as follows:
+View \texttt{view\_configuration\_events} is defined as follows:
 \lstinputlisting[%caption={Code to compile configuration events.},
 language=SQL,commentstyle=\color{white}]%
 {../SQL-codes/views/view_configuration_events.sql}

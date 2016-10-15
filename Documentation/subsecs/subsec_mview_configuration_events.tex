@@ -1,8 +1,12 @@
 \subsection{Configuration Events Materialized View}\label{subsec_mview_configuration_events}
 
-The Configuration Events Materialized View (\texttt{mv\_configuration\_events}) sequences changes in the political-institutional configurations of a country by date as configuration events.
+The Configuration Events Materialized View sequences changes in the political-institutional configurations of a country by date as configuration events.
 It is based on the  Configuration Events View (see \ref{subsec_view_configuration_events}).
-Creating a materialization of the Configuration Events View is necessary to fill in the identifier values of temporarily corresponding institutional configurations, and to compute configuration end dates.
+Creating a materialization of the Configuration Events View is necessary to keep the recorded identifier values of temporarly corresponding institutional configurations and end dates consistent with the underlying data, without executing a refresh of the view whenever data in the base tables changes.
+Also, querying the materialzation (i.e., a table) is much faster computationally than querying the view.\footnote{%
+The difference in efficiency is real. 
+The \texttt{beta\_version} schema has \texttt{view\_configuration\_events\_adv}, which retruns with in-view computation of edate and insertation of corresponding institution identifiers, but is 800 times slower than queryig the equivalent, once-refreshed materialized view. 
+This decelerating effect would obviously multiply with every view or function querying configuratio events.} 
 
 Refer to Table \ref{tab_view_config_events_empty_cells} in order to recall how data is organized in the Configuration Events View.
 % Each row corresponds to a historically unique political configuration of government, lower house, upper house, the position of the Head of State and the given setting of veto institutions.
@@ -17,7 +21,8 @@ To ensure that the Configuration Events materialized view is up-to-date, there e
 The materialized view \texttt{mv\_configuration\_events} is created by calling  
 \begin{lstlisting}[language=postgreSQL]
 SELECT config_data.create_matview('config_data.mv_configuration_events', 
-                                  'config_data.view_configuration_events');
+                                  'config_data.view_configuration_events',
+                                  '{ctr_id, sdate}');
 \end{lstlisting}
 where the definition of function \texttt{create\_matview()} is given in subsection \ref{subsec_fun_create_matview}.
 

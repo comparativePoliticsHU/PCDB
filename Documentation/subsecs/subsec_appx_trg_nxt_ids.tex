@@ -1,0 +1,53 @@
+\subsection{Description of triggers to identify next instituion configrations}\label{subsec_appx_trigger_nxt_ids}
+
+\paragraph{Cabinet}\label{trg_cab_nxt_id}
+Trigger \texttt{trg\_cab\_nxt\_id} is implemented on table Cabinet and inserts data into cells of column \texttt{cab\_nxt\_id}. 
+
+Specifically, function \texttt{trg\_cab\_nxt\_id()} selects the identifier of the next cabinet configuration, as identified by the next bigger date of all cabinets recorded for a country.
+It is defined as follows:
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts next cabinet identifier.},%
+language=SQL]%
+{../SQL-codes/triggers/trg_cab_nxt_id.sql}
+
+Trigger \texttt{trg\_cab\_nxt\_id} is executed for each row before inserting or updating of data in table Cabinet is performed. 
+
+\paragraph{Lower House}\label{trg_lh_nxt_id}
+Trigger \texttt{trg\_lh\_nxt\_id} is implemented on table Lower House and inserts data into cells of column \texttt{lh\_nxt\_id}. 
+Specifically, function \texttt{trg\_lh\_nxt\_id()} selects the identifier of the next recorded lower house, as identified by the next bigger date of all lower houses recorded for a country.
+It is defined as follows:
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts next bigger house identifier.},%
+language=SQL]%
+{../SQL-codes/triggers/trg_lh_nxt_id.sql}
+
+Trigger \texttt{trg\_lh\_nxt\_id} is executed for each row before inserting or updating of data in table Lower House is performed. 
+
+
+\paragraph{LH Election}\label{trg_lhelc_nxt_id}
+Trigger \texttt{trg\_lhelc\_nxt\_id} is implemented on table LH Election and inserts data into cells of column \texttt{lhelc\_nxt\_id}. 
+Specifically, function \texttt{trg\_lhelc\_nxt\_id()} selects the identifier of the next bigger house election, as identified by the next bigger date of all recorded lower houses election dates for a country.
+It is defined as follows:
+\lstinputlisting[%caption={Code to create trigger that identifies and inserts next bigger house election identifier.},%
+language=SQL]%
+{../SQL-codes/triggers/trg_lhelc_nxt_id.sql}
+
+Trigger \texttt{trg\_lhelc\_nxt\_id} is executed for each row before inserting or updating of data in table Lower House Election is performed.  
+% 
+% \paragraph{Upper House}\label{trg_uh_nxt_id}
+% Trigger \texttt{trg\_uh\_nxt\_id} is implemented on table Upper House and inserts data into cells of column \texttt{uh\_nxt\_id}. 
+% Specifically, function \texttt{trg\_uh\_nxt\_id()}  selects the identifier of the next recorded upper house configuration, as identified by the next bigger date of all upper houses recorded for a country.
+% It is defined as follows:
+% \lstinputlisting[%caption={Code to create trigger that identifies and inserts next upper house identifier.},%
+% language=SQL]%
+% {../SQL-codes/triggers/trg_uh_nxt_id.sql}
+% 
+% Trigger \texttt{trg\_uh\_nxt\_id} is executed for each row before inserting or updating of data in table Upper House is performed.
+% 
+% \paragraph{Presidential Election}\label{trg_prselc_nxt_id}
+% Trigger \texttt{trg\_prselc\_nxt\_id} is implemented on table Presidential Election and inserts data into cells of column \texttt{prselc\_nxt\_id}. 
+% Specifically, function \texttt{trg\_prselc\_nxt\_id()} selects the identifier of the next presidential election, as identified by the next bigger date of all presidential elections recorded for a country.
+% It is defined as follows:
+% \lstinputlisting[%caption={Code to create trigger that identifies and inserts idetnifier of next presidential election.},%
+% language=SQL]%
+% {../SQL-codes/triggers/trg_prselc_nxt_id.sql}
+% 
+% Trigger \texttt{trg\_prselc\_nxt\_id} is executed for each row before inserting or updating of data in table Presidential Election is performed. 
