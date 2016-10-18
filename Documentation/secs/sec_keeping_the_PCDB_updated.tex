@@ -7,12 +7,14 @@ The following paragraphs will use the cabinet table (see subsection \ref{subsec_
 These examples can easily be applied to the other tables in the PCDB. 
 
 \paragraph{Some words of caution} 
+
 Please do not manipulate (i.e., insert, update, or delete) data without having a clear idea of 
 \begin{itemize}
 \item[a)]what is the primary key of a given table or the columns that uniquely identify rows;
 \item[b)]which referential dependencies are implied by the structure of the PCDB; and accordingly,
 \item[c)]how incomplete inserts or updates, or thoughtless delets affects the integrity and constistency of the PCDB.
 \end{itemize}
+Specifically, when manipulating data, always refer to target columns by primary key or unique value combinatins.
 Read about primary keys and the implementation of referential dependcies using foreing keys in the \texttt{PostgreSQL} documentation.\footnote{\url{https://www.postgresql.org/docs/9.3/static/ddl-constraints.html}}
 
 With respect to the minium workin example, 
