@@ -30,5 +30,10 @@ The folder 'SQL-Codes/' documents the data definition language (DDL) scripts for
 
 ## PCDB beta-version
 
-The folder 'beta_version' is a field of experimentation, assembling SQL-scripts that have not yet been applied to the PCDB 'config_data' schema.
+The folder 'beta_version/' is a field of experimentation, assembling SQL-scripts that have as of now not been implementd on the database's 'config\_data' schema, but only on the homonymous 'beta\_version' schema.
+
+## Code Archived
+
+The folder 'Archieved_code/' assembles files that are not implemented in the case of .sql files, or that are not used in the Codebook or Documentation in case of .tex files. 
+Obviously, this folder requires some further organization.
 
