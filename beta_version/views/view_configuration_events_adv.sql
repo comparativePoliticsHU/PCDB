@@ -31,7 +31,7 @@ configs AS (SELECT DISTINCT ON (ctr_id, sdate) start_dates.ctr_id, start_dates.s
 		  LEFT OUTER JOIN lower_houses ON (start_dates.ctr_id = lower_houses.ctr_id AND start_dates.sdate = lower_houses.lh_sdate)
 		  LEFT OUTER JOIN upper_houses ON (start_dates.ctr_id = upper_houses.ctr_id AND start_dates.sdate = upper_houses.uh_sdate)
 		  LEFT OUTER JOIN presidents ON (start_dates.ctr_id = presidents.ctr_id AND start_dates.sdate = presidents.prs_sdate)),
-config_partitions AS (SELECT
+config_partitions AS (SELECT -- see whats ogoing on here: http://stackoverflow.com/questions/18987791/how-do-i-efficiently-select-the-previous-non-null-value
 			ctr_id, sdate,
 			cab_id, sum(case when cab_id is null then 0 else 1 end) over (order by (ctr_id, sdate)) as cab_id_partition,
 			lh_id, sum(case when lh_id is null then 0 else 1 end) over (order by ctr_id, sdate) as lh_id_partition,

@@ -1,21 +1,17 @@
 \subsection{Roles in the PCDB}\label{subsec_access_roles}
-There exist three different roles with different sets of privileges to operate in the PCDB via \texttt{\footnotesize pgAdmin3}:
+There exist three different roles with different sets of privileges to operate in the PCDB via \texttt{pgAdmin3}:
 \begin{itemize}
-\item[(1)]{{\bf Administrator}: Having all privileges on both the \texttt{\footnotesize public} and the \texttt{\footnotesize config\_data} schemes. 
-This role is assumed by account \texttt{\footnotesize polconfdb} and \texttt{\footnotesize polconfdb\_1}. 
-Having all privileges includes to \texttt{\footnotesize GRANT} and \texttt{\footnotesize REVOKE} privileges to and from other the user roles.}
+\item[(1)]{{\bf Administrator}: Having all privileges on both the \texttt{public} and the \texttt{config\_data} schemes. 
+This role is assumed by account \texttt{polconfdb} and \texttt{polconfdb\_1}. 
+Having all privileges includes to \texttt{GRANT} and \texttt{REVOKE} privileges to and from other the user roles.}
 
-\item[(2)]{{\bf Read-and-Write}: Having privileges  \texttt{\footnotesize SELCECT},  \texttt{\footnotesize INSERT}, and  \texttt{\footnotesize UPDATE} on both the \texttt{\footnotesize public} and the \texttt{\footnotesize config\_data} schemes. 
-This role is assumed by account \texttt{\footnotesize polconfdb\_2} and \texttt{\footnotesize polconfdb\_3}.
-Note that the  \texttt{\footnotesize SELECT}-privilege includes the operation  \texttt{\footnotesize COPY TO}, which allows to extract data from queries to  \texttt{\footnotesize .csv}-documents.}
+\item[(2)]{{\bf Read-and-Write}: Having privileges  \texttt{SELCECT},  \texttt{INSERT}, and  \texttt{UPDATE} on both the \texttt{public} and the \texttt{config\_data} schemes. 
+This role is assumed by account \texttt{polconfdb\_2} and \texttt{polconfdb\_3}.
+Note that the  \texttt{SELECT}-privilege includes the operation  \texttt{COPY TO}, which allows to extract data from queries to  \texttt{.csv}-documents.}
 
-\item[(3)]{{\bf Read-Only}: Having privilege \texttt{\footnotesize SELCECT} on both the \texttt{\footnotesize public} and the \texttt{\footnotesize config\_data} schemes. 
-This role is assumed by account \texttt{\footnotesize polconfdb\_4} and \texttt{\footnotesize polconfdb\_5}.
-The \texttt{\footnotesize SELECT}-privilege includes the operation  \texttt{\footnotesize COPY TO}.}
+\item[(3)]{{\bf Read-Only}: Having privilege \texttt{SELCECT} on both the \texttt{public} and the \texttt{config\_data} schemes. 
+This role is assumed by account \texttt{polconfdb\_4} and \texttt{polconfdb\_5}.
+The \texttt{SELECT}-privilege includes the operation  \texttt{COPY TO}.}
 \end{itemize}
 
-The roles in the PCDB are defined as follows:
-
-\lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
-language=postgreSQL]%
-{../SQL-codes/define_roles.sql}
+Definitions of the roles in the PCDB on the \texttt{CMS} server are provided in the Appendix (see \ref{subsec_appx_access_roles}).
