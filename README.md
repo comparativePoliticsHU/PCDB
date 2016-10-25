@@ -1,6 +1,6 @@
 # PCDB
 
-This project repository collects the TeX-files, SQL-scripts and all other pieces necessary to maintain the Political Configuration Database (PCDB) on the HU-Server, and to compile the Codebook and the Documentation.
+This project repository collects the TeX-files, SQL-scripts and all other pieces necessary to maintain the **P**olitical **C**onfiguration **D**ata**b**ase (PCDB) on the HU-Server, and to compile the Codebook and the Documentation.
 
 ## Coodebook
 
