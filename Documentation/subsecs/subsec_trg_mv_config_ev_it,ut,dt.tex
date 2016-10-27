@@ -1,0 +1,176 @@
+\subsection{Integrity and consistency of materialized view Configuration Events}\label{integrity_and_consistency_of_MV}
+
+\subsubsection{Defining tables and functions that underlie the trigger-structure}
+First, table Materialized Views\label{table_Materialized_Views}\footnote{Source is Listing 1 at \url{http://www.varlena.com/GeneralBits/Tidbits/matviews.html}.} 
+ is defined as follows 
+\begin{lstlisting}[language=postgreSQL] 
+CREATE TABLE config_data.matviews ( 
+	mv_name NAME NOT NULL PRIMARY KEY, 
+	v_name NAME NOT NULL,  
+	last_refresh TIMESTAMP WITH TIME ZONE);
+\end{lstlisting}
+
+It stores on which view a materialized view is based and the date time of its last refresh.
+
+Second, the two following functions are defines:
+\begin{itemize}
+\item[i)]{%
+Function \texttt{\footnotesize mv\_config\_ev\_refresh\_row(\#$_{ctr}$, \#$_{date}$)}\label{fun_mv_config_ev_refresh}, which performs a refresh of rows in materialized view Configuration Events for a given combination of country identifier and start date:
+
+\lstinputlisting[%caption={Code to create row-refresh function on materialized view Configuration Events.},
+language=postgreSQL]%
+{../SQL-codes/fun_mv_config_ev_refresh_row.sql}
+% 
+% 
+% Rows in mv_configuration_events are uniquely identified by primary key (ctr_id, sdate).
+% Data in mv_configuration_events comes from tables that are mentioned in the underly the definition of view_configuration events (i.e., tables Cabinet, Lower House, Upper House, Presidential Election, and Veto Points)-
+% 
+% In order to execute a refresh of rows of mv_configuration_events (triggered by insert/delete/update actions on base tables), 
+% 	(i) all triggers on MV are disabled, 
+% 	(ii) row identified by ctr_id and sdate (defined as arguments to function) is deletedfrom MV,
+% 	(iii) row identified by ctr_id and sdate (defined as arguments to function) is inserted to MV from underlying view view_configuration_events,
+% 	(iv) all triggers on MV are enabled, 
+% 	(v) columns containing corresponding IDs of institions in mv_configuration_events are updated in order to trigger trg_mv_config_ev_correspond_ids, and
+% 	(vi) column containing end date of given configuration is updated where date is younger then recently refreshed row (for odler start and end dates will not be affected by refresh) 
+%   
+
+The function performs the following procedures:
+\begin{itemize}
+\item[(1)]{disable all triggers implemented on materialized view Configuration Events;}
+\item[(2)]{delete the row from materialized view Configuration Events that is identified by country identifier and start date;}
+\item[(3)]{insert the respective configuration information (country identifier and start date) from view  Configuration Events into materialized view Configuration Events;}
+\item[(4)]{enable all triggers implemented on materialized view Configuration Events; and}
+\item[(5)]{execute function \texttt{\footnotesize update\_mv\_config\_events()}, which is defined as:
+
+\lstinputlisting[%caption={Code to create update function on materialized view Configuration Events.},
+language=postgreSQL]%
+{../SQL-codes/fun_update_mv_config_events().sql}
+
+and results in executing all functions that are implemented as triggers on materialized view Configuration Events (fill empty cells with identifiers of cabinets, lower house configurations, etc. in charge, and computing configuration end dates).}
+\end{itemize}
+}
+
+\item[ii)]{%
+Function \texttt{\footnotesize refresh\_mv\_config\_events(\#$_{ctr}$)}, defined as follows:
+\lstinputlisting[%caption={Code to create refresh function on materialized view Configuration Events.},%
+language=postgreSQL]%
+{../SQL-codes/fun_refresh_mv_config_events().sql}
+
+The function performs the following procedures:
+\begin{itemize}
+\item[(1)]{disable all triggers implemented on materialized view Configuration Events;}
+\item[(2)]{delete all rows identified by country identifier \#$_{ctr}$;}
+\item[(3)]{insert (i.e., exact copy of) all rows from view Configuration Events that are identified by country identifier \#$_{ctr}$;}
+\item[(4)]{enable all triggers implemented on materialized view Configuration Events;}
+\item[(5)]{update the date of the last refresh of materialized view Configuration events in table Materialized Views to current date and time (see page \pageref{table_Materialized_Views}); and}
+\item[(4)]{execute function \texttt{\footnotesize update\_mv\_config\_events()}, 
+\end{itemize}
+}
+\end{itemize}
+
+\subsubsection{Implementing trigger-structure on base-tables}
+Function \texttt{\footnotesize mv\_config\_ev\_refresh\_row(\#$_{ctr}$, \#$_{date}$)}, in turn, is executed by three types of triggers that are each implemented on tables Cabinet, Lower House, Upper House, and Presidential Elections, respectively (the `base-tables'). Because the definition is lengthy, here only the respective trigger-types are explained, while the full definition is provided in the appendix.
+
+\subparagraph{Insert function and trigger}
+The first trigger-type that executes function \texttt{\footnotesize mv\_config\_ev\_refresh\_row(\#$_{ctr}$, \#$_{date}$)}  is triggered by insert on the base-tables.
+Schematically, it is programmed as follows: 
+
+\lstinputlisting[%caption={Code to create update function on materialized view Configuration Events.},
+language=postgreSQL]%
+{../SQL-codes/fun_mv_config_ev_*table_it().sql}
+
+Where \texttt{\footnotesize *} refers to either \texttt{\footnotesize cab}, \texttt{\footnotesize lh}, \texttt{\footnotesize uh} or \texttt{\footnotesize prselc}, and \texttt{\footnotesize *table} to either \texttt{\footnotesize cabinet}, \texttt{\footnotesize lower\_house}, \texttt{\footnotesize upper\_house} or \texttt{\footnotesize presidential\_election}.
+
+\subparagraph{Update function and trigger}
+The second trigger-type that executes function \texttt{\footnotesize mv\_config\_ev\_refresh\_row(\#$_{ctr}$, \#$_{date}$)} is triggered by update on the base-tables.
+Schematically, it is programmed as follows: 
+
+\lstinputlisting[%caption={Code to create update function on materialized view Configuration Events.},
+language=postgreSQL]%
+{../SQL-codes/fun_mv_config_ev_*table_ut().sql}
+
+Where \texttt{\footnotesize *} refers to either \texttt{\footnotesize cab}, \texttt{\footnotesize lh}, \texttt{\footnotesize uh} or \texttt{\footnotesize prselc}, and \texttt{\footnotesize *table} to either \texttt{\footnotesize cabinet}, \texttt{\footnotesize lower\_house}, \texttt{\footnotesize upper\_house} or \texttt{\footnotesize presidential\_election}.
+
+ 
+\subparagraph{Delete function and trigger}
+The third trigger-type that executes function \texttt{\footnotesize mv\_config\_ev\_refresh\_row(\#$_{ctr}$, \#$_{date}$)} is triggered by delete from the base-tables.
+Schematically, it is programmed as follows: 
+
+\lstinputlisting[%caption={Code to create update function on materialized view Configuration Events.},
+language=postgreSQL]%
+{../SQL-codes/fun_mv_config_ev_*table_dt().sql}
+
+\subsubsection{Summarizing the trigger-structure}
+While view Configuration Events sequences changes in the politcal-instituional configurations of countries by date, and materialized view Configuration Events is only implemented to allow for perfomring permanent changes (fill empty cells, compute configuration end dates, etc.), the trigger structure described above is thought to guarantee for the integrity and consistency of the data on politcal configurations.
+
+In particular, when changes in the base-tables occur, triggering functions \texttt{\footnotesize mv\_config\_ev\_refresh\_row(\#$_{ctr}$, \#$_{date}$)} and \texttt{\footnotesize refresh\_mv\_config\_events(\#$_{ctr}$)}, respectively, results in corresponding changes in materialized view Configuration Events.
+
+It is instructive to give three short examples to illustrate the functioning of the three trigger-types. For sake of convenience the examples elabrate on changes on table Cabinet only, but the working of the trigger structure is identical with regard to the other base-tables.
+\begin{itemize}
+\item[{\bf insert}]{%
+Assume we want to insert a new configuration into table Cabinet.\footnote{\url{http://www.postgresql.org/docs/9.3/static/sql-insert.html}}
+(Note that corrsponding entries in table Cabinet Portfolios need to be made manually.) 
+Type:
+\begin{lstlisting}[language=postgreSQL]
+INSERT INTO config_data.cabinet
+	(cab_id, ctr_id, cab_sdate, cab_hog_n, cab_care)
+	VALUES (1036, 1, '2014-01-01', 'Abbott', 'FALSE');
+\end{lstlisting}
+This action triggers \texttt{\footnotesize mv\_config\_ev\_insert} implemented on table Cabinet, which in turn executes function \texttt{\footnotesize mv\_config\_ev\_cabinet\_it()}. The only thing the latter function does is executing a refresh of materialized view Configuration Events as defined by function \texttt{\footnotesize mv\_config\_ev\_refresh\_row(\#$_{ctr}$, \#$_{date}$)} (see page \pageref{function_mv_config_ev_refresh}), where \#$_{ctr}$ is given by \texttt{\footnotesize NEW.ctr\_id} and \#$_{date}$ by \texttt{\footnotesize NEW.cab\_sdate} as specified by the insert-command.\\
+The result is that cabinet number 1036 also occurs in  materialized view Configuration Events and all (public and non-public) views that are based on it (see Codebook and Section \ref{Views_in_config_data_schema} in this manual).%
+}
+
+\item[{\bf update}]{%
+Assume we want to update the start date of an existing configuration in table Cabinet.\footnote{\url{http://www.postgresql.org/docs/9.2/static/sql-update.html}}
+Type:
+\begin{lstlisting}[language=postgreSQL]
+UPDATE config_data.cabinet 
+	SET cab_sdate = '2014-03-15'::DATE 
+	WHERE cab_id = 1036  \\
+	AND ctr_id = 1  \\
+	AND cab_sdate = '2014-01-01'::DATE;
+\end{lstlisting}
+
+This action triggers \texttt{\footnotesize mv\_config\_ev\_update} implemented on table Cabinet, which in turn executes function \texttt{\footnotesize mv\_config\_ev\_cabinet\_ut()}. 
+Again, this function executes a refresh of materialized view Configuration Events as defined by function \texttt{\footnotesize refresh\_mv\_config\_events(\#$_{ctr}$)}. 
+However, the results depend on whether the update on table Cabinet changes the start date of a cabinet configuration:
+\begin{itemize}
+\item[a)]{If after update the cabinet start date is unchanged (e.g. only the name of the Head of Government has been changed), no change occurs in materialized view Configuration Events occurs.}
+\item[b)]{If, in contrast, the cabinet start date is changed after update, it follows a change in materialized view Configuration Events, executed by function\texttt{\footnotesize refresh\_mv\_config\_events(\#$_{ctr}$)}, where \#$_{ctr}$ is defined by the \texttt{\footnotesize ctr\_id} that is recorded for the affected row in table Cabinet.}
+\end{itemize}
+Thus, whether a change in materialized view Configuration Events occurs on update of table Cabinet depends on whether the start date of a recorded cabinet configuration is changed.%
+}
+
+\item[{\bf delete}]{%
+Assume we want to delete an existing cabinet configuration from table Cabinet.\footnote{\url{http://www.postgresql.org/docs/9.0/static/sql-delete.html}}
+Type:
+\begin{lstlisting}[language=postgreSQL]
+DELETE FROM config_data.cabinet 
+WHERE cab_id = 1036 
+AND ctr_id = 1  
+AND cab_sdate = '2014-03-15'::DATE;
+\end{lstlisting}
+This action triggers \texttt{\footnotesize mv\_config\_ev\_delete} implemented on table Cabinet, which in turn executes function \texttt{\footnotesize mv\_config\_ev\_cabinet\_dt()}. 
+Again, this function executes a refresh of materialized view Configuration Events as defined by function \texttt{\footnotesize mv\_config\_ev\_refresh\_row(\#$_{ctr}$, \#$_{date}$)}. However, the results is that the row(s) that correspond(s) to the respective cabinet configuration is also deleted from materialized view Cabinet Configurations.
+\end{itemize} 
+
+\subparagraph{What to do in the worst case}
+If despite (or because of) the trigger-structure no changes in materialized view Confguration Events follow from changes performed on the base-tables, simply use function \texttt{\footnotesize refresh\_mv\_config\_events(\#$_{ctr}$)}, where \#$_{ctr}$) is the country identifier.
+
+For instance, typing 
+\begin{lstlisting}[language=postgreSQL]
+SELECT config_data.refresh_mv_config_events(1::SMALLINT)
+\end{lstlisting}
+initiates the following changes:
+\begin{itemize}
+\item[(1)]{disable all triggers implemented on materialized view Configuration Events;}
+\item[(2)]{delete all rows identified by country identifier 1 (Austria);}
+\item[(3)]{insert (i.e., exact copy of) all rows from view Configuration Events that are identified by country identifier 1;}
+\item[(4)]{enable all triggers implemented on materialized view Configuration Events;}
+\item[(5)]{update the date of the last refresh of materialized view Confuguration events in table Materialized Views to current date and time (see page \pageref{table_Materialized_Views}); and}
+\item[(4)]{execute function \texttt{\footnotesize update\_mv\_config\_events()}, which results in executing all function that are implemented by triggers on materialized view Confuguration Events (fill empty cells with identifiers of cabinets, lower house configurations, etc. in charge, and computing configuration end dates).}
+\end{itemize}
+
+
+
+

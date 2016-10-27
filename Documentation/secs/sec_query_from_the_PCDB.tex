@@ -1,0 +1,52 @@
+\section{Querying data from the PCDB}\label{sec_query_from_the_PCDB}
+
+As figure \ref{fig_pgadmin3_inside_PCDB} shows, there are multiple schemas inside the PCDB. (Read about schemas in the \texttt{PostgreSQL} documentatin, \url{https://www.postgresql.org/docs/9.1/static/ddl-schemas.html})
+The organization of the schemas in the PCDB is desribed in chapter \ref{chap_programming_the_PCDB}.
+
+To browse a schema, simply select it with a doubl-click in the `Object browser.'
+Selection by double-click will drop-down the objects inside the given schema, as shown in figure \ref{fig_pgadmin3_inside_config_data} for the \texttt{config\_data} schema inside the PCDB.
+
+\begin{figure}[ht!]
+\centering
+  \begin{subfigure}{.45\textwidth}
+  \includegraphics[width=\textwidth,trim= 0 0 0 0, clip]{pcdb_documentation_screenshots/pgadmin3_inside_config_data.png}
+    \subcaption{View of `Object browser' window after selecting the \texttt{config\_data} schema of the \texttt{polconfdb} database in \texttt{pgAdmin3}.}
+    \label{fig_pgadmin3_inside_config_data}
+  \end{subfigure}
+  ~%
+  \begin{subfigure}{.45\textwidth}
+  \includegraphics[width=\textwidth,trim= 0 0 0 0, clip]{pcdb_documentation_screenshots/pgadmin3_tables_inside_config_data.png}
+    \subcaption{View of `Object browser' window after selecting tables in the \texttt{config\_data} schema of the \texttt{polconfdb} database in \texttt{pgAdmin3}.}
+    \label{fig_pgadmin3_tables_inside_config_data}
+  \end{subfigure} 
+  \caption{Inside the \texttt{config\_data} schema of the \texttt{polconfdb} database in \texttt{pgAdmin3}.}
+\end{figure}
+
+There are a some contents you will usually be less concerned with, such as `Collations,' `Domains,' `FTS' objects, and `Sequences.' (Note that they are empty, as indicated by the zero in brackets after their names.)
+Most important to you, in case you want to query data from the PCDB, are the `Tables' and `Views' objects.\footnote{
+Tables are the permanent repositories that store the data of the PCDB; views are virtual tables based on the result-sets of pre-defined SQL-queries (queries are always executed when you query a view). Detailed descriptions of the content and definition of the tables and view in the PCDB are provided in chapter \ref{chap_programming_the_PCDB}.}
+When you double-click on the `Tables' object in \texttt{pgAdmin3}'s `Object browser', a list of all tables in the current schema (here \texttt{config\_data}) will be displayed (see figure \ref{fig_pgadmin3_tables_inside_config_data}).
+
+Double-clicking again on a particular table object will cause some changes in the tool bar: When selecting a particular table, the `Data Viewer' tool is activated (the icon that looks like a data table; right to the `SQL'-labeled magnifying glass, which is \texttt{pgAdmin3}'s built-in SQL-query editor).
+The visual difference is shown in figures \ref{fig_pgadmin3_select_tables_toolbar} and \ref{fig_pgadmin3_select_a_table_toolbar}: 
+When no particular table or view is selected, the `Data Viewer' icon is blured and not click-able (see figure \ref{fig_pgadmin3_select_tables_toolbar}); after selecting a particular table or view, you can double-click on the data viewer tool, and a data table window will pop up on your desktop.
+
+\begin{figure}[ht!]
+\centering
+  \begin{subfigure}{.45\textwidth}
+  \includegraphics[width=\textwidth,trim= 0 0 0 0, clip]{pcdb_documentation_screenshots/pgadmin3_select_tables_toolbar.png}
+    \subcaption{Tool bar when selecting `Tables' object in `Object browser' window.}
+    \label{fig_pgadmin3_select_tables_toolbar}
+  \end{subfigure}
+  ~%
+  \begin{subfigure}{.45\textwidth}
+  \includegraphics[width=\textwidth,trim= 0 0 0 0, clip]{pcdb_documentation_screenshots/pgadmin3_select_a_table_toolbar.png}
+    \subcaption{Tool bar when selecting a particular table in `Object browser' window.}
+    \label{fig_pgadmin3_select_a_table_toolbar}
+  \end{subfigure} 
+  \caption{Change in \texttt{pgAdmin3}'s tool bar when selecting a particular table.}
+\end{figure}
+
+  \input{subsecs/subsec_data_viewer}
+  \input{subsecs/subsec_sql_query_tool}
+

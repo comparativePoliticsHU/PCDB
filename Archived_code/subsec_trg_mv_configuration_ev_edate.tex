@@ -1,0 +1,9 @@
+\subsection{Triggering the computation of configurations end dates}\label{subsec_trg_mv_config_ev_edate}
+
+Computation of configuration end dates, and insertation into cells of column \texttt{edate} of table Configuration Events Materialized View is triggered by  \texttt{trg\_*\_mv\_config\_ev\_edate}, which call function \texttt{trg\_mv\_config\_ev\_edate()}.
+
+Trigger \texttt{trg\_it\_mv\_config\_ev\_edate} is executed for each row of materialized view Configuration Events after inserting new data, i.e., whenever a new configuration emerges; 
+function\texttt{trg\_dt\_mv\_config\_ev\_edate} is executed for each row of materialzied view Configuration Events after deleting data from it; and 
+function \texttt{trg\_ut\_mv\_config\_ev\_edate}, in turn, is executed for each row of materialzied view Configuration Events before its data is updated.  
+
+{\bf Note}: The events insert, update or delete occur whenever data in the tables that underly view Configuration Events (and accordingly its materilization) is changed, that is, data is inserted to, updated in or deleted from tables Cabinet, Lower House, Upper House, or Presidential Elections. 

@@ -1,0 +1,30 @@
+\subsection{Electoral Alliances}\label{subsec_tab_electoral_alliances}
+
+Table \texttt{electoral\_alliances} provides information on electoral alliances, to identify the parties forming an electoral alliance when possible. 
+Parties listed in the Party table (see \ref{subsec_tab_party}) that are recorded as electoral alliances are listed with their respective \texttt{pty\_id}.
+
+Variable \texttt{pty\_eal\_nbr} is a counter that enumerates parties that constitute an electoral alliance.\footnote{The counter is also recorded in the Party table and equals one for all `conventional' parties.}
+Accordingly, there occur as many rows for each electoral alliance in the table as variable \texttt{pty\_eal} counts. 
+
+Variable \texttt{pty\_eal\_id}, in turn, records the party identifiers of the parties that form an electoral alliance. 
+Combinations of \texttt{pty\_id} (electoral alliance) and \texttt{pty\_eal\_nbr} (enumerator of party in electoral alliance) are therefore unique.
+
+\begin{table}[h!]
+\centering\footnotesize
+\caption{Example of composition of selected electoral alliances in Portugal.}\label{tab_electoral_alliance_example}
+\input{../Codebook/tab_example_electoral_alliances}
+\end{table}
+
+The example given in Table \ref{tab_electoral_alliance_example} presents a selection from the recorded electoral alliances in Portugal, and seeks to illustrate the coding scheme and organization of data in the table.
+Electoral alliance AP is formed by three parties, of which none is recorded in PCDB Party data (see \ref{subsec_tab_party}) and thus \#\#999s are assigned. One party that forms electoral alliance PSP.US is identified as PSP; however it could not be validated how many parties form the alliance, and therefore the enumerator is coded 99.
+The electoral alliance PDPC was knowingly formed by four parties, of which only one (CDC) is identified in the Party table.
+
+Thought \texttt{pty\_eal\_id} often references \#\#999, it allows to link additional information on parties provided in table \ref{tab_party} to the electoral-alliance information.
+
+\subparagraph{}
+Table \texttt{electoral\_alliances} is defined as follows:
+\lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
+language=postgreSQL]%
+{../SQL-codes/tables/tab_electoral_alliances.sql}
+
+

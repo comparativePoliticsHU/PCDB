@@ -5,159 +5,246 @@ DIV=13,%
 oneside,%
 english,%
 abstract=off,%
-toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
-\usepackage{fontspec}%	font specification, fuegt umlaute hinzu
-\usepackage{libertine}%	font
+toc=chapterentrywithdots,%
+toc=bibnumbered%
+]{scrreprt}
 
-\usepackage[svgnames*]{xcolor}%extended color, cmyk ist die Spezifizierung
-\usepackage{color}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% USEPACKAGES BY USAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setcounter{tocdepth}{4}%
-\setcounter{secnumdepth}{4}%
-\usepackage[backref=section]{hyperref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% GENERAL SETTINGS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\hypersetup{colorlinks=false}
-\hypersetup{linkcolor=black}
-\hypersetup{citecolor=teal}
-\hypersetup{urlcolor=blue}
-\hypersetup{linkbordercolor=orange}
-\hypersetup{citebordercolor=orange}
-\hypersetup{urlbordercolor=teal}
-\hypersetup{linktoc=all}
+%%%% COLORS %%%%
+  
+  \usepackage[]{xcolor}%extended color, cmyk ist die Spezifizierung
+    \usepackage{textcomp}
 
-
-\newcommand{\ts}{\textsuperscript}% allows to write 2\ts{nd} etc.
-\newcommand\vsmallfont{\fontsize{6}{7.2}\selectfont}
-\newcommand\smallfont{\fontsize{8.5}{9.7}\selectfont}
-\newcommand\txtfont{\fontsize{11.5}{13.7}\selectfont}
-
-\usepackage{listings}% to display SQL-code
-\lstset{% settings for using listing-package
-   basicstyle=\smallfont\ttfamily,% overall styl of text
-   keywordstyle=\ttfamily\color{blue},% add \bfseries to display keyords (e.g., AS or CREATE) in bold
-   stringstyle=\color{orange}\ttfamily,
-   commentstyle=\color{gray}\ttfamily,
-   emph=1,%{square}, 
-   emphstyle=\color{blue}\texttt,
-   emph=1,%{[2]root,base},
-   %emphstyle={[2]\color{darkgreen}\texttt},
-   showstringspaces=false,%do not show spaces in strings ("squat-u")
-   flexiblecolumns=false,
-   tabsize=2,
-   numbers=left,
-   numberstyle=\tiny,% fontsize of running-counter numbers
-   numberblanklines=TRUE,% numbering of empty rows 
-   stepnumber=1,% start running-counter or rows with
-   numbersep=10pt,% vertical distance between numbers
-   xleftmargin=25pt% distance of numbers from left 
- }
-
-
-% it is apparantly possible to define postgreSQL as a new language, because using SQL as language results in highlighting of just a few keywords that are implmented in postgreSQL
-\lstdefinelanguage{postgreSQL}{%
-	  language     = SQL,
-	morekeywords={%
-		replace,%
-		with,%
-		::,%
-		text,%
-		boolean,%
-		name,%
-		void,%
-		sign,%
-		abs%,
-		count,%
-		round,%
-		if,%
-		begin,%
-		return,%
-		new,%
-		old,%
-		returns,%
-		null,%
-		nulls,%
-		security,%
-		definer,%
-		language,%
-		function,%
-		functions,%
-		procedure,%
-		schema,%
-		tables,%
-		after,%
-		before,%
-		for,%
-		each,%
-		row,%
-	}%
-}
-
-\usepackage{footnotebackref}
+  \usepackage{color}
+  
+    %% http://colorbrewer2.org/?type=diverging&scheme=RdYlBu&n=5
+    \definecolor{redish}{RGB}{215,25,28}
+    \definecolor{orangish}{RGB}{253,174,97}
+    \definecolor{yellowish}{RGB}{255,255,191}
+    \definecolor{lightblueish}{RGB}{171,217,233}
+    \definecolor{darkblueish}{RGB}{44,123,182}
+  
+    %% http://colorbrewer2.org/?type=diverging&scheme=PuOr&n=5
+    \definecolor{darkorangish}{RGB}{230,97,1}
+    \definecolor{lightorangish}{RGB}{253,184,99}
+    \definecolor{verylightgreyish}{RGB}{247,247,247}
+    \definecolor{lightflieder}{RGB}{178,171,210}
+    \definecolor{darkflieder}{RGB}{94,60,153}
+    \definecolor{verydarkflieder}{RGB}{84,39,136}
+  
+%%%% HYPER-REFFERENCNG %%%%
+  
+  \setcounter{tocdepth}{3}%  set depth of table of contents counter
+  \setcounter{secnumdepth}{3}%  set depth of sections counter
+  \usepackage[backref=section]{hyperref}%  use hyper-referencing for links, reference entries, and section referencing
+    
+    \hypersetup{colorlinks=true}
+    \hypersetup{linkcolor=black}
+    \hypersetup{citecolor=teal}
+    \hypersetup{urlcolor=blue}
+    \hypersetup{linkbordercolor=orange}
+    \hypersetup{citebordercolor=orange}
+    \hypersetup{urlbordercolor=teal}
+    \hypersetup{linktoc=all}
+  
+  \usepackage{footnotebackref}
 
 
-%\hypersetup{hyperfootnotes=false}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% GRAPHICS ADN DIAGRAMS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\deffootnote[1em]{1em}{2em}{\textsuperscript{\thefootnotemark\ }}
-
-\usepackage{natbib}
-\usepackage{cite}
-\bibliographystyle{apsr}%apsr
-
-\usepackage[headsepline,footsepline%,plainfootsepline
-]{scrpage2}%	Kopf und Fusszeilen 
-\pagestyle{scrheadings}%	seitenstil 
-
-\usepackage{scrdate}% for using \the\year in page headings
-\usepackage{datetime}% for using \monthname in page headings
-
-\lohead{PCDB}%	left of head
-\automark[section]{chapter}% defines structure (KOMA-Script manual, page 240ff.)
-\renewcommand*{\sectionmarkformat}{}% adjusts section headmark foramt so that only section-title, but no section number is displayed
-\cohead{\headmark}% places (Section-)mark in center of page-head
-\rohead{\monthname\ \the\year}
-
-%\usepackage{calc}
-%\ifoot{\rule{0pt}{\ht\strutbox+\dp\strutbox}Footer}
-\lofoot{Humboldt-University of Berlin}
-\cofoot{}
-
-\renewcommand*{\pnumfont}{\footfont}%let pagemark have same font&style like footfont
-\rofoot{\pagemark}
-\setheadsepline{.4pt}
-%\setfootsepline{.4pt}
-
-\usepackage{marginnote}%	erlaubt einfuegen von Randbemerkungen
-\usepackage{varioref}%	erlaubt das Referenzieren von Abbildungen und Tabellen mit 							\ref{} und \pageref{}
+  \usepackage{geometry}
+  \usepackage{tikz}
+  \usetikzlibrary{positioning,shapes,shadows,arrows}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%% CODE LISTINGS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{ragged2e}%	erlaubt Flatteratz mit Trennung
-\usepackage{array}%	 	erlaubt es neue Spaltentypen zu definieren
+  \usepackage{listings}% to display SQL-code
 
-\newcolumntype{L}[1]% 	P: Kuerzel; 1: Anzahl der Parameter
-{ >{\hspace{0pt}\RaggedRight} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
-\newcolumntype{R}[1]% 	P: Kuerzel; 1: Anzahl der Parameter
-{ >{\hspace{0pt}\RaggedLeft} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
+    \newcommand\smallfont{\fontsize{8.5}{9.7}\selectfont}
 
-\newcolumntype{C}[1]% 	P: Kuerzel; 1: Anzahl der Parameter
-{ >{\hspace{0pt}\RaggedLeft\RaggedRight} p {#1} }%definiert Spaltentyp der ohne Einrueckung 								beginnt und rechts flattert
+    \lstset{% settings for listings-package
+       basicstyle=\smallfont\ttfamily\color{white!10!black},% overall styl of text
+       keywordstyle=\ttfamily\color{blue},% add \bfseries to display keyords (e.g., AS or CREATE) in bold
+       stringstyle=\color{darkorangish}\ttfamily,%  appearance of strings like 'name' and '2016-08-31'
+       commentstyle=\color{verylightgreyish}\ttfamily,%  apperance of comments like -- Comment
+       emph=1,%  emphasis type; alternatively use {square}
+       emphstyle=\color{blue}\texttt,
+       emph=1,%{[2]root,base},
+       %emphstyle={[2]\color{darkgreen}\texttt},
+       showstringspaces=false,%  do/do not show spaces in strings ("squat-u")
+       flexiblecolumns=false,
+       tabsize=2,%  size of tab indentation (number of whitespaces)
+       numbers=left,%  where to display of running row-counter numbers
+       numberstyle=\tiny\color{white!30!black},%  fontsize of running row-counter numbers
+       numberblanklines=true,%  numbering of empty rows 
+       stepnumber=1,%  start running-counter or rows with
+       numbersep=10pt,%  vertical distance between numbers
+       xleftmargin=25pt%  distance of numbers from left 
+     }
+  
+  
+  % it is apparantly possible to define postgreSQL as a new language, because using SQL as language results in highlighting of just a few keywords that are implmented in postgreSQL
+  \lstdefinelanguage{postgreSQL}{%
+  	  language = SQL,
+  	morekeywords={%otherkeywords
+  		replace,%
+  		drop,%
+  		including,%
+  		with,%
+  		over,%
+  		partition,%
+  		window,%
+  		::,%
+      to,%
+  		text,%
+  		boolean,%
+  		double,%
+  		precision,%
+  		name,%
+  		enum,%
+  		void,%
+  		sign,%
+  		abs%,
+  		count,%
+  		round,%
+  		if,%
+  		begin,%
+  		return,%
+  		new,%
+  		old,%
+  		returns,%
+  		null,%
+  		nulls,%
+  		security,%
+  		definer,%
+  		declare,%
+  		language,%
+  		function,%
+  		functions,%
+  		procedure,%
+  		schema,%
+  		tables,%
+  		references,%
+  		type,%
+  		after,%
+  		before,%
+  		for,%
+  		each,%
+  		row,%
+  		statement,%
+  		array,%
+  		{,},%
+  		array_to_string,%
+  		date_part,%
+  		$$,%
+  		plpgsql,%
+  		:=,%
+  		||,%
+  		;%
+  	}%
+  }
 
-\usepackage{tabularx}% 	extended tabular
-\usepackage{subcaption}
-\usepackage{threeparttable}
-\usepackage{longtable}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% CITATION AND BIBLIOGRAPHY STYLE %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \usepackage{natbib}
+  \usepackage{cite}
+  \bibliographystyle{apsr}%apsr
 
-\DeclareCaptionLabelFormat{Uppercaselabel}{\MakeUppercase{#1 #2}}%Uppercase caption label (e.g. TABLE 1)
-%\captionsetup[table]{labelformat=Uppercaselabel, labelsep=newline}%no collon but newline as sepaeartor of label and title 
 
-\usepackage{dcolumn}
-\usepackage{booktabs}
-\usepackage{rotating}
+%%%%%%%%%%%%%%%
+%%%% FONTS %%%%
+%%%%%%%%%%%%%%%
 
-\usepackage{setspace} % allows to set stretch in environemnents (e.g., \setstretch{.650})
+  % \usepackage{fontspec}%	font specification, add Umlaute if needed
+  % \usepackage{libertine}%	 use fancy font
+  
+  \newcommand{\ts}{\textsuperscript}% allows to write 2\ts{nd} etc.
+  % \newcommand\vsmallfont{\fontsize{6}{7.2}\selectfont}
+  % \newcommand\smallfont{\fontsize{8.5}{9.7}\selectfont}
+  % \newcommand\txtfont{\fontsize{11.5}{13.7}\selectfont}
 
-\usepackage{url}
-\urlstyle{same}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% FIGURES AND TABLES %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \usepackage{marginnote}%	enables notes at the margin 
+  \usepackage{varioref}%	enables referencing using \ref{} und \pageref{}
+  
+  \usepackage{enumitem}%  fancy enumerations
+    \setlist[itemize]{rightmargin=\leftmargin, itemsep=-.3em}
+  
+  \usepackage{ragged2e}%	enables ragged text setting
+  \usepackage{array}%	 enables user-defined columns text setting
+    
+    \newcolumntype{L}[1]{ >{\hspace{0pt}\RaggedRight} p {#1} }%  column with fixed width and right ragged
+    \newcolumntype{R}[1]{ >{\hspace{0pt}\RaggedLeft} p {#1} }%  column with fixed width and left ragged
+    \newcolumntype{C}[1]{ >{\hspace{0pt}\RaggedLeft\RaggedRight} p {#1} }%  column with fixed width and ragged on both sides
+  
+  \usepackage{tabularx}% 	extended tabular
+  \usepackage{graphicx}% 	extended graphics
+  \usepackage{caption}%  extended graphiccs 
+  \usepackage{subcaption}%  enable subcaptions
+  \usepackage{threeparttable}
+  \usepackage{longtable}
+  
+    % declare caption label formats
+    \DeclareCaptionLabelFormat{Uppercaselabel}{\MakeUppercase{ #1 #2}}%Uppercase caption label (e.g. TABLE 1)
+    \DeclareCaptionLabelFormat{Boldfacelabel}{\bf #1 #2}%Uppercase caption label (e.g. TABLE 1)
+    % set caption label formats
+    \captionsetup[table]{labelformat=Boldfacelabel}%
+    \captionsetup[figure]{labelformat=Boldfacelabel}%
+  
+  \usepackage{dcolumn}
+  \usepackage{booktabs}%  
+  \usepackage{rotating}%  for sideways figures and tables 
+  
+  \usepackage{setspace} % allows to set stretch in environemnents (e.g., \setstretch{.650})
+  
+  \usepackage{url}%  for clickable URLs
+    \urlstyle{same}%  URL same font style as main text
+
+%%%% HEADERS AND FOOTERS %%%%
+  \usepackage[headsepline,footsepline]{scrpage2}%  headers and footers
+    \pagestyle{scrheadings}%  headers and footers in scr page-style 
+    
+    % Perequisites and customizing for fancy header/footer styling
+    \usepackage{scrdate}% for using \the\year in page headings
+    \usepackage{datetime}% for using \monthname in page headings
+  
+    \automark[section]{chapter}% defines structure (KOMA-Script manual, page 240ff.)
+    \renewcommand*{\sectionmarkformat}{}%  adjusts section headmark format so that only section-title, but no section number is displayed
+    \renewcommand*{\pnumfont}{\footfont}%let pagemark have same font&style like footfont
+  
+  
+  \lohead{Political Configurations Database}%	left of head
+  \cohead{}% places (Section-)mark in center of page-head
+  \rohead{\RaggedLeft \headmark}%  alternatively \rohead{\monthname\ \the\year}
+  
+  \lofoot{Humboldt University of Berlin}
+  \cofoot{}
+  \rofoot{\pagemark}
+  \setheadsepline{.4pt}
+  
+  %% FOOTNOTES
+  \deffootnote[1em]{1em}{2em}{\textsuperscript{\thefootnotemark\ }}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% TITLE PAGE LAYOUT %%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{layout}
 \newcommand*{\SubTitleFont}{%
@@ -165,38 +252,44 @@ toc=chapterentrywithdots,toc=bibnumbered]{scrreprt}
       \fontsize{40}{30}%
       \selectfont}
 
-
-\hypersetup{pdftitle = {Access to the Political Configurations Database}}
-\hypersetup{pdfauthor = {Hauke Licht}}
+  \hypersetup{pdftitle = {Political Configurations Database: Documentation}}
+  \hypersetup{pdfauthor = {Hauke Licht}}
 
 \title{\huge Political Configurations Database}
-\subtitle{\SubTitleFont\textbf{Documentation}\footnote{Last update: \today}}
+\subtitle{\SubTitleFont\textbf{Documentation}\footnote{Last update of document: \today}}
 \author{
-	%Tarik Abou-Chadi, Ph.D.\thanks{Humboldt-University of Berlin}%
-	\and%
-	%Matthias Orlowski, Ph.D.\thanks{Humboldt-University of Berlin}%	
-	\and%	
-	%Hauke Licht\thanks{\href{mailto:hauke.licht.1@hu-berlin.de}{Contact: hauke.licht.1@hu-berlin.de}}%
-	%\and
-	%{\ss}% {\ss} produzeirt sz
-	%\thanks{Freie Universität Berlin%Free University Berlin
-	%}%
-	%\and
-	%Third Author%
-	%\thanks{Institution}%
+	%Ellen M. Immergut, Ph.D.\thanks{Project Coordinator, Humboldt-University of Berlin}%
+  %\and%
+	Hauke Licht\thanks{Documentation author, \href{mailto:hauke.licht.1@cms.hu-berlin.de}{hauke.licht.1@cms.hu-berlin.de}}%
 }
 \publishers{
-	Chair of Comparative Politics\\ Humboldt University of Berlin
-	%Ellen M. Immergut, Professor Ph.D.\thanks{Humboldt University of Berlin}
-	%\and%
-	%Tarik Abou-Chadi, Ph.D.\thanks{Humboldt University of Berlin}%
-	%\and%
-	%Matthias Orlowski, Ph.D.\thanks{Humboldt University of Berlin}%
+  %Ellen M. Immergut, Ph.D.\\
+	Chair of Comparative Politics\\ 
+	Humboldt University of Berlin\\
+	%Universitätsstra{\ss}e 3b, room 413b\\
+	%c/o Unter den Linden 6\\ 
+	%10099 Berlin \\
 }
-%\subject	{DFG-Project}
+\subject{DFG-Project}
 \date{\monthname\ \the\year}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
-\input{PCDB_documentation_structure}
+  \maketitle
+  \newpage
+  
+  \tableofcontents\thispagestyle{empty}\newpage
+%   \listoffigures\thispagestyle{empty}\newpage
+%   \listoftables\thispagestyle{empty}\newpage
+%   \lstlistoflistings \thispagestyle{empty}\newpage
+
+  % input global settings for tikz figures
+  \input{./graphics/tikz_style_organigram} 
+  % input contents
+  \input{./PCDB_documentation_structure}
 \end{document}

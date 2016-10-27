@@ -1,0 +1,35 @@
+\subsection{Manually updating data}\label{subsec_manually_updating_data}
+
+Altering the values of an existing row in a table is achieved with the \texttt{UPDATE}-operation, specifying the table and the column of the values that is thought to be updated.\footnote{\url{https://www.postgresql.org/docs/9.3/static/dml-update.html}}
+Updating is achieved by \texttt{SET}ting a column equal to some value that matcces the type of the respective column.
+A \texttt{WHERE}-clause is requiered to identify the row(s) which you attempz to update. 
+
+A minimum working example reads as follows:
+\begin{lstlisting}[language=postgreSQL]
+UPDATE config_data.cabinet 
+	SET cab_sdate = '2017-06-15'::DATE 
+	WHERE cab_id = 6038 
+	AND ctr_id = 6 
+	AND cab_sdate = '2017-01-01'::DATE;
+\end{lstlisting}
+
+Here, the value of the column that reports the cabinet's start date is updated in only one observation, as the attributes \texttt{cab\_id}, and \texttt{ctr\_id} and \texttt{cab\_sdate}, respectively, uniquely identify rows in the cabinet table. (Note that using one identifier only would suffice.)
+
+Note that it is possible to update information of more than one row. 
+You could, for instance, 
+\begin{lstlisting}[language=postgreSQL]
+UPDATE config_data.cabinet 
+	SET cab_hog_n = 'John Doe'::NAME 
+	WHERE cab_hog_n = 'Licht'
+	AND ctr_id = 6;
+\end{lstlisting}
+which would apply to all German cabinet configurations in which some guy with last name `Licht' was recorded as head of government (i.e., prime minister).
+
+Note further that updating is proceeded row-by-row. Executing
+\begin{lstlisting}[language=postgreSQL]
+UPDATE config_data.cabinet 
+	SET cab_id = cab_id+1
+	WHERE ctr_id = 6;
+\end{lstlisting}
+would thus prompt an error, because increasing the first rows identifier by one would conflict with the \texttt{PRIMARY KEY}-constraint on the second rows \texttt{cab\_id}.\footnote{Becasue the second row might have \texttt{cab\_id = 6002}, increasing the first cabinet's identifier to \texttt{6002} violate the \texttt{UNIQUE}-constraint that is implicit to \texttt{PRIMARY KEY}.}
+

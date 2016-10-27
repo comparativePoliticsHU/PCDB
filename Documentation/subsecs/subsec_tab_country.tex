@@ -1,0 +1,15 @@
+\subsection{Countries}\label{subsec_tab_country}
+
+Table \texttt{country} contains the 34 countries covered in the PCDB as rows, attributing each country a unique identifier (\texttt{ctr\_id}) and providing information on their accession date to specific international organizations. 
+
+%The following countries (ISO3 country-code) are listed in the PCDB:
+%\begin{table}[h!]
+%\centering
+%\caption*{List 1: ISO3 country-codes and names of countries recorded in the PCDB.}
+%\input{../Codebook/tab_countries_in_PCDB}
+%\end{table}
+
+It is defined as follows:
+\lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
+language=postgreSQL]%
+{../SQL-codes/tables/tab_country.sql}

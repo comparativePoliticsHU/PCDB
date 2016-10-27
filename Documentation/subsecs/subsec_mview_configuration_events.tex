@@ -1,0 +1,108 @@
+\subsection{Configuration Events Materialized View}\label{subsec_mview_configuration_events}
+
+The Configuration Events Materialized View sequences changes in the political-institutional configurations of a country by date as configuration events.
+It is based on the  Configuration Events View (see \ref{subsec_view_configuration_events}).
+Creating a materialization of the Configuration Events View is necessary to keep the recorded identifier values of temporarly corresponding institutional configurations and end dates consistent with the underlying data, without executing a refresh of the view whenever data in the base tables changes.
+Also, querying the materialzation (i.e., a table) is much faster computationally than querying the view.\footnote{%
+The difference in efficiency is real. 
+The \texttt{beta\_version} schema has \texttt{view\_configuration\_events\_adv}, which retruns with in-view computation of edate and insertation of corresponding institution identifiers, but is 800 times slower than queryig the equivalent, once-refreshed materialized view. 
+This decelerating effect would obviously multiply with every view or function querying configuratio events.} 
+
+Refer to Table \ref{tab_view_config_events_empty_cells} in order to recall how data is organized in the Configuration Events View.
+% Each row corresponds to a historically unique political configuration of government, lower house, upper house, the position of the Head of State and the given setting of veto institutions.
+% Configurations events are uniquely identified by combinations of \texttt{ctr\_id} and \texttt{sdate}). 
+The second recorded president, for instance, who came into power on December 23, 1995, was in charge during the subsequent five configuration events. 
+Thus, the presidential election identifier 25002 is valid in these subsequent cells, too.
+Apparently, sequencing institutional configurations by start dates results in empty cells where a previous institutional configuration was still active while an other changed. 
+Note further that technically, in order to compute open veto points for a given political configuration, empty cells need to be filled with the identifiers that refer to the cabinet, president, lower house composition etc. that were in active at any given point configuration event.
+
+To ensure that the Configuration Events materialized view is up-to-date, there exists a trigger structure that is described in below (see \ref{subsubsec_trigger_structure_mv_config_ev}).
+
+The materialized view \texttt{mv\_configuration\_events} is created by calling  
+\begin{lstlisting}[language=postgreSQL]
+SELECT config_data.create_matview('config_data.mv_configuration_events', 
+                                  'config_data.view_configuration_events',
+                                  '{ctr_id, sdate}');
+\end{lstlisting}
+where the definition of function \texttt{create\_matview()} is given in subsection \ref{subsec_fun_create_matview}.
+
+\subsubsection{Selecting corresponding institution identifiers}
+
+To fill empty cells with temporally corresponding identifiers, function \texttt{trg\_mv\_config\_ev\_correspond\_ids()} is executed (see \ref{subsec_fun_trg_mv_config_ev_correspond_ids}).
+After executing function \texttt{trg\_mv\_config\_ev\_correspond\_ids()}, the data in the Configuration Events Materialized View looks as examplified in Table \ref{tab_mview_config_events_filled_cells}.
+
+\begin{table}[h!]
+\centering\footnotesize
+\caption{Configuration Events Materialized View with filled cells for temporally corresponding institutional configurations.}
+\label{tab_mview_config_events_filled_cells}
+\begin{tabular}{r r r r r r r}
+\tabularnewline\toprule\toprule
+\multicolumn{1}{r}{\texttt{ctr\_id}}	&
+\multicolumn{1}{r}{\texttt{sdate}}	&	
+\multicolumn{1}{r}{\texttt{cab\_id}}	&
+\multicolumn{1}{r}{\texttt{lh\_id}}	&
+\multicolumn{1}{r}{\texttt{lh\_id}}	&	
+\multicolumn{1}{r}{\texttt{lhelc\_id}}	&	
+\multicolumn{1}{r}{\texttt{prselc\_id}}	\\\midrule
+25	&	1993-10-15	&	25004	&	25002	&	25002	&	25002	&	25001	\\
+25	&	1993-10-26	&	25005	&	25002	&	25002	&	25002	&	25001	\\
+25	&	1995-05-06	&	25006	&	25002	&	25002	&	25002	&	25001	\\
+25	&	1995-12-23	&	25006	&	25002	&	25002	&	25002	&	25002	\\
+25	&	1996-02-07	&	25007	&	25002	&	25002	&	25002	&	25002	\\
+25	&	1997-01-02	&	25007	&	25002	&	25002	&	25002	&	25002	\\
+25	&	1997-09-21	&	25007	&	25003	&	25003	&	25002	&	25002	\\
+25	&	1997-10-17	&	25007	&	25003	&	25003	&	25002	&	25002	\\
+25	&	1997-10-21	&	25007	&	25003	&	25003	&	25003	&	25002	\\
+25	&	1997-10-21	&	25007	&	25003	&	25003	&	25003	&	25002	\\\bottomrule\bottomrule
+\end{tabular}
+\end{table}
+
+The empty cells have been filled and the materialized view can be used to compute the respective veto-potential configurations, cabinet seat shares in the lower and upper houses, and so forth.
+
+\subsubsection{Computing configurations end dates}
+Configuration end dates are computed and inserted into cells of column \texttt{edate} by calling function \texttt{trg\_mv\_config\_ev\_edate()} (see \ref{subsec_fun_trg_mv_config_ev_edate}).
+The function selects the start date of the next recorded political configuration, as identified by the next bigger date of all recorded political configurations for a country, substracts one day from this date and assigns the resulting date as end date of the respective configuration.
+The function is called by triggers \texttt{trg\_*\_mv\_config\_ev\_edate} (see \ref{subsec_trg_mv_config_ev_edate}) on insert, update, or delete on the materialized view.
+
+\subsubsection{Propagate trhough changes on base tables}\label{subsubsec_trigger_structure_mv_config_ev}
+
+Whenever a change on the base tables Cabinet, Lower House, Upper House, Presidential Elections, and Veto Points occurs, the Configuration Events View is up-to-date when queried; the Configuration Events Materialized View, due to its `eagerness' is not, though.
+A number of triggers defined on the base tables and two functions guarantee that a change on a base table is propagated trhought ot the materialized view Configuration events; this structure is illustrated in Figure \ref{fig_mv_config_ev_triggers}.
+
+\input{./graphics/triggers_base_tables_config_ev}\label{fig_mv_config_ev_triggers}
+
+Central to the structure implemented to update configuration events displayed in Figure \ref{fig_mv_config_ev_triggers} are two function, which will be described in turn.
+
+\paragraph{Refresh out-dated rows}
+
+A change on a base table triggers a refresh of affected rows in the Configuration Events Materialised View:
+\begin{itemize}
+
+\item[-]{On update of columns having the institutional configuration identifier or start date values listed in the materialized view, function \texttt{mv\_config\_ev\_*\_ut()} is called, where the asterisk \texttt{*} is a placeholder for the table name.
+This function will perform one call of function \texttt{mv\_config\_ev\_refresh\_row()} (see \ref{subsec_fun_mv_config_ev_refresh_row}) with old country identifier and start date values (note that start date refers to the configuration start date at the level of the base table, e.g. \texttt{cab\_sdate} or \texttt{prs\_sdate}), and another call with new (i.e., updated) country identifier and configuration start date values for each row that is updated.}
+
+\item[-]{On insert into a base table function \texttt{mv\_config\_ev\_*\_it()} is called, which performs a call of \texttt{mv\_config\_ev\_refresh\_row()} with newly inserted country identifier and configuration start date values for each row that is inserted.}
+
+\item[-]{On delete from a base table call function \texttt{mv\_config\_ev\_*\_dt()} is calles, which performs a call of \texttt{mv\_config\_ev\_refresh\_row()} with the country identifier and start date values of the row that is removed for each row that is deleted.}
+\end{itemize}
+
+These event triggers are defined on each of the base tables and named \texttt{mv\_config\_ev\_update}, \texttt{mv\_config\_ev\_insert}, and \texttt{mv\_config\_ev\_delete}, respectively. 
+Definitions of functions and triggers like  like \texttt{mv\_config\_ev\_\#\_*()} and \texttt{mv\_config\_ev\_*} are provided in the Appendix (see \ref{subsec_appx_trg_mv_config_ev_refresh_row}). 
+
+\subsubsection{Propagate change through to rows with affected IDs}
+
+Because function \texttt{mv\_config\_ev\_refresh\_row()} only affects rows in materialized view Configuration Events identified by arguments country identifier and start date, not all rows in which an institution-configuration ID is listed will be affected (recall that one institutional configuration may correspond to multiple configuration events).
+Hence, a change in a base table that affects the configuration identifier of this institutional configuration requires to propagate this change through to all configuration events in the materialized vies that are associated with this identifier. 
+
+This is achieved by a set of triggers named \texttt{mv\_config\_ev\_\#\_id\_*\_trg}, where the hastag stands for the institutions (i.e., is \texttt{cab}, \texttt{lh}, \texttt{uh}, \texttt{lhelc}, or \texttt{prselc}), and the asterisk is a placeholder for trigger events update (\texttt{ut}), insert (\texttt{it}), or delete (\texttt{dt}):
+\begin{itemize}
+\item[-]Trigger \texttt{mv\_config\_ev\_\#\_id\_ut\_trg} calls function \texttt{mv\_config\_ev\_\#\_id\_ut\_trg()} on update of the identifier column, which performs function \texttt{mv\_config\_ev\_ut\_\#\_id()} with the two input arguments old and new identifier.
+\texttt{mv\_config\_ev\_ut\_\#\_id()} updates materialized view Configuration Events and sets all identifier values to the new identifier value where they are currently equal to the old identifier value.
+
+\item[-]Trigger \texttt{mv\_config\_ev\_\#\_id\_it\_trg} calls function \texttt{mv\_config\_ev\_\#\_id\_it\_trg()}, which executes an update of materialized view Configuration Events, setting the respective identifier column equal to its actually values, which will trigger the inserting of corresponding IDs (implemented by yet another trigger defined on materialised view configuration events)
+
+\item[-]Trigger \texttt{mv\_config\_ev\_\#\_id\_dt\_trg} calls function \texttt{mv\_config\_ev\_\#\_id\_dt\_trg()} on delete of a row in the respective base table, which performs function \texttt{mv\_config\_ev\_dt\_*\_id()} with the old (i.e., to-be-removed) identifier value as single input argument.
+\texttt{mv\_config\_ev\_dt\_\#\_id()} updates materialized view Configuration Events and sets all identifier values to \texttt{NULL} where they are equal to the old identifier value.
+\end{itemize}
+
+Definitions of the triggers and functions involved in updating changed institution identifiers in the Configuration Events Materialized View are porvided in the Appendix (see \ref{}).

@@ -1,0 +1,44 @@
+\section{Keeping the PCDB updated}\label{sec_keeping_the_PCDB_updated}
+
+Data in the PCDB is manipulated using \texttt{PostgreSQL}'s data manipulation language (DML) operations \texttt{INSERT}, \texttt{UPDATE}, and \texttt{DELETE}. \footnote{See \url{https://www.postgresql.org/docs/9.3/static/dml.html}}
+
+The following paragraphs will use the cabinet table (see subsection \ref{subsec_tab_cabinet}) in the \texttt{config\_data} schema of the \texttt{polconfdb} database as an example to introdcue some minimal working examples.
+
+These examples can easily be applied to the other tables in the PCDB. 
+
+\paragraph{Some words of caution} 
+
+Please do not manipulate (i.e., insert, update, or delete) data without having a clear idea of 
+\begin{itemize}
+\item[a)]what is the primary key of a given table or the columns that uniquely identify rows;
+\item[b)]which referential dependencies are implied by the structure of the PCDB; and accordingly,
+\item[c)]how incomplete inserts or updates, or thoughtless delets affects the integrity and constistency of the PCDB.
+\end{itemize}
+Specifically, when manipulating data, always refer to target columns by primary key or unique value combinatins.
+Read about primary keys and the implementation of referential dependcies using foreing keys in the \texttt{PostgreSQL} documentation.\footnote{\url{https://www.postgresql.org/docs/9.3/static/ddl-constraints.html}}
+
+With respect to the minium workin example, 
+(a) The cabinet identifiers column (\texttt{cab\_id}) is primary key of cabinet table, and cabinet start date (\texttt{cab\_sdate}) in combination with the country identifier (\texttt{ctr\_id}) uniquely identify observations (i.e., rows). 
+
+With reespect to (b), \texttt{cab\_id} is referenced as foreign key in the cabinet portfolios table (see subsection \ref{subsec_tab_cabinet_portfolios}), and, in combination with the party identifier \texttt{pty\_id}, uniquely identifies cabinet portfolios
+Moreover, as cabinet compositions (i.e., rows in the cabinet tables) sequenced alongside lower house, upper house, and presidency configurations in the configuration events view, cabinet compositions are essential to compute configuration-specific indicators, such as cabinet parties cumulated seat share in the lower house; to identify open veto points; etc.
+%Lastely, and \texttt{\footnotesize cab\_id}s are selected by several triggers to identify previous or subsequent cabinets for any given cabinet (subsections \ref{} and \ref{}).
+
+Finally, in view of (c), though it is possible to insert a new observation to table Cabinet without providing, for instance, its start date, this would cause non-trivial problems, for instance, when compiling the configurations events view.
+
+Users are thus strongly inclined to pay attention to the key and uniquness constraints of a given table when inserting, updating or deleting data from it. Information on constraints is provided in the respective subsections of the Table section (\ref{sec_table}) and the PCDB Codebook (see documentation Appendix).
+
+\paragraph{Some words on data consistency}
+
+Note that the trigger structure and functions defined on the \texttt{config\_data} schema ensures that manipulation executed on the cabinet, lower house, upper house, presidential election, and veto points tables propgate through to the configuration events and configuration country-years tables.
+The interrelation between the configuration tables and the structure is explained in detail in sections \ref{sec_views_in_config_data_scheme}, \ref{sec_mviews_in_config_data_scheme} and \ref{sec_triggers}.
+
+In other cases, such as the interrelation between the cabinet portfolios on the cabinet table, dependencies exist, but consistency is not enforced using a trigger structure. If you insert a new cabinet configuration, you have to manually add the corresponding cabinet portfolio (rows of parties in cabinet and the parliamentary opposition). No error will be raised if you fail to do so.
+Likewise, if you record a new lower house election (upper house election), you have to make sure that the corresponding vote results are listed at the party level in the lower house vote results table, and that you record the lower house (upper house) configuration that corresponds to the election.
+And if you record a new lower house (upper house) composition, you have to make sure that the corresponding seat results are listed at the party level in the lower house seat results (upper house seat results) table. 
+
+
+  \input{./subsecs/subsec_manually_inserting_data}
+  \input{./subsecs/subsec_manually_updating_data}
+  \input{./subsecs/subsec_manually_deleting_data}
+  \input{./subsecs/subsec_upsert_data_function}

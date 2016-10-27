@@ -1,0 +1,70 @@
+﻿CREATE OR REPLACE VIEW beta_version.view_configuration_duration_in_year
+AS 
+WITH configurations_in_year -- enlists configurations' in the year(s) they were active
+	AS (
+	WITH matches -- flags country-years for which matching configuration(s) exists as TRUE (else FALSE) 
+		AS (
+		SELECT ctr_id, year, COALESCE(matched, NULL, FALSE) AS matched -- matched is defined as FALSE if NULL 
+			FROM
+				(SELECT ctr_id, year::NUMERIC(4,0) FROM
+						(SELECT DATE_PART('year', year::date) AS year
+							FROM generate_series( -- generate series of years from lowest recorded to current year
+								(SELECT min(sdate) FROM beta_version.mv_configuration_events), 
+								(SELECT current_date),
+								INTERVAL '1 year') AS year
+						) AS YEARS
+					, -- compute cross-product of all countries an series of years yields country-year matrix
+						(SELECT DISTINCT ctr_id FROM beta_version.mv_configuration_events) AS COUNTRIES
+					-- ORDER BY ctr_id, year -- (omission increases efficiency)
+				) AS COUNTRY_YEARS
+			FULL OUTER JOIN -- joins complete list of country-years with country-year combinations enlisted in confuguration_events
+				(SELECT DISTINCT ctr_id, year, TRUE::BOOLEAN AS matched 
+					FROM beta_version.mv_configuration_events 
+					-- ORDER BY ctr_id, year -- (omission increases efficiency)
+				) AS DATA -- get all configurations from materialized view
+			USING(ctr_id, year)
+		) -- WITH as matches 
+		SELECT ctr_id, year, sdate, edate, DATE_PART('year', sdate) AS syear, DATE_PART('year', edate) AS eyear 
+			FROM  beta_version.mv_configuration_events
+			WHERE (ctr_id, year) -- conditions on country-year combinations enlisted in confuguration_events 
+				IN (SELECT DISTINCT ON (ctr_id, year) ctr_id, year FROM matches WHERE matched = TRUE) 
+		UNION -- for all country-year combinations not enlisted in confuguration_events, select temporally closest configuration with lower start year than current year as 'then still active' configuration
+		SELECT MATCHES.ctr_id as ctr_id, MATCHES.year AS year, max(sdate) AS sdate, max(edate) AS edate, DATE_PART('year', max(sdate)) AS syear, DATE_PART('year', max(edate)) AS eyear 
+			FROM
+			(SELECT ctr_id, year, max(sdate) AS sdate, max(edate) AS edate
+				FROM beta_version.mv_configuration_events 
+				GROUP BY ctr_id, year
+				-- ORDER BY ctr_id, year -- (omission increases efficiency)
+			) AS MAX_SDATE
+		, 
+			(SELECT ctr_id, year FROM matches WHERE matched = FALSE) AS MATCHES
+		WHERE MAX_SDATE.ctr_id = MATCHES.ctr_id
+		AND MAX_SDATE.year < MATCHES.year
+		GROUP BY MATCHES.year, MATCHES.ctr_id
+		-- ORDER BY ctr_id, year, sdate -- (omission increases efficiency)
+	) -- WITH as configuration_in_year
+SELECT ctr_id, sdate, edate, year, ((edate+1)-sdate)::INT AS duration_in_year 
+	FROM configurations_in_year 
+	WHERE syear = eyear
+UNION
+SELECT ctr_id, sdate, edate, syear AS year, 
+	(TO_TIMESTAMP(''|| syear::INT+1 ||'-01-01', 'YYYY-MM-DD')::DATE-sdate) AS duration_in_year
+	FROM configurations_in_year
+	WHERE syear < eyear
+UNION
+SELECT ctr_id, sdate, edate, eyear AS year, 
+	(edate-TO_TIMESTAMP(''|| eyear::INT-1 ||'-12-31', 'YYYY-MM-DD')::DATE) AS duration_in_year
+	FROM configurations_in_year 
+	WHERE syear < eyear
+UNION
+SELECT ctr_id, sdate, edate, year, 
+	(SELECT count(*) 
+		FROM   generate_series(
+		TO_TIMESTAMP(''|| year::INT ||'-01-01', 'YYYY-MM-DD')::DATE,
+		TO_TIMESTAMP(''|| year::INT ||'-12-31', 'YYYY-MM-DD')::DATE, 
+		'1 day') d(the_day)
+	) AS duration_in_year
+	FROM configurations_in_year
+	WHERE year != syear
+	AND year != eyear 
+ORDER BY ctr_id, year, sdate;

@@ -1,0 +1,37 @@
+\subsection{Configuration Country-Years Materilaized View}\label{subsec_mview_configuration_ctr_yr}
+
+A materialized view identical with the Configuration Country-Years View is created: \texttt{mv\_configuration\_ctr\_yr}
+
+Creating a materialization of the Configuration Country-Years View is necessary to ensure that the configuration country-year data is up-to-date. 
+This is implemented with a a trigger structure similar to that defined on materialized view Configuration Events.
+
+\subsubsection{Porpagate through changes on base tables}
+
+Rows in materialized view \texttt{mv\_configuration\_ctr\_yr} are uniquely identified by the primary key combination of \texttt{ctr\_id} and  \texttt{year)}.
+Data in in the materialized view stems from tables that are mentioned in the underlying view \texttt{view\_configuration\_ctr\_yr},  which, in turn, is based on the Configuration Events materilaized view (see \ref{subsec_view_configuration_ctr_yr} and \ref{subsec_mview_configuration_events}, respectively). 
+
+
+Therefore, a data manipulation performed on the base tables Cabinets, Lower Houses, Upper Houses, Presidential Elections, and Veto Points requires to execute a refresh of rows recorded in materialized view Configuration Country-Years. This is achieved by function \texttt{} and a set of event triggers implemented on the base tables.
+
+Specifically, a change in a base table that affects the configuration identifier of this institutional configuration or its start date may affect its affiliation with a poltiical configuration or its duration, and hence requires to propagate this change through to all configuration country-years in the materialized view that are associated with this identifier or are affected by a change in durations. 
+
+This is achieved by a set of triggers named \texttt{mv\_config\_ctr\_yr\_\#\_id\_*}, where the hastag stands for the institutions (i.e., is \texttt{cab}, \texttt{lh}, \texttt{uh}, or \texttt{prselc}), and the asterisk is a placeholder for trigger events update (\texttt{ut}), insert (\texttt{it}), or delete (\texttt{dt}):
+\begin{itemize}
+\item[-]Trigger \texttt{mv\_config\_ctr\_yr\_\#\_id\_ut} calls function \texttt{mv\_config\_ctr\_yr\_refresh()} on update of the identifier or start date column of the respective base table.
+\item[-]Trigger \texttt{mv\_config\_ctr\_yr\_\#\_id\_it} calls function \texttt{mv\_config\_ctr\_yr\_refresh()} on insert on the respective base table.
+\item[-]Trigger \texttt{mv\_config\_ctr\_yr\_\#\_id\_dt} calls function \texttt{mv\_config\_ctr\_yr\_refresh()} on delete on the respective base table.
+\end{itemize}
+Function  \texttt{mv\_config\_ctr\_yr\_refresh()} executes \texttt{refresh\_mv\_config\_ctr\_yr\_row()} (see description below).
+These triggers are defined at the event-statment level, that is, they are not executed rowwise, but once for each insert, update, or delet statement on the respective base table.
+
+\paragraph{Function \texttt{refresh\_mv\_config\_ctr\_yr\_row()}}
+Function \texttt{refresh\_mv\_config\_ctr\_yr\_row()} is triggered by insert, delete or update statements on the base tables.
+When executed, it performs the following steps:
+\begin{itemize}
+\item[(i)] Drop table created in (ii), if exists. 
+\item[(ii)] Create a table that records country identifier, start dates and years of the configurations that are in the (temporary) set differences between Configuration Country-Years View and the Materialized View (recall that, when queried, the view will be up to date).
+\item[(iii)] For each row in table (ii) identified by country identifier and year, update corresponding row in the materialized view according to the data in the view.
+\item[(iv)] End with deleting the table that recorded temporary differences.
+\end{itemize}
+
+Complete definitions of the triggers and functions described in this subsection can be found in the Appendix (see \ref{subsec_appx_trg_mv_config_ctr_yr_refresh} and \ref{subsec_appx_fun_refresh_mv_config_ctr_yr_row}, respectively).  

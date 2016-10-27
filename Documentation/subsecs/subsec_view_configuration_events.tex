@@ -1,0 +1,68 @@
+\subsection{Configuration Events View}\label{subsec_view_configuration_events}
+The Configuration Events View (\texttt{view\_configuration\_events}) is based on tables Cabinet, Lower House, Upper, House, Presidential Elections and Veto Points, and provides the primary information on political configurations, namely country identifiers, a political configurations' start date, and the identifier values (IDs) of corresponding institutional configurations.
+
+Accordingly, every row corresponds to a historically unique political configuration of a country's government, lower house, upper house, the position of the Head of State, and the veto institutions in place. 
+, and 
+%a configuration is uniquely identified by combinations of \texttt{ctr\_id}, \texttt{cab\_id}, \texttt{lh\_id}, \texttt{uh\_id} (if applies), and \texttt{prs\_id} (if applies).
+because configuration start dates are identical with the start date of the institution the most recent change  occured, political configurations are uniquely identified by combinations of \texttt{ctr\_id} and \texttt{sdate}).
+
+View \texttt{view\_configuration\_events} thus sequences changes in the political-institutional configurations of a country by date.
+A new political configuration is recorded when one of the following changes occurs at one point in time during the respective period of coverage of a given country:
+\begin{itemize}\itemsep-4pt \parsep0pt
+\item[-]{A change in cabinet composition (rows in table Cabinet, identified by \texttt{cab\_id} or unique combinations of \texttt{cab\_sdate} and \texttt{ctr\_id}).}
+\item[-]{A change in lower house composition (rows in rable Lower House, identified by \texttt{lh\_id} or unique combinations of \texttt{lh\_sdate} and \texttt{ctr\_id}).}
+\item[-]{If exists in the respective country, a change in upper house composition (rows in table Upper House, identified by \texttt{uh\_id} or unique combination of \texttt{uh\_sdate} and \texttt{ctr\_id}).}
+\item[-]{If exists in the respective country, a change in presidency (rows in table Presidential Election, identified by \texttt{prselc\_id} or unique combination of \texttt{prs\_sdate} and \texttt{ctr\_id}).}
+\item[-]{A change in the veto power of an instituion (rows in table Veto Poinst, identified by \texttt{vto\_inst\_id} or unique combination of \texttt{ctr\_id}, \texttt{vto\_inst\_typ} and \texttt{vto\_inst\_sdate}).}
+\end{itemize}
+
+Hence, changes in political configurations are either due to a change in the partisan composition of some institution, i.e., a change in the (veto-)power relations \emph{within} the institution, and consquently reflect changes in the (veto-)power relations \emph{between} the institutions.
+Or a new configuration is recorded due to party splits or merges in the legisalature, newly elected upper or lower houses, or new presidencies, that not necessarly affect the respective instituional veto potential vis\`a-vis the government.
+Variable \texttt{type\_of\_change} classifies every configuration according to its emergence, that is, what discerns is fro mthe respective previous configuration in that country.
+
+View \texttt{view\_configuration\_events} is defined as follows:
+\lstinputlisting[%caption={Code to compile configuration events.},
+language=SQL,commentstyle=\color{white}]%
+{../SQL-codes/views/view_configuration_events.sql}
+
+Rows are reported for all temporarily corresponding combinations of institutional configurations. 
+Table \ref{tab_view_config_events_empty_cells}  illustrates this for the Polish case.\footnote{%
+Poland has been chosen as an example because it is one of the few countries in the PCDB in which all political institutions of interest exist, as, besides lower and upper house, presidents are popularly elected since 1990.}
+
+\begin{table}[h!]
+\centering\footnotesize
+\caption{Configuration Events View with empty cells for temporally corresponding institutional configurations.}
+\label{tab_view_config_events_empty_cells}
+\begin{tabular}{r r r r r r r}
+\tabularnewline\toprule\toprule
+\multicolumn{1}{r}{\texttt{ctr\_id}}	&
+\multicolumn{1}{r}{\texttt{sdate}}	&	
+\multicolumn{1}{r}{\texttt{cab\_id}}	&
+\multicolumn{1}{r}{\texttt{lh\_id}}	&
+\multicolumn{1}{r}{\texttt{lh\_id}}	&	
+\multicolumn{1}{r}{\texttt{lhelc\_id}}	&	
+\multicolumn{1}{r}{\texttt{prselc\_id}}	\\\midrule
+25	&	1993-09-19	&		&	25002	&	25002	&		&		\\
+25	&	1993-10-15	&		&		&		&	25002	&		\\
+25	&	1993-10-26	&	25005	&		&		&		&		\\
+25	&	1995-05-06	&	25006	&		&		&		&		\\
+25	&	1995-12-23	&		&		&		&		&	25002	\\
+25	&	1996-02-07	&	25007	&		&		&		&		\\
+25	&	1997-01-02	&		&		&		&		&		\\
+25	&	1997-09-21	&		&	25003	&	25003	&		&		\\
+25	&	1997-10-17	&		&		&		&		&		\\
+25	&	1997-10-21	&		&		&		&	25003	&		\\\bottomrule\bottomrule
+\end{tabular}
+\end{table}
+
+Note that the very first configuraton of each country regularly has a non-trivial missings,
+because one institutional configuration usually has an earlier start date than others
+(cabinets, for instance, are formed from lower houses compositions; hence, a new cabinet usually starts only after a new lower hosue is formed).
+%this first configuration event has a null.
+% In the Australian case, the first recorded Australian cabinet started on November 1st, 1946; thus, no corresponding cabinet can be assigned to the first recorded lower house and upper house configuration (first row of Table \ref{tab_view_config_events_empty_cells}). 
+This makes it impossible to determine veto constellations for the very first recorded configuration event, resulting in missing information.
+
+From the conceptional point of view, these incomplete configurations generally provide no information on the institutional-political setting of legislation. 
+In order to provide an overview over countries' political history, these `incomplete configurations' are reported, however.
+
+%The Configuration Events View is used to create an equivalent {\em materialized} view (see section \ref{sec_mview_configuration_events}), which is, in turn, used to trigger-in configuration end dates (see subsection \ref{trg_mv_config_ev_edate}) and to identify temporarily corresponding institutional configurations (see subsection \ref{trg_mv_config_ev_corresponding_ids}).

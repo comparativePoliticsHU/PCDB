@@ -1,0 +1,55 @@
+\subsection{Selecting corresponding institution identifiers within political configurations}\label{subsec_trg_mv_config_ev_corresponding_ids}
+The Configuration Events View (\ref{view_configuration_events}) sequences changes in the political-institutional configurations of a country by date as configuration events.
+
+
+Refer to Table \ref{tab_view_config_events_empty_cells} in order to recall how data is organized in the Configuration Events View:\footnote{%
+Poland has been chosen as an example because it is one of the few countries in the PCDB in which all political institutions of interest exist, as, besides lower and upper house, presidents are popularly elected since 1990.}
+Each row corresponds to a historically unique political configuration of government, lower house, upper house, the position of the Head of State and the given setting of veto institutions.
+Configurations events are uniquely identified by combinations of \texttt{ctr\_id} and \texttt{sdate}). 
+
+Apparently, sequencing institutional configurations by start dates results in empty cells where a previous institutional configuration was still active while an other changed. 
+The second recorded president, for instance, who came into power on December 23, 1995, was in charge during the subsequent five configuration events. 
+Thus, the presidential election identifier 25002 is valid in these subsequent cells, too.
+Note further that technically, in order to compute open veto points for a given political configuration, empty cells need to be filled with the identifiers that refer to the cabinet, president, lower house composition etc. that were in active at any given point configuration event.
+
+Because it is not possible to insert data into views, a materialized view that is identical with view Configuration Events is created: \texttt{mv\_configuration\_events}
+
+To fill empty cells with temporally corresponding identifiers, function (\texttt{trg\_mv\_config\_ev\_correspond\_ids()}) is defined.
+The functions inserts the identifiers of the then active institutional configuration into empty cells, by choosing the identifier value of the configuration that came into powermost recently. 
+Technically, this equates to select the value of row with the next smallest start date where the identifier is not null
+It is defined as follows:
+
+\lstinputlisting[%caption={Code to create triggers that identify and insert corresponding  identifier in configuarations.},%
+language=SQL]%
+{../SQL-codes/triggers/trg_mv_config_ev_correspond_ids.sql}
+and triggered by insert, update, or delete from the Configuration Events Materialized View.%; events that occur when data in the base-tables is changed (see subsection \ref{integrity_and_consistency_of_MV}).
+
+After executing function (\texttt{trg\_mv\_config\_ev\_correspond\_ids()}), the data in the Configuration Events Materialized View looks as examplified in Table \ref{tab_mview_config_events_filled_cells} follows:
+
+\begin{table}[h!]
+\centering\footnotesize
+\caption{Configuration Events Materialized View with filled cells for temporally corresponding institutional configurations.}
+\label{tab_mview_config_events_filled_cells}
+\begin{tabular}{r r r r r r r}
+\tabularnewline\toprule\toprule
+\multicolumn{1}{r}{\texttt{ctr\_id}}	&
+\multicolumn{1}{r}{\texttt{sdate}}	&	
+\multicolumn{1}{r}{\texttt{cab\_id}}	&
+\multicolumn{1}{r}{\texttt{lh\_id}}	&
+\multicolumn{1}{r}{\texttt{lh\_id}}	&	
+\multicolumn{1}{r}{\texttt{lhelc\_id}}	&	
+\multicolumn{1}{r}{\texttt{prselc\_id}}	\\\midrule
+25	&	1993-10-15	&	25004	&	25002	&	25002	&	25002	&	25001	\\
+25	&	1993-10-26	&	25005	&	25002	&	25002	&	25002	&	25001	\\
+25	&	1995-05-06	&	25006	&	25002	&	25002	&	25002	&	25001	\\
+25	&	1995-12-23	&	25006	&	25002	&	25002	&	25002	&	25002	\\
+25	&	1996-02-07	&	25007	&	25002	&	25002	&	25002	&	25002	\\
+25	&	1997-01-02	&	25007	&	25002	&	25002	&	25002	&	25002	\\
+25	&	1997-09-21	&	25007	&	25003	&	25003	&	25002	&	25002	\\
+25	&	1997-10-17	&	25007	&	25003	&	25003	&	25002	&	25002	\\
+25	&	1997-10-21	&	25007	&	25003	&	25003	&	25003	&	25002	\\
+25	&	1997-10-21	&	25007	&	25003	&	25003	&	25003	&	25002	\\\bottomrule\bottomrule
+\end{tabular}
+\end{table}
+
+The empty cells have been filled and materialized view Configuration Events can be used to compute the respective veto-potential configurations, cabinet seat shares in the lower and upper houses, and so forth.

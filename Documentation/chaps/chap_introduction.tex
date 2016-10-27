@@ -1,0 +1,18 @@
+\chapter{Introduction}\label{chap_introduction}
+
+The data in the Political Configurations Database (PCDB) is defined as a relational database in \texttt{PostgreSQL}, an open source object-relational database system.\footnote{See \url{http://www.postgresql.org/}} 
+Using \emph{Structured Query Language} (SQL) is tought to gurantee for the integrity, reliability, and correctness of the data contained in the PCDB.
+
+The \emph{integrety} of the data in the PCDB is imposed by 
+\begin{itemize}
+\item[]\textbf{compiling primary data} (e.g., vote turnouts, seat results, election and institution configuration start dates), and 
+\item[]\textbf{computing aggregate figures and indicators}, such as the Effective Number of Parties in Parliament, Type A and B volatilities in seats and vote, or the total votes and seats at the level of the legislature, open veto points in a given configuration, etc., from the primary data.
+\end{itemize}
+Yet, there are also aggregates figures recorded in the PCDB---mostly obtained from official election statistics---to allow for comparison between recorded and computed values.
+
+In addition, computing these indicators and figures using \texttt{PostgreSQL} ensures the \emph{reliability} and actuality of the data contained in the PCDB, in that, for instance, recording new election results figures requires no further computation of aggregate figures, but indicies, aggregates, and changes in political configurations will be generated automatically (see \ref{sec_views_in_config_data_schema}, \ref{sec_mviews_in_config_data_schema}, and \ref{sec_triggers_and_functions}).
+
+Lastly, the \emph{correctness} of the data is improved by providing automatically generated consistency checks (see \ref{sec_consistency_checks}) that users may query instantely, using the corresponding views. 
+
+These are a few but nevertheless important features of working with a realtional database system like \texttt{PostgreSQL}. % and the corresponding data administration and managment platform \texttt{pgAdmin3}, thought to improve the quality of data in the PCDB.
+For general comments and question the reader may contact \href{mailto:hauke.licht.1@hu-berlin.de}{Hauke Licht}, the author of this version of the PCDB Documentation.

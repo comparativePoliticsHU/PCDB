@@ -1,0 +1,24 @@
+\subsection{Manually deleting data}\label{subsec_manually_deleting_data}
+
+Removing rows from a table is achieved with the \texttt{DELETE}-operation, specifying the table and the row to be delete.\footnote{\url{https://www.postgresql.org/docs/9.3/static/dml-delete.html}}
+Deleting is achieved by identifying the row in a \texttt{WHERE}-clause. 
+
+See the minimum working example:
+\begin{lstlisting}[language=postgreSQL]
+DELETE FROM config_data.cabinet 
+	WHERE cab_id = 6038 
+	AND ctr_id = 6 
+	AND cab_sdate = '2017-06-15'::DATE;
+\end{lstlisting}
+
+This will delete the complete row from the cabinet table that is identified by \texttt{cab\_id = 6038}, that is, the (unique) German cabinet configuration that was recorded as starting on Jule 15, 2017. (Note that using one identifier only would suffice.)
+
+Note again that it is possible to delet more than one row. 
+You could, for instance, execute
+\begin{lstlisting}[language=postgreSQL]
+DELETE FROM config_data.cabinet 
+	WHERE ctr_id = 6 AND cab_hog_n = 'John Doe';
+\end{lstlisting}
+in order to delete all German cabinet configurations in which some guy with last name `John Doe' was recorded as head of government (i.e., prime minister).
+
+Note further that deleting is irreversible unless a back-up copy of the data exists (or is generated on delete).

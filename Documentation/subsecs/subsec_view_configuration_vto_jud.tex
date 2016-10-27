@@ -1,0 +1,17 @@
+\subsection{Judicial Veto Point}\label{view_configuration_vto_jud}
+
+View \texttt{view\_configuraion\_vto\_jud} is based on table Veto Points and materialized view Configuration Events, and provides information at the level of political configurations.
+It computes whether the judiciary constitutes an open veto point vis-\`{a}-vis the government in a given configuration.
+
+View \texttt{view\_configuraion\_vto\_jud} is defined as follows:
+\lstinputlisting[%caption={Code to determine if the judicary constitutes an open veto point in a configuration.},%
+language=SQL]%
+{../SQL-codes/views/view_configuration_vto_jud.sql}
+
+Because the veto power of the judiciary is dependent on constitutional provision,
+joining political configurations with veto information is proceeded by start dates and country identifier.
+The resulting indicator is $1$, if the judiciary was entitled to veto national legislation in a given political configuration.
+%Computation of the judiciary's veto potential in a given political configuration is therefore consistent with the information recorded in the Veto Points table.
+
+
+

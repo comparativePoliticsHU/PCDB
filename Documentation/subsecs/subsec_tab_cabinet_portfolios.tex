@@ -1,0 +1,18 @@
+\subsection{Cabinet Portfolios}\label{subsec_tab_cabinet_portfolios}
+Table \texttt{cabinet\_portfolios} provides information on parties in cabinets. 
+
+As cabinet portfolio we define the composition of a cabinet at the party-level.
+%, i.e., the parties that form the, government, the number of a party’s share on total cabinet seats, and parties supporting government. 
+Thus, new portfolios are included whenever a new cabinet emerges.
+The changes that occur at the party-level regularly correspond to the events enumerated as criteria for recording a new cabinet configuration (cf. subsection \ref{subsec_tab_cabinet}):
+\begin{itemize}%\itemsep-4pt \parsep0pt
+\item[a)] Coalition composition changes.
+\item[b)] Head of government changes.
+\item[c)] Government formation after general legislative elections (not in presidential systems).
+\end{itemize}
+Obviously, combinations of cabinet and party identifier are unique in the cabinet portfolios table.
+
+Table \texttt{cabinet\_portfolios} is defined as follows:
+\lstinputlisting[%caption={Code to compute the minimum-fragmentation Effective Number of Parties in Parliament.},%
+language=postgreSQL]%
+{../SQL-codes/tables/tab_cabinet_portfolios.sql}

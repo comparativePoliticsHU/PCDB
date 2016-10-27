@@ -37,17 +37,17 @@
 \contentsline {subparagraph}{\nonumberline Cabinet's seat share in the lower and the upper house}{33}{section*.22}
 \contentsline {subsection}{\nonumberline Veto points}{34}{section*.23}
 \contentsline {subparagraph}{\nonumberline Lower and Upper House}{34}{section*.24}
-\contentsline {section}{\numberline {3.2}Configuration Country-Years}{36}{section.3.2}
-\contentsline {subparagraph}{\nonumberline Choosing representative configurations}{36}{section*.25}
-\contentsline {section}{\numberline {3.3}Lower House}{38}{section.3.3}
-\contentsline {subparagraph}{\nonumberline Lower house start date}{38}{section*.27}
-\contentsline {subparagraph}{\nonumberline Total number of seats in lower house}{38}{section*.28}
-\contentsline {subparagraph}{\nonumberline Effective Number of Parties in Parliament}{38}{section*.29}
-\contentsline {section}{\numberline {3.4}Lower House Election}{41}{section.3.4}
-\contentsline {subparagraph}{\nonumberline Effective thresholds}{41}{section*.30}
-\contentsline {subparagraph}{\nonumberline Disproportionality}{41}{section*.31}
-\contentsline {subsection}{\nonumberline Type A and B volatility}{42}{section*.32}
-\contentsline {subparagraph}{\nonumberline Type A Volatility}{42}{section*.33}
-\contentsline {subparagraph}{\nonumberline Type B Volatility}{42}{section*.34}
-\contentsline {section}{\numberline {3.5}Lower House Election Party Results}{45}{section.3.5}
-\contentsline {chapter}{\numberline {4}Bibliography}{46}{chapter.4}
+\contentsline {section}{\numberline {3.2}Configuration Country-Years}{37}{section.3.2}
+\contentsline {subparagraph}{\nonumberline Choosing representative configurations}{37}{section*.25}
+\contentsline {section}{\numberline {3.3}Lower House}{39}{section.3.3}
+\contentsline {subparagraph}{\nonumberline Lower house start date}{39}{section*.27}
+\contentsline {subparagraph}{\nonumberline Total number of seats in lower house}{39}{section*.28}
+\contentsline {subparagraph}{\nonumberline Effective Number of Parties in Parliament}{39}{section*.29}
+\contentsline {section}{\numberline {3.4}Lower House Election}{42}{section.3.4}
+\contentsline {subparagraph}{\nonumberline Effective thresholds}{42}{section*.30}
+\contentsline {subparagraph}{\nonumberline Disproportionality}{42}{section*.31}
+\contentsline {subsection}{\nonumberline Type A and B volatility}{43}{section*.32}
+\contentsline {subparagraph}{\nonumberline Type A Volatility}{43}{section*.33}
+\contentsline {subparagraph}{\nonumberline Type B Volatility}{43}{section*.34}
+\contentsline {section}{\numberline {3.5}Lower House Election Party Results}{46}{section.3.5}
+\contentsline {chapter}{\numberline {4}Bibliography}{47}{chapter.4}

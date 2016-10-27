@@ -1,0 +1,15 @@
+\subsection{Lower House Veto Point}\label{view_configuration_vto_lh}
+View \texttt{view\_configuration\_vto\_lh} is based on table Veto Points, Cabinet Portfolios and Lower House Seat Results, and materialized view Configuration Events, and provides information at the level of political configurations.
+It computes whether the lower house constitutes an open veto point vis-\`{a}-vis the government in a given configuration, by comparing cabinet's seat share in the temporal corresponding lower house with the decisive counter-majority threshold recorded in table Veto Points. 
+
+View \texttt{view\_configuration\_vto\_lh} is defined as follows:
+\lstinputlisting[%caption={Code to determine if the lower house constitutes an open  veto point in a configuration.},
+language=SQL]%
+{../SQL-codes/views/view_configuration_vto_lh.sql}
+
+To guarantee that the computation of the lower houses veto potential is sensitive to constitutional changes, joining political configurations with veto information is proceeded by start dates and country identifier. 
+%Computation of the lower house's veto power in a given configuration is therefore up-to-date according to the inforamtion recorded in the Veto Points table.
+
+Substracting the total seat share of cabinet parties in the lower house from the respective veto power threshold of lower houses results in a positive value when the former is smaller than the latter, for instance, in the case of a minority government in a parliamentary system. 
+In this case, \texttt{vto\_pwr\_lh} assumes a value equal to one, indicating an open veto point.
+%Note that a lower house's veto potential in a given configuration can only be determined where full information on the veto institution's start and end date as well as on the respective veto power threshold exists in table Veto Points. 

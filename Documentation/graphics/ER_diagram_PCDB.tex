@@ -1,0 +1,170 @@
+        
+\newgeometry{left=1cm,right=1cm,bottom=1cm,top=0.5cm}
+\begin{sidewaysfigure}
+\centering
+\begin{tikzpicture}[node distance=1cm]
+\footnotesize
+  %%%% CONFIGURATION LEVEL %%%%  
+    
+    \node (ConfEv) [table, text width=6cm, rectangle split, rectangle split parts=2]{
+            \textbf{Configuration Events (Materialized) View}
+            \nodepart{second}\underline{ctr\_id}, \underline{sdate},
+                              cab\_id, lh\_id, lhelc\_id, uh\_id, prselc\_id,
+                              \ldots
+    };
+    \node (ConfCtrYr) [table, text width=5cm, rectangle split, rectangle split parts=2, right=3cm of ConfEv]{
+            \textbf{Configuration Country-Year (Materialized) View}
+            \nodepart{second}\underline{ctr\_id}, \underline{year}, sdate, \ldots
+    };
+    
+      %%% RELATIONSHIPS
+      \draw[many_many_arrow] (ConfEv.east) -- (ConfCtrYr.west);
+
+        
+  %%%% BASE TABLE LEVEL %%%%
+
+    \node (Upper House) [table, rectangle split, rectangle split parts=2, below=3cm of ConfEv] {
+            \textbf{Upper House}
+            \nodepart{second}\underline{uh\_id}, ctr\_id, uh\_sdate, \ldots
+    };
+    \node (Lower House) [table, rectangle split, rectangle split parts=2, left=of Upper House] {
+            \textbf{Lower House}
+            \nodepart{second}\underline{lh\_id}, ctr\_id, lh\_sdate, lhelc\_id, \ldots
+    };
+    \node (Cabinet) [table, rectangle split, rectangle split parts=2, left=of Lower House] {
+            \textbf{Cabinet}
+            \nodepart{second}\underline{cab\_id}, ctr\_id, cab\_sdate, \ldots
+    };
+    \node (Presidential Election) [table, rectangle split, rectangle split parts=2, right=of Upper House]{
+            \textbf{Presidential Election}
+            \nodepart{second}\underline{prselc\_id}, ctr\_id, prs\_sdate, \ldots
+    };
+    \node (Veto Points) [table, rectangle split, rectangle split parts=2, right=of Presidential Election]{
+            \textbf{Veto Points}
+            \nodepart{second}\underline{vto\_inst\_id}, ctr\_id, vto\_inst\_sdate, vto\_inst\_typ, \ldots
+    };
+    
+    %%% RELATIONSHIP 
+    \draw[many_one_arrow] (Upper House.north) -- ++(0,1.8) -| (ConfEv.south);
+      \draw[line] (Upper House.north) -- ++(0,1.8) -| (Cabinet.north);
+      \draw[line] (Upper House.north) -- ++(0,1.8) -| (Lower House.north);
+      \draw[line] (Upper House.north) -- ++(0,1.8) -| (Presidential Election.north);
+      \draw[line] (Upper House.north) -- ++(0,1.8) -| (Veto Points.north);
+      
+      %%% COMMENTS 
+      \node[comment, above=.5cm of Upper House]{ctr\_id, uh\_sdate};
+        \node[comment, above=.5cm of Cabinet]{ctr\_id, cab\_sdate};
+        \node[comment, above=.5cm of Lower House]{ctr\_id, lh\_sdate};
+        \node[comment, above=.5cm of Presidential Election]{ctr\_id, prs\_sdate};
+        \node[comment, above=.5cm of Veto Points]{ctr\_id, vto\_inst\_sdate};
+ 
+  %%%% PARTY LEVEL 
+    \node (Party) [table, rectangle split, rectangle split parts=2, below=3.5cm of Veto Points]{
+            \textbf{Party}
+            \nodepart{second}\underline{pty\_id}, ctr\_id, pty\_abr, \ldots
+    }; 
+    \node (Cabinet Portfolios) [table, rectangle split, rectangle split parts=2, below=1.5cm of Cabinet]{
+            \textbf{Cabinet Portfolios}
+            \nodepart{second}\underline{ptf\_id}, cab\_id, pty\_id, \ldots
+    }; 
+      \draw[many_one_arrow] (Cabinet.south) -- (Cabinet Portfolios.north);
+        \node[comment, above=.5cm of Cabinet Portfolios]{cab\_id};
+    
+%     \node (Minister) [table, rectangle split, rectangle split parts=2, below=3cm of Cabinet Portfolios]{
+%             \textbf{Minister*}
+%             \nodepart{second}\underline{min\_id}, cab\_id, cres\_id, pty\_id, min\_sdate, \ldots
+%     }; 
+%       \draw[many_one_arrow] (Cabinet.west) -- ++(-.5,0) |- ++(0,0) |-  (Minister.west);
+%         \node[comment, above left=1cm and -.1cm of Minister]{cab\_id};
+% 
+%     \node (Cabinet Reshuffle) [table, rectangle split, rectangle split parts=2, below=1.5cm of Minister]{
+%             \textbf{Cabinet Reshuffle*}
+%             \nodepart{second}\underline{cres\_id}, cab\_id, cres\_cnt, cres\_date, pty\_id, \ldots
+%     }; 
+%       \draw[many_one_arrow] (Cabinet.west) -- ++(-.5,0) |- ++(0,0) |-  (Cabinet Reshuffle.west);
+%         \node[comment, above left=.5cm and -.1cm of Cabinet Reshuffle]{cab\_id};
+
+
+    \node (LH Seat Results) [table, rectangle split, rectangle split parts=2, below=1.5cm of Lower House]{
+            \textbf{LH Seat Results}
+            \nodepart{second}\underline{lhsres\_id}, lh\_id, pty\_id, \ldots
+    }; 
+       \draw[many_one_arrow] (Lower House.south) -- (LH Seat Results.north);
+        \node[comment, above=.5cm of LH Seat Results]{lh\_id};
+
+      \node (LH Vote Results) [table, rectangle split, rectangle split parts=2, below=3cm of LH Seat Results]{
+              \textbf{LH Vote Results}
+              \nodepart{second}\underline{lhvres\_id}, lh\_id, pty\_id, \ldots
+      }; 
+    \node (UH Seat Results) [table, rectangle split, rectangle split parts=2, below=1.5cm of Upper House]{
+            \textbf{UH Seat Results}
+            \nodepart{second}\underline{uhsres\_id}, uh\_id, pty\_id, \ldots
+    }; 
+      \draw[many_one_arrow] (Upper House.south) -- (UH Seat Results.north);
+        \node[comment, above=.5cm of UH Seat Results]{uh\_id};
+        
+        
+        \node (Presidential Election Vote Results) [table, rectangle split, rectangle split parts=2, below=1.5cm of Presidential Election]{
+                \textbf{Presidential Election Vote Results}
+                \nodepart{second}\underline{prsvres\_id}, prselc\_id, prselc\_rnd, prs\_cnd\_pty, \ldots
+        }; 
+          \draw[many_one_arrow] (Presidential Election.south) -- (Presidential Election Vote Results.north);
+            \node[comment, above=.5cm of Presidential Election Vote Results]{prselc\_id};
+
+      %%% RELATIONSHIPS
+      \draw[many_one_arrow] (Party.west) -- ++(-2,0) -| (UH Seat Results.south);
+      \draw[many_one_arrow] (Party.west) -- ++(-2,0) -| (LH Seat Results.south);
+      \draw[many_one_arrow] (Party.west) -- ++(-2,0) -| (Presidential Election Vote Results.south);
+
+      \draw[one_many_arrow] (Presidential Election.east) -- ++(.1,0) -| ++(.5,0) |- (Party.west);
+
+      \draw[many_one_arrow] (Party.west) -- ++(-2,0) -| (LH Vote Results.north);
+
+      % \draw[many_one_arrow] (Party.west) -- ++(-2,0) -| (Minister.north);
+      % \draw[many_one_arrow] (Party.west) -- ++(-2,0) -| (Cabinet Portfolios.south);
+        \node[comment, left=.1cm of Party]{pty\_id};
+        \node[comment, left=2.5cm of Party]{pty\_id};
+        \node[comment, left=7.75cm of Party]{pty\_id};
+        \node[comment, left=13cm of Party]{pty\_id};
+        \node[comment, left=18.25cm of Party]{pty\_id};
+
+  %%%% ELECTION LEVEL %%%%
+    \node (LH Election) [table, rectangle split, rectangle split parts=2, below=1.5cm of LH Vote Results]{
+            \textbf{LH Election}
+            \nodepart{second}\underline{lhelc\_id}, ctr\_id, lhelc\_date, \ldots
+    }; 
+       \draw[one_many_arrow] (LH Vote Results.south) -- (LH Election.north);
+        \node[comment, above=.5cm of LH Election]{lhelc\_id};
+       \draw[arrow] (LH Election.west) -- ++(-.5,0) |- ++(0,0) |- (Lower House.west);
+        \node[comment, above left=.7cm and -.1cm of LH Election]{lhelc\_id};
+        \node[zero_symbol, above left=.2cm and .37cm of LH Election]{};
+
+    \node (UH Election) [table, rectangle split, rectangle split parts=2, below=6cm of UH Seat Results,]{
+            \textbf{UH Election}
+            \nodepart{second}\underline{uhelc\_id}, ctr\_id, uhelc\_date, \ldots
+    }; 
+       \draw[arrow] (UH Election.west) -- ++(-.5,0) |- ++(0,0) |- (Upper House.west);
+        \node[comment, above left=.7cm and -.1cm of UH Election]{uhelc\_id};
+        \node[zero_symbol, above left=.2cm and .37cm of UH Election]{};
+  
+  %%%% LEGEND %%%%
+    \node (Legend) [legend, text width=5cm, rectangle split, rectangle split parts=2, below=2.2cm of Party]{
+        \textbf{Legend}
+        \nodepart{second} \vspace{2cm} 
+    };
+    %\node(one-to-one)[draw=none,fill=gray!10, below left=4.5cm and -2cm of Party ] {zero-or-one};
+    \node(one-to-many)[legend_item, below left=3cm and -2cm of Party ] {one-to-many};
+      \draw[many_one_arrow] (one-to-many) -- ++(3,0);
+    \node(many-to-one)[legend_item, below left=3.5cm and -2cm of Party ] {many-to-one};
+      \draw[one_many_arrow] (many-to-one) -- ++(3,0);
+    \node(many-to-many)[legend_item, below left=4cm and -2cm of Party ] {many-to-many};
+      \draw[many_many_arrow] (many-to-many) -- ++(3.15,0);
+    \node(zero-or-one)[legend_item, below left=4.5cm and -2cm of Party ] {zero-or-one};
+      \draw[arrow] (zero-or-one) -- ++(2.9,0); 
+      \node[zero_symbol, right=.2cm of zero-or-one] {};
+
+  \end{tikzpicture}
+\medskip
+\caption{Entity-relationship diagram of the tables in the \texttt{config\_data} schema of the PCDB.}
+\end{sidewaysfigure}
+\restoregeometry

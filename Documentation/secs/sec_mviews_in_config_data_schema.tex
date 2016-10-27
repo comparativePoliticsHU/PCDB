@@ -1,0 +1,19 @@
+\section{Materialized views in the \texttt{config\_data} schema}\label{sec_mviews_in_config_data_schema}
+
+The materialized views contained in the \texttt{config\_data} schema of the PCDB compute are exact copies of the views (see \ref{sec_views_in_config_data_schema}), and are theerfore often homonyms
+
+Generally, in database managment, a view is a virtual table representing the result set of a predefined query on the database.%\footnote{See \url{https://en.wikipedia.org/wiki/Materialized_view#Introduction}} 
+While a view complies the defined data whenever it is queried, a materialized view caches the result set of the view in a manifest table.
+When changes on the data in the tables the view is defined on occur, when queried, the view will be up-to-date.
+The materialized view created before these changes occur, however, will still hold the depricated data.
+Hence, materialization comes at the cost of being potentially out-of-date.
+
+It is therefore imperative to define trigger structures on base tables and materialized views, in order to maintain the conistency of the data in materialized views.
+This aspect of view materilaization will henceforth be highlighted in the subsections of this section.
+
+
+      \input{./subsecs/subsec_mview_configuration_events}
+      % \input{./subsecs/subsec_view_configurations_in_year}
+      \input{./subsecs/subsec_mview_configuration_ctr_yr}
+% 
+

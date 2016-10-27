@@ -1,0 +1,10 @@
+\subsection{Create materialized view}\label{subsec_appx_fun_create_matview}
+
+Function \texttt{create\_matview(matview\_name, view\_name, '\{pkey\_cols\}')} creates a materialized view from a view, given some primary key column(s).
+
+It is defined as follows:\footnote{Source is Listing 3 at \url{http://www.varlena.com/GeneralBits/Tidbits/matviews.html}.} 
+\lstinputlisting[%caption={Code to create summary of institutions' start and election date differences.},%
+language=SQL]%
+{../SQL-codes/functions/fun_create_matview.sql}
+
+Note that one ore more primary key columns need to be defined as the function's third argument, where columns enlisted inside the array must be comma-separated like \texttt{'\{pkey\_col\_1, pkey\_col\_2\}'}; if missing, the function will raise an error.
